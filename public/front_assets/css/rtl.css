@@ -1,0 +1,529 @@
+body.ltr .demo-ltr {
+  display: none;
+}
+body.ltr .demo-rtl {
+  display: block;
+}
+body.ltr .demo-rtl button {
+  /* background-color: transparent;
+  color: #ffffff;
+  border: 1px solid;
+  padding: 0px 10px; */
+  background-color: transparent;
+  color: #a4c19c;
+  border: 1px solid;
+  padding: 0px 10px;
+  border: 1px solid #a4c19c;
+}
+body.ltr .sticky-header .demo-rtl button {
+  color: #000000;
+  border: 1px solid;
+}
+body.rtl .demo-rtl {
+  display: none;
+}
+body.rtl .demo-ltr {
+  display: block;
+}
+body.rtl .demo-ltr button {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid;
+  padding: 0px 10px;
+  background-color: transparent;
+  color: #ab1818;
+  border: 1px solid;
+  padding: 0px 10px;
+  border: 1px solid #333;
+}
+body.rtl .sticky-header .demo-ltr button {
+  color: #000000;
+  border: 1px solid;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+.rtl {
+  direction: rtl;
+}
+.rtl header .top-header .top-left li {
+  margin-left: 25px;
+  margin-right: 0;
+}
+.rtl header .top-header .top-left li i {
+  margin-left: 10px;
+  margin-right: 0;
+}
+.rtl header .top-header .top-left li:last-child {
+  margin-left: 0;
+}
+.rtl header .top-header .top-left li a {
+  margin-right: 7px;
+  margin-left: 0;
+  float: left;
+}
+.rtl header .top-header .top-right .social-links li {
+  margin-left: 15px;
+  margin-right: 0;
+}
+.rtl header .top-header .top-right .social-links li:last-child {
+  margin-left: 0;
+}
+.rtl header .bottom-header .menu-area .main-menu {
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+.rtl header .bottom-header .menu-area .main-menu .navigation > li:first-child {
+  margin-left: 15px;
+  margin-right: 0;
+}
+.rtl header .bottom-header .menu-area .menu-right-content {
+  padding-right: 20px;
+  margin-right: 38px;
+  padding-left: 0;
+  margin-left: 0;
+}
+.rtl header .bottom-header .menu-area .menu-right-content::before {
+  right: -12px;
+  left: 0;
+}
+.rtl header .bottom-header .menu-area .menu-right-content .nav-btn {
+  margin: 0px 15px 0px 30px;
+}
+.rtl .search-popup .close-search {
+  left: 25px;
+  right: inherit;
+}
+.rtl .search-popup .search-form fieldset input[type="search"] {
+  padding-left: 250px;
+  padding-right: 30px;
+}
+.rtl .search-popup .search-form fieldset input[type="submit"] {
+  right: inherit;
+  left: 0;
+  border-radius: 7px 0 0 7px;
+}
+.rtl .xs-sidebar-group.isActive .xs-overlay {
+  right: 0%;
+}
+.rtl .xs-sidebar-group.isActive .xs-sidebar-widget {
+  right: 0%;
+}
+.rtl .xs-sidebar-group .xs-sidebar-widget {
+  right: -100%;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .widget-heading {
+  left: 0;
+  right: inherit;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .sidebar-textwidget {
+  text-align: right;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .sidebar-textwidget
+  .sidebar-info-contents
+  .content-inner
+  .info-box
+  h3 {
+  padding-right: 38px;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .sidebar-textwidget
+  .sidebar-info-contents
+  .content-inner
+  .info-box
+  h3::before {
+  right: 0;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .sidebar-textwidget
+  .sidebar-info-contents
+  .content-inner
+  .info-box
+  .info-list
+  li {
+  padding-right: 30px;
+  padding-left: 0;
+}
+.rtl
+  .xs-sidebar-group
+  .xs-sidebar-widget
+  .sidebar-widget-container
+  .sidebar-textwidget
+  .sidebar-info-contents
+  .content-inner
+  .info-box
+  .info-list
+  li
+  i {
+  right: 0;
+  left: inherit;
+}
+.rtl .side-menu .navigation li.dropdown .dropdown-btn {
+  right: inherit;
+  left: 0;
+}
+.rtl .side-menu .navigation li.dropdown .dropdown-btn::before {
+  content: "\f060";
+}
+.rtl .side-menu .navigation li.dropdown .dropdown-btn.open {
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+}
+.rtl .slider-section {
+  direction: ltr;
+}
+.rtl .slider-section .main-carousel .slide-item .content-box:not(.centerd) {
+  text-align: right;
+}
+.rtl .slider-section .main-carousel .active .content-box h5 {
+  padding-left: 55px;
+  padding-right: 0;
+}
+.rtl .slider-section .main-carousel .active .content-box h5::before {
+  left: 0;
+}
+.rtl .slider-section .main-carousel .active .content-box .btn-box .theme-btn {
+  float: right;
+  margin-right: 0;
+  margin-left: 35px;
+  margin-top: 6px;
+}
+.rtl .slider-section .main-carousel .active .content-box .btn-box .user-btn {
+  padding-right: 85px;
+  padding-left: 0;
+}
+.rtl .slider-section .main-carousel .active .content-box .btn-box .user-btn i {
+  right: 0;
+  left: inherit;
+}
+.rtl .info-sec .title-inner {
+  padding-right: 250px;
+  padding-left: 0;
+}
+.rtl .info-sec .title-inner .year-box {
+  right: 0;
+  left: inherit;
+}
+
+/* =================================================================== */
+
+.rtl header .bottom-header .menu-area .menu-right-content .search-btn {
+  margin: 0 15px 0 30px;
+}
+
+.rtl header .bottom-header .menu-area .menu-right-content .btn-box .join {
+  margin-right: 20px;
+  margin-left: 0;
+}
+
+.sticky-header .menu-area .main-menu .navigation > li:first-child {
+  padding-right: 0;
+  padding-left: auto;
+}
+
+.rtl .about-quran #image_block .image-box .pattern-layer {
+  right: 250px;
+}
+
+.rtl .about-quran #image_block .image-box .content-box {
+  position: absolute;
+  right: 70px;
+  bottom: 45px;
+  max-width: 450px;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 29px 40px 34px 50px;
+  border-right: 4px solid #0a4426;
+  border-left: 0;
+  -webkit-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  -ms-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  -o-box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+
+.rtl .image-box .content-box i {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  font-size: 90px;
+  line-height: 90px;
+  color: #e5e5e5;
+}
+
+.rtl .about-quran #content_block .content-box {
+  margin-left: 60px;
+  margin-right: 0;
+}
+
+.rtl
+  .about-quran
+  #content_block
+  .content-box
+  .tabs-box
+  .tab-btn-box
+  .tab-btns
+  li {
+  float: right;
+  margin-left: 30px;
+  margin-right: 0;
+}
+
+.rtl .how-to-join .join-steps .steps-wrap .step-bx {
+  float: right;
+}
+
+.rtl .how-to-join .join-steps .steps-wrap .step-bx::before {
+  left: -55px;
+  right: auto;
+}
+
+.rtl .our-courses .course-card .card-body .card-items .card-item > .li-title {
+  margin: 0 0 0 auto;
+}
+
+.rtl .fun-fact .counter-column:first-child::after {
+  right: 0px;
+  left: auto;
+}
+
+.rtl .fun-fact .counter-column::before {
+  left: 0;
+  right: auto;
+}
+
+.rtl .page-title .content-box .bread-crumb li {
+  padding-left: 12px;
+  margin-left: 5px;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.rtl .page-title .content-box .bread-crumb li:nth-child(1)::before {
+  left: 3px;
+  right: auto;
+}
+
+.rtl .sec-title.left h5 {
+  padding-left: 55px;
+  padding-right: 0;
+}
+
+.rtl .sec-title.left h5::before {
+  left: 0;
+  right: auto;
+}
+
+.rtl .course-star span {
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+.rtl .border-line-meta:before {
+  right: auto;
+  left: -22px;
+}
+
+.rtl .course-meta-text {
+  margin-left: 0;
+  margin-right: 15px;
+}
+
+.rtl .instructors-footer i,
+.rtl .instructors-footer svg {
+  margin-left: 5px;
+  margin-right: 0;
+}
+
+.rtl .instructors-footer span {
+  margin-right: 0;
+  margin-left: 25px;
+}
+
+.rtl .course-review-list {
+  margin-right: 20px;
+  margin-left: 0;
+}
+
+.rtl .course-review-list span {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.rtl .course-vide-icon i {
+  margin-right: 0;
+  margin-left: 15px;
+}
+
+.rtl .comment-rating span {
+  margin-right: 0;
+  margin-left: 5px;
+}
+
+.rtl .your-order-table table td {
+  border-right: medium none;
+  text-align: right;
+}
+
+.rtl .teacher-profile .card.profile-card .card-body .numbers {
+  flex-direction: row-reverse;
+}
+
+.rtl
+  .teacher-lectures
+  .course-card
+  .card-body
+  .card-items
+  .card-item
+  > .li-title {
+  margin: 0 0 0 auto;
+}
+
+.student-profile.rtl .student-profile-sidebar .nav li .nav-link {
+  text-align: right;
+}
+
+.student-profile.rtl .inprogress-course .inprogress-course-text {
+  display: grid;
+  padding: 20px 0px 20px 20px;
+  width: 100%;
+}
+
+.rtl .course-cart {
+  top: 0;
+  right: 50%;
+  left: 0;
+  transform: translateX(50%);
+}
+
+.rtl .ml-8 {
+  margin-right: 8px !important;
+  margin-left: 0 !important;
+}
+
+.rtl .user-icon i {
+  margin-right: 0;
+  margin-left: 8px;
+}
+
+.rtl .course-icon span {
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+.rtl .info-cart-text ul li svg {
+  margin-right: 0;
+  margin-left: 10px;
+}
+
+.rtl .student-profile-reviews-text-wrap .student-profile-review-icon a {
+  margin-right: 0;
+  margin-left: 3px;
+}
+
+.rtl .student-profile-review-update-btn {
+  margin-right: 0;
+  margin-left: 15px;
+}
+
+.rtl .student-profile-review-update-btn i {
+  margin-right: 0;
+  margin-left: 3px;
+}
+
+.rtl .student-profile-review-content p {
+  padding-right: 0;
+  padding-left: 50px;
+}
+
+.rtl .student-profile-order-name,
+.rtl .student-profile-order-price,
+.rtl .student-profile-order-status,
+.rtl .student-profile-order-method,
+.rtl .student-profile-order-date,
+.rtl .student-profile-order-duration,
+.rtl .student-profile-order-renew {
+  padding-left: 0;
+  padding-right: 15px;
+}
+
+.rtl .student-profile-enroll ul li .nav-link:before {
+  left: auto;
+  right: 0;
+}
+
+.rtl .student-profile-setting-author-img {
+  margin-left: 0;
+  margin-right: 30px;
+}
+
+.rtl
+  .register-style.join-us-page
+  .default-form
+  .form-group
+  .terms-list
+  input[type="checkbox"] {
+  margin: 0 0 0 -40px;
+}
+
+.rtl
+  .register-style.join-us-page
+  .default-form
+  .form-group
+  .comm-list
+  input[type="checkbox"] {
+  margin: 0 0 0 -65px;
+}
+.rtl
+  .register-style.join-us-page
+  .default-form
+  .form-group
+  .teaching-list
+  input[type="checkbox"] {
+  margin: 0 0 0 -50px;
+}
+
+.rtl
+  .register-style.join-us-page
+  .default-form
+  .form-group
+  .working-hours
+  input[type="checkbox"] {
+  margin: 0 0 0 -70px;
+}
+
+.rtl
+  .register-style.join-us-page
+  .default-form
+  .form-group
+  .working-shifts
+  input[type="checkbox"] {
+  margin: 0 0 0 -15px;
+}
+
+/*# sourceMappingURL=rtl.css.map */

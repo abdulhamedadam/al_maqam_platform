@@ -1,0 +1,1204 @@
+/* ==============================================
+== -----------------> START RESPONSIVE STYLESHEET 
+=============================================== */
+/* Start Responsive Style */
+/* Custom Responsive Style */
+@media only screen and (max-width: 1200px) {
+  header .row {
+    align-items: center;
+  }
+}
+@media only screen and (max-width: 599px) {
+  .sec-title h2 {
+    font-size: 32px !important;
+    line-height: 40px !important;
+  }
+}
+
+/* End Custom Responsive Style */
+/* Very Extra small devices (phones, less than 331px) */
+@media (max-width: 330.98px) {
+
+  /* Start Search Popup */
+  .search-popup .search-form fieldset input[type="search"] {
+    padding: 15px 30px;
+    margin-bottom: 15px;
+  }
+
+  .search-popup .search-form fieldset input[type="submit"] {
+    width: 100%;
+    position: relative;
+    border-radius: 7px;
+  }
+
+  /* Start Header */
+  header {
+    padding-bottom: 0px;
+  }
+
+  header .top-header .top-left {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  header .top-header .top-left li {
+    margin: 0;
+  }
+
+  header .top-header .top-right {
+    justify-content: center !important;
+  }
+
+  header .bottom-header .logo-box {
+    padding-top: 30px;
+  }
+
+  header .bottom-header .menu-area {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 22px;
+    padding: 20px 10px 10px;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #ffffff;
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 30px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .nav-btn {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    padding: 20px 10px;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #000000;
+  }
+
+  header.fixed-header .sticky-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content .nav-btn,
+  header.fixed-header .sticky-header .menu-area .menu-right-content .btn-box,
+  header.fixed-header .sticky-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  /* Start Slider */
+  .slider-section .owl-theme .owl-nav {
+    display: none;
+  }
+
+  .slider-section .main-carousel .slide-item {
+    padding-bottom: 120px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box h1 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .user-btn {
+    margin-top: 15px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .slide-item-btn {
+    margin-top: 15px;
+  }
+
+
+  /* Start Fun Fact */
+  .fun-fact .counter-block-one {
+    margin: 15px 0px;
+  }
+
+  /* Start Main Footer */
+  .main-footer .top-footer {
+    padding: 70px 0px 40px 0px;
+  }
+
+  .main-footer .top-footer .widget-section .footer-widget {
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  /* ======================================================
+  ** START PAGES ==========================================
+  ====================================================== */
+  /* ======== Start About Page ========================= */
+  /* ********** Start Header *************************** */
+  header .bottom-header .menu-area .mobile-nav-toggler.page .icon-bar {
+    background-color: #a4c19c;
+  }
+
+  /* About Quran Section */
+  .about-quran {
+    padding: 70px 0;
+  }
+
+  .about-quran #content_block .content-box {
+    margin-right: 0;
+  }
+
+  .about-quran #image_block .image-box .pattern-layer {
+    display: none;
+  }
+
+  .about-quran #image_block .image-box .content-box {
+    left: 0px;
+  }
+
+  /* How to Join Section */
+  .how-to-join {
+    padding: 70px 0;
+  }
+
+  .how-to-join .sec-title-two.light h2 {
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  .how-to-join .join-steps .steps-wrap {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  .how-to-join .join-steps .steps-wrap>li {
+    max-width: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx::before {
+    display: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx {}
+
+  .how-to-join .join-steps .steps-wrap .step-bx>i {
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    font-size: 30px;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx>h5 {
+    font-size: 15px;
+    letter-spacing: normal;
+  }
+
+  /* Start our-courses */
+  .our-courses {
+    padding: 70px 0 50px;
+  }
+
+  .our-courses .course-card {
+    margin-bottom: 35px;
+  }
+
+  .our-courses .course-card .card-body {}
+
+  .our-courses .course-card .card-body .price {}
+
+  .our-courses .course-card .card-body .card-items .card-item {}
+
+  /* start our-teachers */
+  .our-teachers {
+    padding: 70px 0;
+  }
+
+  .our-teachers .teacher-card {
+    margin-bottom: 35px;
+  }
+
+  /* Fun-Fact */
+  .fun-fact .counter-block-one p {
+    font-size: 20px;
+    padding-top: 20px;
+  }
+
+  /* Main Footer / Upper Footer - About Page */
+  .main-footer .footer-upper .upper-inner .text {
+    float: none;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .main-footer .footer-upper .upper-inner .text h2 {
+    font-size: 25px;
+  }
+
+  .main-footer .footer-upper .upper-inner .btn-box {
+    display: block;
+    margin: 0px;
+    float: none;
+    text-align: center;
+  }
+}
+
+/* 
+================================================================ 
+*/
+/* Extra small devices (portrait phones, greater than 331px & less than 576px)
+
+Extra small devices (portrait phones, greater than 331px to 575.98px) 
+*/
+@media (min-width: 331px) and (max-width: 575.98px) {
+  .search-popup .search-form fieldset input[type="search"] {
+    padding: 15px 30px;
+    margin-bottom: 15px;
+  }
+
+  .search-popup .search-form fieldset input[type="submit"] {
+    width: 100%;
+    position: relative;
+    border-radius: 7px;
+  }
+
+  header {
+    padding-bottom: 0px;
+  }
+
+  header .top-header .top-left {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  header .top-header .top-left li {
+    margin: 0;
+  }
+
+  header .top-header .top-right {
+    justify-content: center !important;
+  }
+
+  header .bottom-header .logo-box {
+    padding-top: 30px;
+  }
+
+  header .bottom-header .menu-area {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 28px;
+    padding: 20px 10px 10px;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #ffffff;
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 35px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .nav-btn {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    padding: 20px 10px;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #000000;
+  }
+
+  header.fixed-header .sticky-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content .nav-btn,
+  header.fixed-header .sticky-header .menu-area .menu-right-content .btn-box,
+  header.fixed-header .sticky-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  /* Start Slider */
+  .slider-section .owl-theme .owl-nav {
+    display: none;
+  }
+
+  .slider-section .main-carousel .slide-item {
+    padding-bottom: 120px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box h1 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .user-btn {
+    margin-top: 15px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .slide-item-btn {
+    margin-top: 15px;
+  }
+
+  /* Start Fun Fact */
+  .fun-fact .counter-block-one {
+    margin: 15px 0px;
+  }
+
+  /* Start Main Footer */
+  .main-footer .top-footer {
+    padding: 70px 0px 40px 0px;
+  }
+
+  .main-footer .top-footer .widget-section .footer-widget {
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  /* ======================================================
+  ** START PAGES ==========================================
+  ====================================================== */
+  /* ======== Start About Page ========================= */
+  /* ********** Start Header *************************** */
+  header .bottom-header .menu-area .mobile-nav-toggler.page .icon-bar {
+    background-color: #a4c19c;
+  }
+
+  /* About Section - About Page */
+  .about-quran {
+    padding: 70px 0;
+  }
+
+  .about-quran #content_block .content-box {
+    margin-right: 0;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns li {
+    font-weight: 700;
+    color: #222222;
+    margin-right: 23px;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns li:last-of-type {
+    margin-right: 0;
+  }
+
+  .about-quran #image_block .image-box .pattern-layer {
+    display: none;
+  }
+
+  .about-quran #image_block .image-box .content-box {
+    left: 0px;
+  }
+
+  /* How to Join Section */
+  .how-to-join {
+    padding: 70px 0;
+  }
+
+  .how-to-join .sec-title-two.light h2 {
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  .how-to-join .join-steps .steps-wrap {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  .how-to-join .join-steps .steps-wrap>li {
+    max-width: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx::before {
+    display: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx {}
+
+  .how-to-join .join-steps .steps-wrap .step-bx>i {
+    height: 125px;
+    width: 125px;
+    line-height: 125px;
+    font-size: 30px;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx>h5 {
+    font-size: 15px;
+    letter-spacing: normal;
+  }
+
+
+  /* Start our-courses */
+
+  .our-courses {
+    padding: 70px 0 50px;
+  }
+
+  .our-courses .course-card {
+    margin-bottom: 35px;
+  }
+
+  .our-courses .course-card .card-btn a {
+    padding: 10px 20px !important;
+  }
+
+  .our-courses .course-card .card-body {}
+
+  .our-courses .course-card .card-body .price {}
+
+  .our-courses .course-card .card-body .card-items .card-item {}
+
+  /* start our-teachers */
+  .our-teachers {
+    padding: 70px 0;
+    margin-bottom: -28px;
+  }
+
+  .our-teachers .teacher-card {
+    margin-bottom: 35px;
+  }
+
+  /* Fun-Fact */
+  .fun-fact .counter-block-one p {
+    font-size: 20px;
+    padding-top: 20px;
+  }
+
+
+  /* Main Footer / Upper Footer - About Page */
+  .main-footer .footer-upper .upper-inner .text {
+    float: none;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .main-footer .footer-upper .upper-inner .text h2 {
+    font-size: 30px;
+  }
+
+  .main-footer .footer-upper .upper-inner .btn-box {
+    display: block;
+    margin: 0px;
+    float: none;
+    text-align: center;
+  }
+
+}
+
+/* Small devices (landscape phones, 576px to 767.98px) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .search-popup .search-form fieldset input[type="search"] {
+    padding: 15px 30px;
+    margin-bottom: 15px;
+  }
+
+  .search-popup .search-form fieldset input[type="submit"] {
+    width: 100%;
+    position: relative;
+    border-radius: 7px;
+  }
+
+  header {
+    padding-bottom: 0px;
+  }
+
+  header .top-header .top-left {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  header .top-header .top-left li {
+    margin-right: 0;
+  }
+
+  header .top-header .top-right {
+    justify-content: center !important;
+  }
+
+  header .bottom-header .logo-box {
+    padding-top: 20px;
+  }
+
+  header .bottom-header .menu-area {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 22px;
+    padding: 10px;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #ffffff;
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn {
+    top: 3px;
+    margin: 0 20px 0 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .nav-btn {
+    top: 3px;
+    margin: 0px 15px 0px 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box {
+    width: 190px;
+    justify-content: flex-end;
+
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box .theme-btn {
+    padding: 5px 13px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    padding: 20px 10px;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #000000;
+  }
+
+  header.fixed-header .sticky-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content .nav-btn,
+  header.fixed-header .sticky-header .menu-area .menu-right-content .btn-box,
+  header.fixed-header .sticky-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  /* Start Slider */
+  .slider-section .owl-theme .owl-nav {
+    display: none;
+  }
+
+  .slider-section .main-carousel .slide-item {
+    padding-bottom: 120px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box h1 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .user-btn {
+    margin-top: 15px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .slide-item-btn {
+    margin-top: 15px;
+  }
+
+  /* How to Join Section */
+  .how-to-join {
+    padding: 70px 0;
+  }
+
+  .how-to-join .sec-title-two.light h2 {
+    font-size: 28px;
+    font-weight: 800;
+  }
+
+  .how-to-join .join-steps .steps-wrap {
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+  }
+
+  .how-to-join .join-steps .steps-wrap>li {
+    max-width: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx::before {
+    display: none;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx {}
+
+  .how-to-join .join-steps .steps-wrap .step-bx>i {
+    height: 135px;
+    width: 135px;
+    line-height: 135px;
+    font-size: 38px;
+  }
+
+  .how-to-join .join-steps .steps-wrap .step-bx>h5 {
+    font-size: 15px;
+    letter-spacing: normal;
+  }
+
+  /* our-courses */
+
+  .our-courses .course-card {
+    margin-bottom: 35px;
+  }
+
+  .our-courses .course-card .card-body .card-items .card-item>.li-title {
+    text-align: left;
+    line-height: 22px;
+  }
+
+  .our-courses .course-card .card-btn a {
+    padding: 10px;
+  }
+
+  /* Teacher Section */
+  .our-teachers .teacher-card {
+    margin-bottom: 35px;
+  }
+
+  .fun-fact .counter-column:first-child::after {
+    display: none;
+  }
+
+  .fun-fact .counter-column::before {
+    display: none;
+  }
+
+  /* Start Main Footer */
+  .main-footer .top-footer {
+    padding: 70px 0px 40px 0px;
+  }
+
+  .main-footer .top-footer .widget-section .footer-widget {
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  /* ======================================================
+  ** START PAGES ==========================================
+  ====================================================== */
+  /* ======== Start About Page ========================= */
+  /* ********** Start Header *************************** */
+  header .bottom-header .menu-area .mobile-nav-toggler.page .icon-bar {
+    background-color: #a4c19c;
+  }
+
+  /* About Section - About Page */
+  .about-quran {
+    padding: 70px 0;
+  }
+
+  .about-quran #content_block .content-box {
+    margin-right: 0;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns li {
+    margin-right: 15px;
+  }
+
+  .about-quran #image_block .image-box .pattern-layer {
+    display: none;
+  }
+
+  .about-quran #image_block .image-box .content-box {
+    left: 0px;
+  }
+
+  /* Customize OWL Dots for Team Section - About Page */
+  .owl-theme .owl-dots {
+    display: none;
+  }
+
+  /* Main Footer / Upper Footer - About Page */
+  .main-footer .footer-upper .upper-inner .text {
+    float: none;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .main-footer .footer-upper .upper-inner .text h2 {
+    font-size: 30px;
+  }
+
+  .main-footer .footer-upper .upper-inner .btn-box {
+    display: block;
+    margin: 0px;
+    float: none;
+    text-align: center;
+  }
+
+}
+
+/* Medium devices (tablets, 768px and up to 991.98px) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .search-popup .search-form fieldset input[type="search"] {
+    padding: 15px 30px;
+    margin-bottom: 15px;
+  }
+
+  .search-popup .search-form fieldset input[type="submit"] {
+    width: 100%;
+    position: relative;
+    border-radius: 7px;
+  }
+
+  header {
+    padding-bottom: 0px;
+  }
+
+  header .top-header .top-left li {
+    margin-right: 15px;
+  }
+
+  header .bottom-header .logo-box {
+    padding-top: 40px;
+  }
+
+  header .bottom-header .menu-area {
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 22px;
+    padding: 32px 0 10px 10px;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #ffffff;
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 35px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn {
+    top: 3px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .nav-btn {
+    top: 3px;
+    margin: 0px 20px 0px 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box {
+    width: 190px;
+    margin-right: 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .btn-box .theme-btn {
+    padding: 5px 13px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header {
+    padding-top: 15px;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    padding: 20px 10px;
+  }
+
+  header.fixed-header .sticky-header .menu-area .mobile-nav-toggler .icon-bar {
+    background-color: #000000;
+  }
+
+  header.fixed-header .sticky-header .menu-area .main-menu {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content {
+    display: none;
+  }
+
+  header.fixed-header .sticky-header .menu-area .menu-right-content .nav-btn,
+  header.fixed-header .sticky-header .menu-area .menu-right-content .btn-box,
+  header.fixed-header .sticky-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  /* Start Slider */
+  .slider-section .owl-theme .owl-nav {
+    display: none;
+  }
+
+  .slider-section .main-carousel .slide-item {
+    padding-bottom: 120px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box h1 {
+    font-size: 44px;
+    line-height: 55px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .user-btn {
+    margin-top: 15px;
+  }
+
+  .slider-section .main-carousel .slide-item .content-box .btn-box .slide-item-btn {
+    margin-top: 15px;
+  }
+
+  /* Start Fun Fact */
+  .fun-fact .counter-block-one {
+    margin: 15px 0px;
+  }
+
+  .fun-fact .counter-column:first-child::after {
+    display: none;
+  }
+
+  .fun-fact .counter-column::before {
+    display: none;
+  }
+
+  /* Start Main Footer */
+  .main-footer .top-footer {
+    padding: 70px 0px 40px 0px;
+  }
+
+  .main-footer .top-footer .widget-section .footer-widget {
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  /* ======================================================
+  ** START PAGES ==========================================
+  ====================================================== */
+  /* ======== Start About Page ========================= */
+  /* ********** Start Header *************************** */
+  header .bottom-header .menu-area .mobile-nav-toggler.page .icon-bar {
+    background-color: #a4c19c;
+  }
+
+  /* About Section - About Page */
+  .about-quran {
+    padding: 70px 0;
+  }
+
+  .about-quran #content_block .content-box {
+    margin-right: 0;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns li {
+    margin-right: 15px;
+  }
+
+  .about-quran #image_block .image-box .pattern-layer {
+    right: -30px;
+    width: 135px;
+  }
+
+  .about-quran #image_block .image-box .content-box {
+    left: 0px;
+  }
+
+  /* how to join */
+  .how-to-join .join-steps .steps-wrap>li {
+    padding: 0;
+  }
+  .how-to-join .join-steps .steps-wrap .step-bx>i {
+    width: 130px;
+      height: 130px;
+      line-height: 130px;
+      font-size: 35px;
+  }
+  .how-to-join .join-steps .steps-wrap .step-bx>h5 {
+    font-size: 15px;
+    letter-spacing: 0;
+  }
+  .how-to-join .join-steps .steps-wrap .step-bx::before {
+    display: none;
+  }
+
+  /* Our Courses */
+  .our-courses .course-card {
+    margin-bottom: 30px;
+  }
+
+  /* our teacher */
+  .our-teachers .card {
+    margin-bottom: 30px;
+  }
+
+  /* Funfact Section */
+  .fun-fact {
+    margin-top: -28px;
+  }
+  .fun-fact .row.clearfix>div[class^="col"] {
+    width: 33.3%;
+    float: left;
+  }
+
+  /* Video Section - About Page */
+  .about-page.video-section {
+    padding: 70px 0px;
+  }
+
+  .about-page.video-section .inner-box h2 {
+    font-size: 27px;
+    line-height: 45px;
+    margin-top: 15px;
+  }
+
+  /* Customize OWL Dots for Team Section - About Page */
+  .owl-theme .owl-dots {
+    display: none;
+  }
+
+  /* Team Section - About Page */
+  .about-page.team-section {
+    padding: 45px 0;
+  }
+
+  .about-page.team-section .title-box .sec-title {
+    padding: 15px 0;
+    text-align: center;
+  }
+
+  .about-page.team-section .title-box .sec-title::before {
+    display: none;
+  }
+
+  .about-page.team-section .title-box .sec-title h5 {
+    font-size: 16px;
+  }
+
+  .about-page.team-section .title-box .sec-title h2 {
+    font-size: 30px !important;
+  }
+
+  .about-page.team-section .title-box .text {
+    padding: 0px;
+    text-align: center;
+  }
+
+  .about-page.team-section .team-block-one .inner-box .image-box {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Main Footer / Upper Footer - About Page */
+  .main-footer .footer-upper .upper-inner .text {
+    float: none;
+    display: block;
+    margin-bottom: 15px;
+  }
+
+  .main-footer .footer-upper .upper-inner .text h2 {
+    font-size: 30px;
+  }
+
+  .main-footer .footer-upper .upper-inner .btn-box {
+    display: block;
+    margin: 0px;
+    float: none;
+    text-align: center;
+  }
+
+  /* Start Blog Page */
+  .sidebar-page-container .blog-content {
+    margin-right: 0;
+  }
+
+  .sidebar-page-container .blog-content .news-carousel .owl-nav {
+    display: none;
+  }
+
+  /* Start Error 404 Page */
+  .error-page {
+    height: auto;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  header .bottom-header .logo-box {
+    padding-top: 35px;
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    margin-left: 10px;
+  }
+
+  header .bottom-header .menu-area .main-menu .navigation>li {
+    margin-left: 10px;
+  }
+
+  header .bottom-header .menu-area .main-menu .navigation li.sign-in,
+  header .bottom-header .menu-area .main-menu .navigation li.sign-up {
+    display: none;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-left: 0px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .nav-btn {
+    margin: 0 15px;
+  }
+
+  header .bottom-header .menu-area .menu-right-content::before {
+    display: none;
+  }
+
+  .sticky-header .menu-area .main-menu .navigation>li {
+    padding: 18px;
+  }
+
+  .about-quran #content_block .content-box .tabs-box .tab-btn-box .tab-btns li {
+    padding: 10px 0px 10px 25px;
+  }
+  .how-to-join .join-steps .steps-wrap .step-bx::before {
+    content: "";
+    position: absolute;
+    width: 40px;
+    right: -42px;
+}
+
+.our-courses .course-card .card-body .card-items .card-item>.li-title {
+  text-align: left;
+}
+.our-courses .course-card .card-btn a {
+  padding: 10px;
+}
+
+/* teachers */
+.our-teachers .card .card-body .specialty .tags {
+  padding: 5px;
+}
+
+  /* Start Fun Fact */
+  .fun-fact {
+    margin-top: -28px;
+  }
+  .fun-fact .counter-column:first-child::after {
+    display: none;
+  }
+
+  .fun-fact .counter-column:last-child::before {
+    display: none;
+  }
+
+  /* Start Main Footer */
+  .main-footer .top-footer {
+    padding: 70px 0px 40px 0px;
+  }
+
+  .main-footer .top-footer .widget-section .links-widget:first-child {
+    padding-left: 15px !important;
+  }
+
+  .main-footer .top-footer .widget-section .footer-widget {
+    margin: 0px 0px 30px 0px !important;
+  }
+
+  /* ======================================================
+  ** START PAGES ==========================================
+  ====================================================== */
+  /* ======== Start About Page ========================= */
+  /* ********** Start Header *************************** */
+  header.page .bottom-header .menu-area .menu-right-content .nav-btn {
+    margin: 0 15px;
+  }
+
+  .error-page .error-box {
+    padding: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  header .bottom-header .logo-box {
+    padding-top: 17px;
+    /* padding-top: 35px; */
+  }
+
+  header .bottom-header .menu-area .main-menu {
+    margin-left: auto !important;
+    margin-right: 0 !important;
+  }
+
+  header .bottom-header .menu-area .main-menu .navigation li.sign-in,
+  header .bottom-header .menu-area .main-menu .navigation li.sign-up {
+    display: none;
+  }
+}
+
+/* ==============================================
+== -------------------> END RESPONSIVE STYLESHEET 
+=============================================== */
+
+/*# sourceMappingURL=responsive.css.map */

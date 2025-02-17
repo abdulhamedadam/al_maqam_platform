@@ -1,0 +1,212 @@
+header.our-lectures-page .bottom-header .menu-area .main-menu .navigation>li>a {
+  color: #222222;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  opacity: 1;
+  z-index: 1;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+/* Start Page Title */
+.page-title {
+  position: relative;
+  width: 100%;
+  padding: 90px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.page-title::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a4426;
+  opacity: 0.8;
+}
+
+content-box {
+  visibility: hidden;
+}
+
+.page-title .content-box h1 {
+  position: relative;
+  display: block;
+  font-size: 60px;
+  line-height: 70px;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.page-title .content-box .bread-crumb li {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #ffffff;
+  text-transform: capitalize;
+  padding-right: 12px;
+  margin-right: 5px;
+}
+
+.page-title .content-box .bread-crumb li:nth-child(1)::before {
+  position: absolute;
+  content: "|";
+  width: 3px;
+  height: 1px;
+  top: 0px;
+  right: 3px;
+}
+
+.page-title .content-box .bread-crumb li a {
+  color: #ffffff;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.page-title .content-box .bread-crumb li a:hover {
+  color: #ffca8f;
+}
+
+.page-title .content-box .bread-crumb li:last-child {
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.our-courses.page {
+  padding: 70px 0 25px;
+  position: relative;
+}
+
+.our-courses.page .course-block {
+  margin-bottom: 35px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 330.98px) {
+  header .bottom-header .logo-box {
+    padding: 10px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    margin-top: 7PX !important;
+    padding: 10px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn {
+    margin: 0 15px !important;
+  }
+
+  .page-title .content-box h1 {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 331px) and (max-width: 575.98px) {
+  .our-courses.page .row.clearfix>div[class^="col"] {
+    width: 100%;
+    float: left;
+  }
+
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 20px 10px 0px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  .page-title .content-box h1 {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 0px 10px 20px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 0px 10px 20px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  header .bottom-header .logo-box {
+    padding-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .lectures-page header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+}

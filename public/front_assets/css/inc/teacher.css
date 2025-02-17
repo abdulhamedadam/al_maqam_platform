@@ -1,0 +1,595 @@
+
+header.teacher-page .bottom-header .menu-area .main-menu .navigation > li > a {
+  color: #222222;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  opacity: 1;
+  z-index: 1;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.single-teacher .main-header .bottom-header {
+  background-color: #fff !important;
+}
+
+.single-teacher {
+  background-color: #f3f3f3;
+}
+
+.teacher-profile {
+  padding: 50px 0;
+}
+
+.teacher-profile .card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: initial;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.teacher-profile .card.profile-card {
+  text-align: center;
+  padding: 1.5em;
+  border: none;
+  border-radius: 12px;
+  transition: 0.2s ease-in-out;
+}
+
+.teacher-profile .card.profile-card .card-header {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  margin: 0 auto;
+  border-bottom: none;
+  padding: 0;
+}
+
+.teacher-profile .card.profile-card .card-header .card-img {
+  border: 2px solid #0c8849;
+  border-radius: 50%;
+  padding: 5px;
+  width: 100px;
+  height: 100px;
+}
+
+.teacher-profile .card.profile-card .card-body .teacher-name,
+.teacher-profile .card.profile-card .card-body .country {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  padding-bottom: 15px;
+}
+
+.teacher-profile .card.profile-card .card-body .country {
+  color: #0c8849;
+  font-size: 18px !important;
+}
+
+.teacher-profile .card.profile-card .card-body .teacher-bio {
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  color: #969696;
+}
+
+.teacher-profile .card.profile-card .card-body .numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin: 7px;
+  color: #424242;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+.teacher-profile .card.profile-card .card-body .numbers span.numbers-students,
+.teacher-profile .card.profile-card .card-body .numbers span.numbers-classes {
+  color: #0c8849;
+  font-weight: 600;
+}
+
+.teacher-profile .card.profile-card .card-body .specialty .specialty-title {
+  color: #444;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.teacher-profile .card.profile-card .card-body .specialty .tags {
+  color: #0c8849;
+  background-color: #0c884926;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 14px;
+  display: inline-block;
+  margin: 0 4px 5px;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+.teacher-profile .card.profile-card .card-body .specialty .tags-hover {
+  transition: 0.2s ease-in-out;
+}
+
+.teacher-profile .card.profile-card .card-body .specialty .tags-hover:hover {
+  background: #cf8b40;
+  color: #fff;
+}
+
+/* == Teacher Lectures == */
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  text-align: center;
+    text-transform: capitalize;
+    margin: 20px 0;
+    color: #0a4426;
+}
+
+.teacher-lectures.teacher-profile .card.profile-card {
+  padding: 40px;
+}
+
+.teacher-lectures .course-card {
+  height: 100%;
+  text-align: center;
+  padding: 1.5em;
+  margin-bottom: 25px;
+  border: 3px solid #0a4426;
+  border-radius: 12px;
+  transition: all 500ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-20px);
+  box-shadow: 0 3px 41px #00000029;
+  -webkit-transform: translateY(-20px);
+  -moz-transform: translateY(-20px);
+  -ms-transform: translateY(-20px);
+  -o-transform: translateY(-20px);
+}
+
+.teacher-lectures .course-card .card-img {
+  width: 100%;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+
+.teacher-lectures .course-card .card-body {
+  margin-bottom: 25px;
+  padding: 0;
+}
+
+.teacher-lectures .course-card .card-body .price {
+  display: block;
+  font-size: 20px;
+  color: #0a4426;
+  text-transform: capitalize;
+  margin: 1em 0;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item>.li-title {
+  margin: 0 auto 0 0;
+  text-align: left;
+  text-transform: capitalize;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item svg {
+  width: 25px;
+}
+
+.teacher-lectures .course-card .card-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 25px 0 20px;
+}
+
+.teacher-lectures .course-card .card-btn a {
+  background-color: transparent;
+  color: #0a4426;
+  padding: 10px 40px;
+  border: 3px solid #0a4426;
+  border-radius: 6px;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  -ms-border-radius: 6px;
+  -o-border-radius: 6px;
+  text-transform: capitalize;
+  overflow: hidden;
+  transition: all 500ms ease-in-out;
+  -webkit-transition: all 500ms ease-in-out;
+  -moz-transition: all 500ms ease-in-out;
+  -ms-transition: all 500ms ease-in-out;
+  -o-transition: all 500ms ease-in-out;
+}
+
+.teacher-lectures .course-card .card-btn:hover a {
+  background-color: #0a4426;
+  color: #fff;
+  border: none;
+}
+
+/* == End Teacher Lectures == */
+
+/* RESPONSIVE */
+
+@media (max-width: 330.98px) {
+  header .bottom-header .logo-box {
+    padding: 10px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    margin-top: 7px !important;
+    padding: 10px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn {
+    margin: 0 15px !important;
+  }
+
+  .teacher-profile .card.profile-card .card-body .teacher-bio {
+    width: 100%;
+  }
+
+  .teacher-profile .card.profile-card .card-body .numbers .slash {
+    display: none;
+  }
+
+  .teacher-profile .card.profile-card .card-body .numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teacher-profile .card.profile-card .card-body .specialty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teacher-lectures {
+    padding: 0 0 50px;
+  }
+
+  .teacher-lectures .course-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+  .teacher-lectures.teacher-profile .card.profile-card {
+    padding: 15px;
+}
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  margin: 10px 0;
+  font-size: 28px !important;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+
+
+}
+
+@media (min-width: 331px) and (max-width: 575.98px) {
+
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 20px 10px 0px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  .page-title .content-box h1 {
+    font-size: 45px;
+  }
+
+  .teacher-profile .card.profile-card .card-body .teacher-bio {
+    width: 100%;
+  }
+
+  .teacher-profile .card.profile-card .card-body .numbers .slash {
+    display: none;
+  }
+
+  .teacher-profile .card.profile-card .card-body .numbers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teacher-profile .card.profile-card .card-body .specialty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .teacher-lectures {
+    padding: 0 0 50px;
+  }
+
+  .teacher-lectures .course-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  margin: 10px 0;
+  font-size: 28px !important;
+}
+
+.teacher-lectures.teacher-profile .card.profile-card {
+  padding: 20px;
+}
+
+.teacher-lectures .course-card .card-btn a {
+  padding: 10px 10px;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 0px 10px 20px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  .teacher-profile .card.profile-card .card-body .teacher-bio {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .teacher-lectures {
+    padding: 0 0 50px;
+  }
+
+  .teacher-lectures .course-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  margin: 10px 0;
+  font-size: 28px !important;
+}
+
+.teacher-lectures.teacher-profile .card.profile-card {
+  padding: 20px;
+}
+
+.teacher-lectures .course-card {
+  padding: 15px;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item>.li-title {
+  text-align: left;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.teacher-lectures .course-card .card-btn a {
+  padding: 10px 10px;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 10px 10px 20px !important
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  .teacher-profile .card.profile-card .card-body .teacher-bio {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .teacher-lectures {
+    padding: 0 0 50px;
+  }
+
+  .teacher-lectures .course-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  margin: 10px 0;
+  font-size: 28px !important;
+}
+
+.teacher-lectures.teacher-profile .card.profile-card {
+  padding: 20px;
+}
+
+.teacher-lectures .course-card {
+  padding: 15px;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item>.li-title {
+  text-align: left;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.teacher-lectures .course-card .card-btn a {
+  padding: 10px 10px;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  header .bottom-header .logo-box {
+    padding-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  .teacher-profile .card.profile-card .card-body .teacher-bio {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+
+  .teacher-lectures {
+    padding: 0 0 50px;
+  }
+
+  .teacher-lectures .course-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+  }
+
+.teacher-lectures .lecture-text .sec-title h2 {
+  margin: 10px 0;
+  font-size: 28px !important;
+}
+
+.teacher-lectures.teacher-profile .card.profile-card {
+  padding: 20px;
+}
+
+.teacher-lectures .course-card {
+  padding: 15px;
+}
+
+.teacher-lectures .course-card .card-body .card-items .card-item>.li-title {
+  text-align: left;
+  font-size: 15px;
+  line-height: 22px;
+}
+
+.teacher-lectures .course-card .card-btn a {
+  padding: 10px 10px;
+}
+
+.teacher-lectures .course-card:hover {
+  transform: translateY(-10px);
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+}
+
+@media (min-width: 1200px) {
+  .single-teacher
+    header
+    .bottom-header
+    .menu-area
+    .menu-right-content
+    .search-btn
+    button {
+    color: #666 !important;
+  }
+
+  .teacher-lectures .course-card {
+    padding: 10px;
+  }
+
+  .teacher-lectures .course-card .card-btn a {
+    padding: 10px 10px;
+  }
+}

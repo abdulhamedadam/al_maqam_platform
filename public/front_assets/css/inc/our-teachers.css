@@ -1,0 +1,350 @@
+header.our-teachers-page .bottom-header .menu-area .main-menu .navigation>li>a {
+  color: #222222;
+  position: relative;
+  display: flex;
+  font-weight: 600;
+  opacity: 1;
+  z-index: 1;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+/* Start Page Title */
+.page-title {
+  position: relative;
+  width: 100%;
+  padding: 90px 0px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.page-title::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #0a4426;
+  opacity: 0.8;
+}
+
+content-box {
+  visibility: hidden;
+}
+
+.page-title .content-box h1 {
+  position: relative;
+  display: block;
+  font-size: 60px;
+  line-height: 70px;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.page-title .content-box .bread-crumb li {
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  color: #ffffff;
+  text-transform: capitalize;
+  padding-right: 12px;
+  margin-right: 5px;
+}
+
+.page-title .content-box .bread-crumb li:nth-child(1)::before {
+  position: absolute;
+  content: "|";
+  width: 3px;
+  height: 1px;
+  top: 0px;
+  right: 3px;
+}
+
+.page-title .content-box .bread-crumb li a {
+  color: #ffffff;
+  -webkit-transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+  transition: all 500ms ease;
+}
+
+.page-title .content-box .bread-crumb li a:hover {
+  color: #ffca8f;
+}
+
+.page-title .content-box .bread-crumb li:last-child {
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.our-teachers.page {
+  padding: 70px 0 25px;
+  position: relative;
+}
+
+.our-teachers.page .teacher-card {
+  margin-bottom: 35px;
+}
+
+/* ******************************
+  * Start Our Teacher SECTION ************
+  ****************************** */
+
+.our-teachers {
+  padding: 100px 0;
+  position: relative;
+  background-color: #0a4426;
+}
+
+.our-teachers::before {
+  position: absolute;
+  content: "";
+  background: #efefef !important;
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  opacity: 0.9;
+}
+
+.our-teachers .sec-title {
+  margin-bottom: 40px;
+}
+
+.our-teachers.page .sec-title h2 {
+  margin-bottom: 40px;
+  color: #222222;
+  text-transform: capitalize;
+}
+
+.our-teachers .card {
+  text-align: center;
+  height: 100%;
+  padding: 1.5em;
+  border: none;
+  border-radius: 12px;
+  transition: 0.2s ease-in-out;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: initial;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  -ms-border-radius: 0.25rem;
+  -o-border-radius: 0.25rem;
+  -webkit-transition: 0.2s ease-in-out;
+  -moz-transition: 0.2s ease-in-out;
+  -ms-transition: 0.2s ease-in-out;
+  -o-transition: 0.2s ease-in-out;
+}
+
+.our-teachers .card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 3px 41px #00000029;
+  -webkit-transform: translateY(-10px);
+  -moz-transform: translateY(-10px);
+  -ms-transform: translateY(-10px);
+  -o-transform: translateY(-10px);
+}
+
+.our-teachers .card .card-header {
+  position: relative;
+  height: auto;
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.our-teachers .card .card-header .card-img {
+  border: 2px solid #0c8849;
+  border-radius: 50%;
+  padding: 5px;
+  width: 110px;
+  height: auto;
+}
+
+.our-teachers .card .card-body .teacher-name {
+  display: flex;
+  margin: -5px 0 40px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #0c8849;
+  text-transform: capitalize;
+  align-items: center;
+  justify-content: center;
+}
+
+.our-teachers .card .card-body .country {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+  color: #338a49;
+}
+
+.our-teachers .card .card-body .specialty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+
+.our-teachers .card .card-body .specialty .specialty-title {
+  text-transform: capitalize;
+  width: 100%;
+  font-size: 15px;
+  color: #757575;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.our-teachers .card .card-body .specialty .tags {
+  color: #0c8849;
+  background-color: #0c884926;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 14px;
+  display: inline-block;
+  margin: 0 4px 5px;
+  flex-grow: 1;
+  text-transform: capitalize;
+  font-weight: 600;
+}
+
+/* responsive */
+@media (max-width: 330.98px) {
+  header .bottom-header .logo-box {
+    padding: 10px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block !important;
+    margin-top: 7PX !important;
+    padding: 10px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn {
+    margin: 0 15px !important;
+  }
+
+  .page-title .content-box h1 {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 331px) and (max-width: 575.98px) {
+  .our-teachers.page .row.clearfix>div[class^="col"] {
+    width: 100%;
+    float: left;
+  }
+
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 20px 10px 0px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+
+  .page-title .content-box h1 {
+    font-size: 45px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 0px 10px 20px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  header .bottom-header .logo-box {
+    padding: 5px 0 !important;
+  }
+
+  header .bottom-header .menu-area .mobile-nav-toggler {
+    display: block;
+    margin-top: 7px !important;
+    padding: 10px 0px 10px 20px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content {
+    margin-top: 5px !important;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1199.98px){
+  header .bottom-header .logo-box {
+    padding-top: 5px !important;
+  }
+
+  header .bottom-header .menu-area .menu-right-content .search-btn button {
+    color: #666 !important;
+  }
+}
+
+
+
+
+
+/* End Our Teacher Section */
