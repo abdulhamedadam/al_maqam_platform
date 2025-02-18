@@ -3315,9 +3315,9 @@
 
     </div> --}}
 
-    @php
+    {{-- @php
     $dashboardData = get_dashboard_data();
-    @endphp
+    @endphp --}}
 
     <div class="container mt-4">
         <div class="row">
@@ -3325,7 +3325,8 @@
                 <div class="card text-white bg-success mb-3">
                     <div class="card-header">{{ trans('dashboard.clients') }}</div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $dashboardData['clients'] }}</h5>
+                        {{-- <h5 class="card-title">{{ $dashboardData['clients'] }}</h5> --}}
+                        <h5 class="card-title"></h5>
                         <br>
                     </div>
                 </div>
@@ -3335,8 +3336,10 @@
                     <div class="card-header">{{ trans('dashboard.paid_invoices') }}</div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{ $dashboardData['paid_invoices_count'] }} {{ trans('dashboard.invoices') }}
-                            <br> ${{ number_format($dashboardData['paid_invoices_total'], 2) }}
+                            {{-- {{ $dashboardData['paid_invoices_count'] }} {{ trans('dashboard.invoices') }} --}}
+                            {{ trans('dashboard.invoices') }}
+                            {{-- <br> ${{ number_format($dashboardData['paid_invoices_total'], 2) }} --}}
+                            <br> $0
                         </h5>
                     </div>
                 </div>
@@ -3346,8 +3349,10 @@
                     <div class="card-header">{{ trans('dashboard.unpaid_invoices') }}</div>
                     <div class="card-body">
                         <h5 class="card-title">
-                            {{ $dashboardData['unpaid_invoices_count'] }} {{ trans('dashboard.invoices') }}
-                            <br> ${{ number_format($dashboardData['unpaid_invoices_total'], 2) }}
+                            {{-- {{ $dashboardData['unpaid_invoices_count'] }} {{ trans('dashboard.invoices') }} --}}
+                            {{ trans('dashboard.invoices') }}
+                            {{-- <br> ${{ number_format($dashboardData['unpaid_invoices_total'], 2) }} --}}
+                            <br> $0
                         </h5>
                     </div>
                 </div>
@@ -3356,7 +3361,8 @@
                 <div class="card text-white bg-primary mb-3">
                     <div class="card-header">{{ trans('dashboard.employees') }}</div>
                     <div class="card-body">
-                        <h5 class="card-title">{{ $dashboardData['employees'] }}</h5>
+                        {{-- <h5 class="card-title">{{ $dashboardData['employees'] }}</h5> --}}
+                        <h5 class="card-title"></h5>
                     </div>
                 </div>
             </div>
@@ -3364,7 +3370,8 @@
                 <div class="card text-white bg-info mb-3">
                     <div class="card-header">{{ trans('dashboard.revenues') }}</div>
                     <div class="card-body">
-                        <h5 class="card-title">${{ number_format($dashboardData['revenues'], 2) }}</h5>
+                        {{-- <h5 class="card-title">${{ number_format($dashboardData['revenues'], 2) }}</h5> --}}
+                        <h5 class="card-title">$0</h5>
                     </div>
                 </div>
             </div>
@@ -3372,7 +3379,8 @@
                 <div class="card text-white mb-3" style="background-color: #44b4b0;">
                     <div class="card-header">{{ trans('dashboard.masrofat') }}</div>
                     <div class="card-body">
-                        <h5 class="card-title">${{ number_format($dashboardData['masrofat'], 2) }}</h5>
+                        {{-- <h5 class="card-title">${{ number_format($dashboardData['masrofat'], 2) }}</h5> --}}
+                        <h5 class="card-title">$0</h5>
                     </div>
                 </div>
             </div>

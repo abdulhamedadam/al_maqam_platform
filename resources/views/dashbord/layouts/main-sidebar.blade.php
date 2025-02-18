@@ -58,7 +58,7 @@
                 @endcan
 
 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.subscriptions', 'admin.sarf_bands']) ? 'active' : '' }}"
                        href="{{ route('admin.subscriptions') }}">
         <span class="svg-icon svg-icon-2" style="margin-left: 5px">
@@ -66,8 +66,17 @@
         </span>
                         <span class="menu-title">{{ trans('sidebar.general_settings') }}</span>
                     </a>
-                </div>
+                </div> --}}
                 <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs(['admin.branches', 'admin.siteData', 'admin.governorates', 'admin.areas']) ? 'active' : '' }}"
+                       href="{{ route('admin.siteData') }}">
+        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+            <i class="bi bi-sliders text-primary fs-2x"></i>
+        </span>
+                        <span class="menu-title">{{ trans('sidebar.general_settings') }}</span>
+                    </a>
+                </div>
+                {{-- <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.employee_data', 'jobs', 'admin.archive_shelf_settings', 'shelf', 'admin.archive_settings', 'desk']) ? 'active' : '' }}"
                        href="{{ route('admin.employee_data') }}">
         <span class="svg-icon svg-icon-2" style="margin-left: 5px">
@@ -75,9 +84,9 @@
         </span>
                         <span class="menu-title">{{ trans('sidebar.employee_data') }}</span>
                     </a>
-                </div>
+                </div> --}}
 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.clients.index']) ? 'active' : '' }}"
                        href="{{ route('admin.clients.index') }}">
                                <span class="svg-icon svg-icon-2" style="margin-left: 5px">
@@ -85,7 +94,7 @@
                                 </span>
                         <span class="menu-title">{{ trans('sidebar.clients') }}</span>
                     </a>
-                </div>
+                </div> --}}
 
                 <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.roles.index']) ? 'active' : '' }}"
@@ -97,7 +106,7 @@
                     </a>
                 </div>
 
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.users.index']) ? 'active' : '' }}"
                         href="{{ route('admin.users.index') }}">
                                 <span class="svg-icon svg-icon-2" style="margin-left: 5px">
@@ -105,7 +114,7 @@
                                 </span>
                         <span class="menu-title">{{ trans('sidebar.users') }}</span>
                     </a>
-                </div>
+                </div> --}}
                 {{-- <div class="menu-item">
                     <a class="menu-link {{ request()->routeIs(['admin.invoices.index']) ? 'active' : '' }}"
                         href="{{ route('admin.invoices.index') }}">

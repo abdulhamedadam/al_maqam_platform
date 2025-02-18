@@ -27,7 +27,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'register_type' => 'required|string|in:student,instructor',
+            'register_type' => 'required|string|in:student,teacher',
             'phone' => 'required|string|max:20',
             'birthday' => 'required|date',
             'gender' => 'required|string|in:m,f',
@@ -35,7 +35,7 @@ class AuthController extends Controller
             'state' => 'required|string|max:255',
         ];
 
-        if ($data['register_type'] === 'instructor') {
+        if ($data['register_type'] === 'teacher') {
             $rules['admission'] = 'required|array';
             $rules['admission.*'] = 'string';
             $rules['education'] = 'nullable|string|max:255';
@@ -80,7 +80,7 @@ class AuthController extends Controller
             // dd($request->all());
             $user = $this->create($request->all());
 
-            if ($request->register_type === 'instructor') {
+            if ($request->register_type === 'teacher') {
                 $this->createTeacherDetails($user->id, $request->all());
             }
 
@@ -226,7 +226,7 @@ class AuthController extends Controller
                 return redirect()->route('user.login')->with('error', 'You must be logged in to view your profile.');
             }
 
-            if ($user->role === 'instructor') {
+            if ($user->role === 'teacher') {
                 $user->load('teacherDetails');
                 return redirect()->route('user.teacher-profile', compact('user'));
             }

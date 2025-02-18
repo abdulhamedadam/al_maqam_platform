@@ -404,23 +404,23 @@ if (!function_exists('form_icon')) {
         }
     }
 
-    if (!function_exists('get_dashboard_data')) {
-        function get_dashboard_data()
-        {
-            return [
-                'employees' => Employee::count(),
-                'clients' => Clients::count(),
+    // if (!function_exists('get_dashboard_data')) {
+    //     function get_dashboard_data()
+    //     {
+    //         return [
+    //             'employees' => Employee::count(),
+    //             'clients' => Clients::count(),
 
-                'paid_invoices_count' => Invoice::whereIn('status', ['paid', 'partial'])->count(),
-                'paid_invoices_total' => Invoice::whereIn('status', ['paid', 'partial'])->sum('amount'),
+    //             'paid_invoices_count' => Invoice::whereIn('status', ['paid', 'partial'])->count(),
+    //             'paid_invoices_total' => Invoice::whereIn('status', ['paid', 'partial'])->sum('amount'),
 
-                'unpaid_invoices_count' => Invoice::where('status', 'unpaid')->count(),
-                'unpaid_invoices_total' => Invoice::where('status', 'unpaid')->sum('amount'),
+    //             'unpaid_invoices_count' => Invoice::where('status', 'unpaid')->count(),
+    //             'unpaid_invoices_total' => Invoice::where('status', 'unpaid')->sum('amount'),
 
-                'revenues' => Revenue::sum('amount'),
-                'masrofat' => Masrofat::sum('value'),
-            ];
-        }
-    }
+    //             'revenues' => Revenue::sum('amount'),
+    //             'masrofat' => Masrofat::sum('value'),
+    //         ];
+    //     }
+    // }
 }
 

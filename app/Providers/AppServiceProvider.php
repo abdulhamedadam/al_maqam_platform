@@ -55,6 +55,5 @@ class AppServiceProvider extends ServiceProvider
             return $key;
         });
 
-        // dd(Auth::user());
     }
 }

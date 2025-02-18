@@ -1238,7 +1238,7 @@
                         .querySelectorAll("input, select, textarea")
                         .forEach((input) => (input.disabled = false));
                 });
-                registerTypeInput.value = "instructor";
+                registerTypeInput.value = "teacher";
             }
         };
 

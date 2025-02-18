@@ -18,8 +18,8 @@
                 <div class="col-12">
                     <div class="card profile-card">
                         <div class="card-header">
-                            <img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg') }}" alt="" srcset=""
-                                class="card-img" />
+                            <img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg') }}" alt=""
+                                srcset="" class="card-img" />
                         </div>
                         <div class="card-body">
                             <h3 class="teacher-name">ahmed mahmoud</h3>
@@ -75,7 +75,8 @@
                                 <div class="course-block">
                                     <div class="card course-card">
                                         <div class="card-img">
-                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="..." />
+                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                                alt="..." />
                                         </div>
                                         <div class="card-body">
                                             <bdi class="price">200.00 LE</bdi>
@@ -207,7 +208,8 @@
                                             </ul>
                                         </div>
                                         <div class="card-btn">
-                                            <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                            <a href="{{ route('user.course_details') }}" class="card-link">join this
+                                                lecture</a>
                                         </div>
                                     </div>
                                 </div>
@@ -216,7 +218,8 @@
                                 <div class="course-block">
                                     <div class="card course-card">
                                         <div class="card-img">
-                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="..." />
+                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                                alt="..." />
                                         </div>
                                         <div class="card-body">
                                             <bdi class="price">500.00 LE</bdi>
@@ -348,7 +351,8 @@
                                             </ul>
                                         </div>
                                         <div class="card-btn">
-                                            <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                            <a href="{{ route('user.course_details') }}" class="card-link">join this
+                                                lecture</a>
                                         </div>
                                     </div>
                                 </div>
@@ -357,7 +361,8 @@
                                 <div class="course-block">
                                     <div class="card course-card">
                                         <div class="card-img">
-                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="..." />
+                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                                alt="..." />
                                         </div>
                                         <div class="card-body">
                                             <bdi class="price">200.00 LE</bdi>
@@ -489,7 +494,8 @@
                                             </ul>
                                         </div>
                                         <div class="card-btn">
-                                            <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                            <a href="{{ route('user.course_details') }}" class="card-link">join this
+                                                lecture</a>
                                         </div>
                                     </div>
                                 </div>
@@ -498,7 +504,8 @@
                                 <div class="course-block">
                                     <div class="card course-card">
                                         <div class="card-img">
-                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="..." />
+                                            <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                                alt="..." />
                                         </div>
                                         <div class="card-body">
                                             <bdi class="price">200.00 LE</bdi>
@@ -630,7 +637,8 @@
                                             </ul>
                                         </div>
                                         <div class="card-btn">
-                                            <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                            <a href="{{ route('user.course_details') }}" class="card-link">join this
+                                                lecture</a>
                                         </div>
                                     </div>
                                 </div>

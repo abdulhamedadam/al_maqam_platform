@@ -11,8 +11,8 @@
                 <div class="form-group">
                     <fieldset>
                         <input type="search" class="form-control" name="search-input" value=""
-                            placeholder="Search Here" required>
-                        <input type="submit" value="Search Now!" class="theme-btn">
+                            placeholder="{{ trans('header.Search Here') }}" required>
+                        <input type="submit" value="{{ trans('header.Search Now!') }}" class="theme-btn">
                     </fieldset>
                 </div>
             </form>
@@ -51,13 +51,19 @@
                         <nav class="main-menu navbar-expand-md me-auto navbar-light">
                             <div class="collapse navbar-collapse show" id="navbarSupportedContent">
                                 <ul class="navigation">
-                                    <li><a href="{{ route('user.home') }}">Home</a></li>
-                                    <li><a href="{{ route('user.our_lectures') }}">Our Lectures</a></li>
-                                    <li><a href="{{ route('user.our_teachers') }}">Our Teachers</a></li>
-                                    <li><a href="{{ route('user.contact') }}">Contact</a></li>
-                                    <li class="sign-in"><a href="{{ route('user.login') }}">Login</a></li>
-                                    <li class="sign-up"><a href="{{ route('user.join_us') }}">Join Us</a></li>
-                                    <div class="page_direction">
+                                    <li><a href="{{ route('user.home') }}">{{ trans('header.Home') }}</a></li>
+                                    <li><a
+                                            href="{{ route('user.our_lectures') }}"></a>{{ trans('header.Our Lectures') }}
+                                    </li>
+                                    <li><a
+                                            href="{{ route('user.our_teachers') }}">{{ trans('header.Our Teachers') }}</a>
+                                    </li>
+                                    <li><a href="{{ route('user.contact') }}">{{ trans('header.Contact') }}</a></li>
+                                    <li class="sign-in"><a
+                                            href="{{ route('user.login') }}">{{ trans('header.Login') }}</a></li>
+                                    <li class="sign-up"><a
+                                            href="{{ route('user.join_us') }}">{{ trans('header.Join Us') }}</a></li>
+                                    {{-- <div class="page_direction">
                                         <div class="demo-rtl direction_switch">
                                             <button class="rtl">
                                                 Arabic
@@ -72,6 +78,39 @@
                                                 English
                                             </button>
                                         </div>
+                                    </div> --}}
+                                    <div class="page_direction">
+                                        @php
+                                            $supportedLocales = LaravelLocalization::getSupportedLocales();
+                                        @endphp
+
+                                        @if (isset($supportedLocales['ar']))
+                                            <div class="demo-rtl direction_switch">
+                                                <a rel="alternate" hreflang="ar"
+                                                    href="{{ LaravelLocalization::getLocalizedURL('ar', null, [], true) }}">
+                                                    <button class="rtl">
+                                                        {{ $supportedLocales['ar']['native'] }}
+                                                        <img src="{{ asset('front_assets/images/flags/egypt.svg') }}"
+                                                            alt="{{ $supportedLocales['ar']['native'] }}"
+                                                            class="flag egy-flag">
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        @endif
+
+                                        @if (isset($supportedLocales['en']))
+                                            <div class="demo-ltr direction_switch">
+                                                <a rel="alternate" hreflang="en"
+                                                    href="{{ LaravelLocalization::getLocalizedURL('en', null, [], true) }}">
+                                                    <button class="ltr">
+                                                        <img src="{{ asset('front_assets/images/flags/U.S.A.-Flag.svg') }}"
+                                                            alt="{{ $supportedLocales['en']['native'] }}"
+                                                            class="flag usa-flag">
+                                                        {{ $supportedLocales['en']['native'] }}
+                                                    </button>
+                                                </a>
+                                            </div>
+                                        @endif
                                     </div>
                                     <!-- page-direction end -->
                                 </ul>
@@ -87,18 +126,18 @@
                                 @auth
                                     @if (auth()->user()->role === 'student')
                                         <a href="{{ route('user.student_profile') }}"
-                                            class="theme-btn m-3">{{ auth()->user()->name }}'s Dashboard</a>
+                                            class="theme-btn m-3">{{ auth()->user()->name }}{{ trans('header.s Dashboard') }}</a>
                                     @elseif(auth()->user()->role === 'teacher')
                                         <a href="{{ route('user.teacher_profile') }}"
-                                            class="theme-btn m-3">{{ auth()->user()->name }}'s Dashboard</a>
+                                            class="theme-btn m-3">{{ auth()->user()->name }}{{ trans('header.s Dashboard') }}</a>
                                     @endif
                                     <form method="POST" action="{{ route('user.logout') }}">
                                         @csrf
-                                        <button type="submit" class="theme-btn">Logout</button>
+                                        <button type="submit" class="theme-btn">{{ trans('header.Logout') }}</button>
                                     </form>
                                 @else
-                                    <a href="{{ route('user.login') }}" class="login theme-btn">Login</a>
-                                    <a href="{{ route('user.join_us') }}" class="join theme-btn">Join Now</a>
+                                    <a href="{{ route('user.login') }}" class="login theme-btn">{{ trans('header.Login') }}</a>
+                                    <a href="{{ route('user.join_us') }}" class="join theme-btn">{{ trans('header.Join Now') }}</a>
                                 @endauth
                             </div>
                         </div>

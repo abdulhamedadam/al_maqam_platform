@@ -9,7 +9,7 @@
                      <div class="count-outer count-box">
                          <span class="count-text" data-speed="1500" data-stop="10">0</span>
                      </div>
-                     <p>Teacher</p>
+                     <p>{{ trans('footer.Teachers') }}</p>
                  </div>
              </div>
              <div class="col-lg-4 col-md-6 col-sm-12 counter-column">
@@ -17,7 +17,7 @@
                      <div class="count-outer count-box">
                          <span class="count-text" data-speed="1500" data-stop="30">0</span>
                      </div>
-                     <p>Students</p>
+                     <p>{{ trans('footer.Students') }}</p>
                  </div>
              </div>
              <div class="col-lg-4 col-md-6 col-sm-12 counter-column">
@@ -25,7 +25,7 @@
                      <div class="count-outer count-box">
                          <span class="count-text" data-speed="1500" data-stop="100">0</span>
                      </div>
-                     <p>monthly lectures</p>
+                     <p>{{ trans('footer.monthly_lectures') }}</p>
                  </div>
              </div>
          </div>
@@ -39,7 +39,7 @@
  <footer class="main-footer">
      <div class="container">
          <div class="copyright">
-             <p>&copy; 2023 Almaqam Almahmoud - All rights reserved.</p>
+             <p>&copy; {{ trans('footer.copy_right') }}</p>
          </div>
      </div>
  </footer>

@@ -81,6 +81,6 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         'jwt' => \App\Http\Middleware\JwtMiddleware::class,
-        // 'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'role' => \App\Http\Middleware\RoleMiddleware::class,
     ];
 }

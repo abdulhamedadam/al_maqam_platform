@@ -45,7 +45,7 @@ Route::group(
     Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/dashboard', function () {
             return view('dashbord.home');
-        })->name('dashboard')->middleware('can:view_dashboard');
+        })->name('dashboard');
 
         Route::get('/test', function () {
             return ' test admin ';
@@ -118,10 +118,10 @@ Route::group(
         // Route::get('/area/delete/{id}', [GeneralSettingsController::class, 'delete_area'])->name('delete_area');
         // Route::get('/get_ajax_areas', [GeneralSettingsController::class, 'get_ajax_areas'])->name('get_ajax_areas');
 
-        // Route::get('/site_data', [GeneralSettingsController::class, 'siteData'])->name('siteData');
-        // Route::get('/site_data/edit/{id}', [GeneralSettingsController::class, 'edit_siteData'])->name('edit_siteData');
-        // Route::post('/site_data/create', [GeneralSettingsController::class, 'save_siteData'])->name('save_siteData');
-        // Route::get('/get_ajax_siteData', [GeneralSettingsController::class, 'get_ajax_siteData'])->name('get_ajax_siteData');
+        Route::get('/site_data', [GeneralSettingsController::class, 'siteData'])->name('siteData');
+        Route::get('/site_data/edit/{id}', [GeneralSettingsController::class, 'edit_siteData'])->name('edit_siteData');
+        Route::post('/site_data/create', [GeneralSettingsController::class, 'save_siteData'])->name('save_siteData');
+        Route::get('/get_ajax_siteData', [GeneralSettingsController::class, 'get_ajax_siteData'])->name('get_ajax_siteData');
 
         Route::get('/Employees', [EmployeesController::class, 'index'])->name('employee_data');
         Route::get('/get_ajax_employee', [EmployeesController::class, 'get_ajax_employee'])->name('get_ajax_employee');
