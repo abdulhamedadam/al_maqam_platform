@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('front.pages.join-us');
+        return view('site.pages.join-us');
     }
 
     protected function validator(array $data)
@@ -29,7 +29,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'register_type' => 'required|string|in:student,teacher',
             'phone' => 'required|string|max:20',
-            'birthday' => 'required|date',
+          //  'birthday' => 'required|date',
             'gender' => 'required|string|in:m,f',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
@@ -72,11 +72,11 @@ class AuthController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        // dd($validator);
+
         try {
-            $request->merge([
-                'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
-            ]);
+//            $request->merge([
+//                'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
+//            ]);
             // dd($request->all());
             $user = $this->create($request->all());
 
@@ -135,7 +135,7 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('front.pages.login');
+        return view('site.pages.login');
     }
 
     // public function login(Request $request)

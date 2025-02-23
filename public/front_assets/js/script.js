@@ -440,7 +440,7 @@
 
     $(document).ready(function () {
         $("#datepicker").datepicker({
-            dateFormat: "dd/mm/yy",
+            dateFormat: "dd-mm-yy",
             changeMonth: true,
             changeYear: true,
             showButtonPanel: true,

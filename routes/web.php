@@ -17,19 +17,19 @@ Route::group(
         Route::group(['as' => 'user.'], function () {
             Route::middleware(['guest:web'])->group(function () {
                 Route::get('/', function () {
-                    return view('front.index');
+                    return view('site.index');
                 })->name('home');
 
                 Route::get('/our-teachers', function () {
-                    return view('front.pages.our-teachers');
+                    return view('site.pages.our-teachers');
                 })->name('our_teachers');
 
                 Route::get('/our-lectures', function () {
-                    return view('front.pages.our-lectures');
+                    return view('site.pages.our-lectures');
                 })->name('our_lectures');
 
                 Route::get('/contact', function () {
-                    return view('front.pages.contact');
+                    return view('site.pages.contact');
                 })->name('contact');
 
                 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -40,30 +40,30 @@ Route::group(
 
 
                 Route::get('/our-courses', function () {
-                    return view('front.pages.our-courses');
+                    return view('site.pages.our-courses');
                 })->name('our_courses');
 
                 Route::get('/course-details', function () {
-                    return view('front.pages.course-details');
+                    return view('site.pages.course-details');
                 })->name('course_details');
             });
 
             Route::middleware(['auth:web', 'role:student'])->group(function () {
                 Route::get('/student-profile', function () {
-                    return view('front.pages.student-profile');
+                    return view('site.pages.student-profile');
                 })->name('student_profile');
             });
 
             Route::middleware(['auth:web', 'role:teacher'])->group(function () {
                 Route::get('/teacher-profile', function () {
-                    return view('front.pages.teacher-profile');
+                    return view('site.pages.teacher-profile');
                 })->name('teacher_profile');
             });
 
 
             Route::middleware(['auth:web'])->group(function () {
                 Route::get('/reset-password', function () {
-                    return view('front.pages.reset-password');
+                    return view('site.pages.reset-password');
                 })->name('reset_password');
 
                 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

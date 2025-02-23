@@ -8,4 +8,5 @@
   'تم إلغاء آخر دفعة بنجاح' => 'تم إلغاء آخر دفعة بنجاح',
   'clients' => 'العملاء',
   'notifications' => 'الاشعارات',
+  'Logout successful!' => 'Logout successful!',
 );
