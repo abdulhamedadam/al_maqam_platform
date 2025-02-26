@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-@include('dashbord.layouts.head')
+@include('admin.layouts.head')
 <!--begin::Body-->
 <body id="kt_body" class="app-blank app-blank">
 <!--begin::Theme mode setup on page load-->
@@ -41,7 +41,7 @@
                 <img class="d-none d-lg-block mx-auto w-300px w-lg-75 w-xl-500px mb-10 mb-lg-20"
                      src="{{asset('assets/media/auth/password-changed.png')}}" alt=""/>
                 <!--end::Image-->
-              
+
 
             </div>
             <!--end::Content-->
@@ -124,7 +124,7 @@
 </div>
 <!--end::Root-->
 
-@include('dashbord.layouts.footer-scripts')
+@include('admin.layouts.footer-scripts')
 
 <!--begin::Javascript-->
 <script>var hostUrl = "{{URL::asset('assets')}}/";</script>

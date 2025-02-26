@@ -57,7 +57,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost/My-Projects/lawyer_system'),
 
-    'asset_url' => env('ASSET_URL','http://localhost/My-Projects/lawyer_system/public'),
+    //'asset_url' => env('ASSET_URL','http://localhost/My-Projects/lawyer_system/public'),
 
     /*
     |--------------------------------------------------------------------------

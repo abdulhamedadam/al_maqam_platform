@@ -1,0 +1,16 @@
+<?php return array (
+  'ID' => 'ID',
+  'product_name' => 'product_name',
+  'category' => 'category',
+  'slug' => 'slug',
+  'description' => 'description',
+  'short_description' => 'short_description',
+  'meta_description' => 'meta_description',
+  'meta_keywords' => 'meta_keywords',
+  'image' => 'image',
+  'status' => 'status',
+  'actions' => 'actions',
+  'product_details' => 'product_details',
+  'seo' => 'seo',
+  'add_categories' => 'add_categories',
+);

@@ -12,6 +12,8 @@ use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\RevenueController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestsController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -44,12 +46,18 @@ Route::group(
 
     Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
         Route::get('/dashboard', function () {
-            return view('dashbord.home');
+            return view('admin.home');
         })->name('dashboard');
 
         Route::get('/test', function () {
             return ' test admin ';
         });
+
+        Route::resource('students' , StudentController::class)->except('show');
+        Route::resource('teachers' , TeacherController::class);
+        Route::get('/teachers/{id}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
+        Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
+
 
 
         /********************************************************************************************************************************/

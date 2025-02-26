@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Site\Auth;
 
+use App\Enums\TeacherStatus;
 use App\Http\Controllers\Controller;
 use App\Models\TeacherDetail;
 use App\Models\User;
@@ -29,7 +30,7 @@ class AuthController extends Controller
             'password' => 'required|string|min:8|confirmed',
             'register_type' => 'required|string|in:student,teacher',
             'phone' => 'required|string|max:20',
-          //  'birthday' => 'required|date',
+            //'birthday' => 'required|date',
             'gender' => 'required|string|in:m,f',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
@@ -74,14 +75,15 @@ class AuthController extends Controller
         }
 
         try {
-//            $request->merge([
-//                'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
-//            ]);
+        //    $request->merge([
+        //        'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
+        //    ]);
             // dd($request->all());
             $user = $this->create($request->all());
 
             if ($request->register_type === 'teacher') {
                 $this->createTeacherDetails($user->id, $request->all());
+                return redirect()->back()->with('warning', 'Wait For Admin Approval');
             }
 
             return redirect()->route('user.login')->with('success', 'Registration successful!');
@@ -100,7 +102,7 @@ class AuthController extends Controller
             'password' => Hash::make($data['password']),
             'role' => $data['register_type'],
             'phone' => $data['phone'],
-            'birthday' => $data['birthday'],
+            //'birthday' => $data['birthday'],
             'gender' => $data['gender'],
             'country' => $data['country'],
             'state' => $data['state'],
@@ -179,10 +181,15 @@ class AuthController extends Controller
 
         try {
             if (Auth::guard('web')->attempt($credentials)) {
+                $user = Auth::guard('web')->user();
+
+                if ($user->role === 'teacher' && $user->teacher->status !== TeacherStatus::Approved) {
+                    Auth::guard('web')->logout();
+                    return redirect()->back()->with('error', 'Your account is not approved yet. Please wait for approval.');
+                }
+
                 $request->session()->regenerate();
 
-                $user = Auth::guard('web')->user();
-                // dd($user->role);
                 switch ($user->role) {
                     case 'teacher':
                         return redirect()->route('user.teacher_profile')->with('success', 'Login successful!');

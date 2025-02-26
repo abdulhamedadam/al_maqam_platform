@@ -19,7 +19,7 @@
     <meta property="og:title" content="Keen - Multi-demo Bootstrap 5 HTML Admin Dashboard Theme"/>
     <meta property="og:url" content="https://keenthemes.com/keen"/>
     <meta property="og:site_name" content="Keenthemes | Keen"/>
-    @include('dashbord.layouts.head')
+    @include('admin.layouts.head')
 </head>
 <body>
 <!--begin::Theme mode setup on page load-->
@@ -87,7 +87,7 @@
     <!--end::Authentication - Sign-in-->
 </div>
 <!--end::Root-->
-@include('dashbord.layouts.footer-scripts')
+@include('admin.layouts.footer-scripts')
 <!--begin::Javascript-->
 <script>var hostUrl = "{{URL::asset('assets')}}/";</script>
 <!--begin::Global Javascript Bundle(mandatory for all pages)-->
