@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\TeacherStatus;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Teachers\SaveRequest;
+use App\Http\Requests\Admin\Teachers\UpdateRequest;
 use App\Models\TeacherDetail;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
 class TeacherController extends Controller
@@ -64,14 +68,19 @@ class TeacherController extends Controller
                     }
 
                     $actions .= '
-                        <button onclick="confirmDelete(' . $row->id . ')" class="btn btn-sm btn-danger" title="' . trans('actions.delete') . '" style="font-size: 16px;">
-                            <i class="bi bi-trash3"></i>
-                        </button>
+                        <div class="btn-group btn-group-sm">
+                            <a href="' . route('admin.teachers.edit', $row->id) . '" class="btn btn-sm btn-primary" title="' . trans('actions.edit') . '" style="font-size: 16px;">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <button onclick="confirmDelete(' . $row->id . ')" class="btn btn-sm btn-danger" title="' . trans('actions.delete') . '" style="font-size: 16px;">
+                                <i class="bi bi-trash3"></i>
+                            </button>
 
-                        <form id="delete-form-' . $row->id . '" action="' . route('admin.teachers.destroy', $row->id) . '" method="POST" style="display: none;">
-                            ' . csrf_field() . '
-                            ' . method_field('DELETE') . '
-                        </form>
+                            <form id="delete-form-' . $row->id . '" action="' . route('admin.teachers.destroy', $row->id) . '" method="POST" style="display: none;">
+                                ' . csrf_field() . '
+                                ' . method_field('DELETE') . '
+                            </form>
+                        </div>
                     ';
 
                     return $actions;
@@ -80,7 +89,7 @@ class TeacherController extends Controller
                 ->make(true);
         }
 
-        return view($this->base_view . 'index');
+        return view($this->base_view . 'index' , compact('status'));
     }
 
 
@@ -103,13 +112,50 @@ class TeacherController extends Controller
 
     public function create()
     {
-
+        return view($this->base_view . 'create');
     }
 
 
-    public function store(Request $request)
+    public function store(SaveRequest $request)
     {
+        try {
+            DB::beginTransaction();
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'role' => 'teacher',
+                'phone' => $request->phone,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
+                'country' => $request->country,
+                'state' => $request->state,
+                'password' => Hash::make($request->password)
+            ]);
 
+            TeacherDetail::create([
+                'user_id' => $user->id,
+                'status' => TeacherStatus::Approved,
+                'admission_terms' => json_encode($request->admission_terms),
+                'education' => $request->education,
+                'azhar' => $request->azhar,
+                'quran_license' => $request->quran_license,
+                'other_license' => $request->other_license,
+                'other_license_details' => $request->other_license_details,
+                'teaching_online' => $request->teaching_online,
+                'communication_platforms' => json_encode($request->communication_platforms),
+                'teaching_kids' => $request->teaching_kids,
+                'teaching_subjects' => json_encode($request->teaching_subjects),
+                'working_hours' => json_encode($request->working_hours),
+                'other_working_hours' => $request->other_working_hours,
+                'work_shifts' => json_encode($request->work_shifts),
+                'fri_sat_work' => $request->fri_sat_work,
+            ]);
+            DB::commit();
+            return redirect()->route('admin.teachers.index')->with('success', trans('teachers.store_success'));
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
 
@@ -121,13 +167,60 @@ class TeacherController extends Controller
 
     public function edit(string $id)
     {
-
+        $teacher = User::findOrFail($id);
+        return view($this->base_view . 'edit' , compact('teacher'));
     }
 
 
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, string $id)
     {
+        try {
+            DB::beginTransaction();
 
+            $user = User::findOrFail($id);
+
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'birthday' => $request->birthday,
+                'gender' => $request->gender,
+                'country' => $request->country,
+                'state' => $request->state,
+            ]);
+
+            if ($request->filled('password')) {
+                $user->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
+
+            $teacherDetail = $user->teacher;
+
+            $teacherDetail->update([
+                'admission_terms' => json_encode($request->admission_terms),
+                'education' => $request->education,
+                'azhar' => $request->azhar,
+                'quran_license' => $request->quran_license,
+                'other_license' => $request->other_license,
+                'other_license_details' => $request->other_license === 'notherlicense' ? null : $request->other_license_details,
+                'teaching_online' => $request->teaching_online,
+                'communication_platforms' => json_encode($request->communication_platforms),
+                'teaching_kids' => $request->teaching_kids,
+                'teaching_subjects' => json_encode($request->teaching_subjects),
+                'working_hours' => json_encode($request->working_hours),
+                'other_working_hours' => $request->other_working_hours,
+                'work_shifts' => json_encode($request->work_shifts),
+                'fri_sat_work' => $request->fri_sat_work,
+            ]);
+
+            DB::commit();
+            return redirect()->route('admin.teachers.index')->with('success', trans('teachers.update_success'));
+
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
 

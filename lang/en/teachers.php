@@ -22,4 +22,6 @@
   'refuse' => 'Refuse',
   'approve_success' => 'Teacher Approved Successfully',
   'refuse_success' => 'Teacher Refused Successfully',
+  'admission_terms' => 'admission_terms',
+  'teaching_kids' => 'teaching_kids',
 );

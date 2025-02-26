@@ -23,11 +23,11 @@
         @endphp
 
 
-        <div class="d-flex align-items-center gap-2 gap-lg-3">
-
-            {{ AddButton(route('admin.teachers.create')) }}
-
-        </div>
+        @if ($status == \App\Enums\TeacherStatus::Approved->value)
+            <div class="d-flex align-items-center gap-2 gap-lg-3">
+                {{ AddButton(route('admin.teachers.create')) }}
+            </div>
+        @endif
     </div>
 
 @endsection

@@ -8,4 +8,8 @@
   'Teacher refused successfully!' => 'Teacher refused successfully!',
   'Teacher Approved Successfully' => 'Teacher Approved Successfully',
   'Teacher Deleted Successfully' => 'Teacher Deleted Successfully',
+  'Wait For Admin Approval' => 'Wait For Admin Approval',
+  'Teacher Created Successfully' => 'Teacher Created Successfully',
+  'Teacher Updated Successfully' => 'Teacher Updated Successfully',
+  'Teacher Refused Successfully' => 'Teacher Refused Successfully',
 );

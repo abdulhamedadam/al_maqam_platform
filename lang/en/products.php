@@ -13,4 +13,5 @@
   'product_details' => 'product_details',
   'seo' => 'seo',
   'add_categories' => 'add_categories',
+  'categories' => 'categories',
 );
