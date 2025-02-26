@@ -26,7 +26,7 @@
             <meta property="og:url" content="https://keenthemes.com/keen"/>
             <meta property="og:site_name" content="Keenthemes | Keen"/>
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            @include('dashbord.layouts.head')
+            @include('admin.layouts.head')
 
         </head>
         <!--end::Head-->
@@ -79,13 +79,13 @@
             <!--begin::Page-->
             <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
                 <!--begin::Header-->
-            @include('dashbord.layouts.main-headerbar')
+            @include('admin.layouts.main-headerbar')
 
             <!--end::Header-->
                 <!--begin::Wrapper-->
                 <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
                     <!--begin::Sidebar-->
-                @include('dashbord.layouts.main-sidebar')
+                @include('admin.layouts.main-sidebar')
 
                 <!--end::Sidebar-->
                     <!--begin::Main-->
@@ -118,7 +118,7 @@
 
         <!--begin::Javascript-->
 
-        @include('dashbord.layouts.footer-scripts')
+        @include('admin.layouts.footer-scripts')
 {{--        @include('notify::components.notify')--}}
         <!--end::Javascript-->
         </body>

@@ -1,5 +1,5 @@
 <html>
-@include('dashbord.layouts.head')
+@include('admin.layouts.head')
 <body id="kt_body" class="app-blank app-blank">
 
 <div class="d-flex flex-column flex-root" id="kt_app_root">
@@ -152,6 +152,6 @@
 
 </body>
 <!--end::Body-->
-@include('dashbord.layouts.footer-scripts')
+@include('admin.layouts.footer-scripts')
 </html>
 
