@@ -103,6 +103,16 @@
                     </div>
                 @endforeach
 
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs(['admin.sections.index']) ? 'active' : '' }}"
+                        href="{{ route('admin.sections.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                            <i class="bi bi-folder text-primary fs-2x"></i>
+                        </span>
+                        <span class="menu-title">{{ trans('sections.sections') }}</span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>
