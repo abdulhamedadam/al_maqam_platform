@@ -8,6 +8,7 @@ use App\Http\Requests\Admin\Teachers\SaveRequest;
 use App\Http\Requests\Admin\Teachers\UpdateRequest;
 use App\Models\TeacherDetail;
 use App\Models\User;
+use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -15,6 +16,8 @@ use Yajra\DataTables\Facades\DataTables;
 
 class TeacherController extends Controller
 {
+    use ImageProcessing;
+
     protected $base_view = 'admin.pages.teachers.';
 
     public function index(Request $request)
@@ -69,6 +72,9 @@ class TeacherController extends Controller
 
                     $actions .= '
                         <div class="btn-group btn-group-sm">
+                            <a href="' . route('admin.teachers.show', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
+                                <i class="bi bi-eye"></i>
+                            </a>
                             <a href="' . route('admin.teachers.edit', $row->id) . '" class="btn btn-sm btn-primary" title="' . trans('actions.edit') . '" style="font-size: 16px;">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
@@ -89,7 +95,7 @@ class TeacherController extends Controller
                 ->make(true);
         }
 
-        return view($this->base_view . 'index' , compact('status'));
+        return view($this->base_view . 'index', compact('status'));
     }
 
 
@@ -132,6 +138,11 @@ class TeacherController extends Controller
                 'password' => Hash::make($request->password)
             ]);
 
+            $audio = $request->audio;
+            $audioPath = isset($audio) && $audio instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($audio, 'user' . $user->id) : null;
+            $cv = $request->cv;
+            $cvPath = isset($cv) && $cv instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($cv, 'user' . $user->id) : null;
+
             TeacherDetail::create([
                 'user_id' => $user->id,
                 'status' => TeacherStatus::Approved,
@@ -149,6 +160,8 @@ class TeacherController extends Controller
                 'other_working_hours' => $request->other_working_hours,
                 'work_shifts' => json_encode($request->work_shifts),
                 'fri_sat_work' => $request->fri_sat_work,
+                'audio_recording' => $audioPath,
+                'cv_summary' => $cvPath,
             ]);
             DB::commit();
             return redirect()->route('admin.teachers.index')->with('success', trans('teachers.store_success'));
@@ -161,14 +174,15 @@ class TeacherController extends Controller
 
     public function show(string $id)
     {
-
+        $teacher = User::findOrFail($id);
+        return view($this->base_view . 'show', compact('teacher'));
     }
 
 
     public function edit(string $id)
     {
         $teacher = User::findOrFail($id);
-        return view($this->base_view . 'edit' , compact('teacher'));
+        return view($this->base_view . 'edit', compact('teacher'));
     }
 
 
@@ -214,25 +228,59 @@ class TeacherController extends Controller
                 'fri_sat_work' => $request->fri_sat_work,
             ]);
 
+            if ($request->hasFile('audio')) {
+                if ($teacherDetail->audio_recording) {
+                    $this->deleteFile($teacherDetail->audio_recording);
+                }
+                $audioPath = $this->saveFile($request->file('audio'), 'user' . $user->id);
+                $teacherDetail->update([
+                    'audio_recording' => $audioPath,
+                ]);
+            }
+
+            if ($request->hasFile('cv')) {
+                if ($teacherDetail->cv_summary) {
+                    $this->deleteFile($teacherDetail->cv_summary);
+                }
+                $cvPath = $this->saveFile($request->file('cv'), 'user' . $user->id);
+                $teacherDetail->update([
+                    'cv_summary' => $cvPath,
+                ]);
+            }
+
             DB::commit();
             return redirect()->route('admin.teachers.index')->with('success', trans('teachers.update_success'));
-
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
 
-
     public function destroy($id)
     {
         try {
             $user = User::findOrFail($id);
-            $user->teacher->delete();
+            $teacherDetail = $user->teacher;
+            if ($teacherDetail->audio_recording) {
+                $this->deleteFile($teacherDetail->audio_recording);
+            }
+            if ($teacherDetail->cv_summary) {
+                $this->deleteFile($teacherDetail->cv_summary);
+            }
+            $teacherDetail->delete();
             $user->delete();
             return redirect()->back()->with('success', trans('teachers.delete_success'));
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+    private function deleteFile($filePath)
+    {
+        $fullPath = storage_path('app/files/') . $filePath;
+
+        if (file_exists($fullPath)) {
+            unlink($fullPath);
         }
     }
 }

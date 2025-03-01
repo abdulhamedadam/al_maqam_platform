@@ -54,6 +54,8 @@ class SaveRequest extends FormRequest
             // ],
             'work_shifts' => 'required|array|min:1',
             'fri_sat_work' => 'required|string|in:yfri-sat,nfri-sat',
+            'audio' => 'nullable|file|mimes:mp3,wav|max:10240',
+            'cv' => 'required|max:10240',
         ];
     }
 }
