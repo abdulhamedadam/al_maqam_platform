@@ -59,7 +59,6 @@ Route::group(
         Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
 
 
-
         /********************************************************************************************************************************/
         // Route::get('clients/{id}/companies',[ClientController::class,'companies'])->name('client_companies');
         // Route::post('clients/{id}/companies/save',[ClientController::class,'store_company'])->name('client_store_company');
