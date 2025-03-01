@@ -3259,7 +3259,7 @@
 
 @endsection --}}
 
-@extends('dashbord.layouts.master')
+@extends('admin.layouts.master')
 @section('content')
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
