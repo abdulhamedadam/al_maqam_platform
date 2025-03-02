@@ -12,4 +12,7 @@
   'Teacher Created Successfully' => 'Teacher Created Successfully',
   'Teacher Updated Successfully' => 'Teacher Updated Successfully',
   'Teacher Refused Successfully' => 'Teacher Refused Successfully',
+  'Section Created Successfully' => 'Section Created Successfully',
+  'Section Deleted Successfully' => 'Section Deleted Successfully',
+  'Section Updated Successfully' => 'Section Updated Successfully',
 );

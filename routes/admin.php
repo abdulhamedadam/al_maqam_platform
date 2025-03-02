@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\NotificationsController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\RevenueController;
 use App\Http\Controllers\Admin\RolesController;
+use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestsController;
@@ -54,9 +55,12 @@ Route::group(
         });
 
         Route::resource('students' , StudentController::class)->except('show');
+
         Route::resource('teachers' , TeacherController::class);
         Route::get('/teachers/{id}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
         Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
+
+        Route::resource('sections' , SectionController::class)->except('show');
 
 
         /********************************************************************************************************************************/
