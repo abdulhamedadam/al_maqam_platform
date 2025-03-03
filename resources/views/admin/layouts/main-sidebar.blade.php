@@ -113,6 +113,16 @@
                     </a>
                 </div>
 
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs(['admin.contacts.index']) ? 'active' : '' }}"
+                        href="{{ route('admin.contacts.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                            <i class="bi bi-telephone text-primary fs-2x"></i>
+                        </span>
+                        <span class="menu-title">{{ trans('contacts.contacts') }}</span>
+                    </a>
+                </div>
+
             </div>
         </div>
     </div>

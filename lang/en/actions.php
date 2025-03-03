@@ -4,5 +4,6 @@
   'details' => 'Details',
   'delete' => 'Delete',
   'save' => 'Save',
+  'show' => 'Show',
   'actions' => 'Actions',
 );

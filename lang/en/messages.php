@@ -15,4 +15,7 @@
   'Section Created Successfully' => 'Section Created Successfully',
   'Section Deleted Successfully' => 'Section Deleted Successfully',
   'Section Updated Successfully' => 'Section Updated Successfully',
+  'contacts' => 'contacts',
+  'store_success' => 'store_success',
+  'Message Deleted Successfully' => 'Message Deleted Successfully',
 );

@@ -1106,99 +1106,37 @@
                 <h2>Our Teachers</h2>
             </div>
             <div class="row clearfix">
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
-                    <div class="teacher-card">
-                        <div class="card card-teacher">
-                            <a href="teacher.html" class="card-header">
-                                <img src="/src/images/sections/teachers/woman-avatar.svg" alt=""
-                                    class="card-img">
-                            </a>
-                            <div class="card-body">
-                                <a href="teacher.html" class="teacher-name">Teacher Name</a>
-                                <h5 class="country">egypt</h5>
-                                <section class="specialty">
-                                    <span class="specialty-title">languages:</span>
-                                    <span class="teacher-specialty tags lang">arabic</span>
-                                </section>
-                                <section class="specialty">
-                                    <span class="specialty-title">teachs:</span>
-                                    <a class="teacher-specialty tags">holly Qur'an</a>
-                                    <a class="teacher-specialty tags">arabic Language</a>
-                                </section>
+                @foreach ($teachers as $teacher)
+                    <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
+                        <div class="teacher-card">
+                            <div class="card card-teacher">
+                                <a href="teacher.html" class="card-header">
+                                    <img src="{{ asset($teacher->gender === 'm' ? 'front_assets/images/sections/teachers/man-avatar.svg' : 'front_assets/images/sections/teachers/woman-avatar.svg') }}" alt=""
+                                        class="card-img">
+                                </a>
+                                <div class="card-body">
+                                    <a href="teacher.html" class="teacher-name">{{$teacher->name}}</a>
+                                    <h5 class="country">{{$teacher->country}}</h5>
+                                    <section class="specialty">
+                                        <span class="specialty-title">languages:</span>
+                                        <span class="teacher-specialty tags lang">arabic</span>
+                                    </section>
+                                    <section class="specialty">
+                                        <span class="specialty-title">teachs:</span>
+                                        @foreach (json_decode($teacher->teacher->teaching_subjects, true) ?? [] as $subject)
+                                            <a class="teacher-specialty tags">{{ str_replace('_', ' ', $subject) }}</a>
+                                        @endforeach
+                                    </section>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
-                    <div class="teacher-card">
-                        <div class="card card-teacher">
-                            <a href="teacher.html" class="card-header">
-                                <img src="/src/images/sections/teachers/man-avatar.svg" alt="" class="card-img">
-                            </a>
-                            <div class="card-body">
-                                <a href="teacher.html" class="teacher-name">Teacher Name</a>
-                                <h5 class="country">egypt</h5>
-                                <section class="specialty">
-                                    <span class="specialty-title">languages:</span>
-                                    <span class="teacher-specialty tags lang">arabic</span>
-                                </section>
-                                <section class="specialty">
-                                    <span class="specialty-title">teachs:</span>
-                                    <a class="teacher-specialty tags">holly Qur'an</a>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
-                    <div class="teacher-card">
-                        <div class="card card-teacher">
-                            <a href="teacher.html" class="card-header">
-                                <img src="/src/images/sections/teachers/woman-avatar.svg" alt=""
-                                    class="card-img">
-                            </a>
-                            <div class="card-body">
-                                <a href="teacher.html" class="teacher-name">Teacher Name</a>
-                                <h5 class="country">egypt</h5>
-                                <section class="specialty">
-                                    <span class="specialty-title">languages:</span>
-                                    <span class="teacher-specialty tags lang">arabic</span>
-                                </section>
-                                <section class="specialty">
-                                    <span class="specialty-title">teachs:</span>
-                                    <a class="teacher-specialty tags">holly Qur'an</a>
-                                    <a class="teacher-specialty tags">arabic Language</a>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
-                    <div class="teacher-card">
-                        <div class="card card-teacher">
-                            <a href="teacher.html" class="card-header">
-                                <img src="/src/images/sections/teachers/man-avatar.svg" alt="" class="card-img">
-                            </a>
-                            <div class="card-body">
-                                <a href="teacher.html" class="teacher-name">Teacher Name</a>
-                                <h5 class="country">egypt</h5>
-                                <section class="specialty">
-                                    <span class="specialty-title">languages:</span>
-                                    <span class="teacher-specialty tags lang">arabic</span>
-                                </section>
-                                <section class="specialty">
-                                    <span class="specialty-title">teachs:</span>
-                                    <a class="teacher-specialty tags">holly Qur'an</a>
-                                </section>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-teachers">
-                        <a href="#" class="button">show all teacher</a>
+                        <a href="{{route('user.our_teachers')}}" class="button">show all teacher</a>
                     </div>
                 </div>
             </div>
