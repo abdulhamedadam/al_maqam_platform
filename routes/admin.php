@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\app_setting\DiscountController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CompanyController;
-use App\Http\Controllers\Admin\ContactController;
+
+use App\Http\Controllers\Admin\CourseController;
+
 use App\Http\Controllers\Admin\EmployeesController;
 
 use App\Http\Controllers\Admin\GeneralSettingsController;
@@ -63,7 +65,9 @@ Route::group(
 
         Route::resource('sections' , SectionController::class)->except('show');
 
-        Route::resource('contacts' , ContactController::class)->only('index','show','destroy');
+
+        Route::resource('courses' , CourseController::class);
+
 
 
         /********************************************************************************************************************************/
