@@ -16,10 +16,10 @@
         style="background-image: url('{{ asset('front_assets/images/pages/contact/islamic-contact-page-title.jpg') }}');">
         <div class="container">
             <div class="content-box clearfix">
-                <h1>Contact Us</h1>
+                <h1>{{trans('contacts.contact_us')}}</h1>
                 <ul class="bread-crumb clearfix">
-                    <li><a href="/">Home</a></li>
-                    <li>Contact Us</li>
+                    <li><a href="/">{{ trans('header.Home') }}</a></li>
+                    <li>{{trans('contacts.contact_us')}}</li>
                 </ul>
             </div>
         </div>
@@ -34,33 +34,59 @@
                     <div class="col-lg-7 col-md-12 col-sm-12 inner-column">
                         <div class="inner-box">
                             <div class="sec-title light left">
-                                <h5>Contact Us</h5>
-                                <h2>We are honored to contact you</h2>
+                                <h5>{{trans('contacts.contact_us')}}</h5>
+                                <h2>{{trans('contacts.contact_honor')}}</h2>
                             </div>
                             <!-- ///////////////////////////////////////////////////////// -->
-                            <form action="mail.php" method="post" class="submit-form">
+                            <form action="{{route('user.contact.store')}}" method="post" class="submit-form">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" name="name" placeholder="Your Full Name" required>
+                                    <input type="text" name="name" value="{{old('name')}}" placeholder="{{trans('contacts.name_enter')}}" required>
                                     <label for="name"></label>
                                 </div>
+                                @error('name')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                                 <div class="form-group">
-                                    <input type="email" name="email" placeholder="Email address" required>
+                                    <input type="email" name="email" value="{{old('email')}}" placeholder="{{trans('contacts.email_enter')}}" required>
                                     <label for="email"></label>
                                 </div>
+                                @error('email')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                                 <div class="form-group">
-                                    <input type="text" name="phone" placeholder="Enter Valid Phone Number" required>
+                                    <input type="text" name="phone" value="{{old('phone')}}" placeholder="{{trans('contacts.phone_enter')}}" required>
                                     <label for="phone"></label>
                                 </div>
+                                @error('phone')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                                 <div class="form-group">
-                                    <input type="text" name="subject" placeholder="Enter Subject" required>
+                                    <input type="text" name="subject" value="{{old('subject')}}" placeholder="{{trans('contacts.subject_enter')}}" required>
                                     <label for="subject"></label>
                                 </div>
+                                @error('subject')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                                 <div class="form-group">
-                                    <textarea name="message" placeholder="Please Write Your Message"></textarea>
+                                    <textarea name="message" placeholder="{{trans('contacts.message_enter')}}" required>{{old('message')}}</textarea>
                                     <label for="message"></label>
                                 </div>
+                                @error('message')
+                                    <div class="invalid-feedback">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                @enderror
                                 <div class="form-group message-btn">
-                                    <button type="submit" class="theme-btn style-one">send message</button>
+                                    <button type="submit" class="theme-btn style-one">{{trans('contacts.send')}}</button>
                                 </div>
                             </form>
                             <!-- ///////////////////////////////////////////////////////////// -->

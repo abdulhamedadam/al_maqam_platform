@@ -114,12 +114,14 @@
                 </div>
 
                 <div class="menu-item">
+
                     <a class="menu-link {{ request()->routeIs(['admin.courses.index']) ? 'active' : '' }}"
                         href="{{ route('admin.courses.index') }}">
                         <span class="svg-icon svg-icon-2" style="margin-left: 5px">
                             <i class="bi bi-mortarboard text-primary fs-2x"></i>
                         </span>
                         <span class="menu-title">{{ trans('courses.courses') }}</span>
+
                     </a>
                 </div>
 

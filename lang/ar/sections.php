@@ -15,4 +15,5 @@
   'update_success' => 'تم تعديل القسم بنجاح',
   'delete_success' => 'تم حذف القسم بنجاح',
   'sections' => 'الأقسام',
+  'message' => 'message',
 );
