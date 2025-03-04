@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\RevenueController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestsController;
@@ -67,6 +68,8 @@ Route::group(
 
 
         Route::resource('courses' , CourseController::class);
+
+        Route::resource('services' , ServiceController::class);
 
 
 
