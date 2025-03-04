@@ -9,4 +9,5 @@
   'clients' => 'العملاء',
   'notifications' => 'الاشعارات',
   'Logout successful!' => 'Logout successful!',
+  'تم قبول المعلم بنجاح' => 'تم قبول المعلم بنجاح',
 );
