@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Site\Auth\AuthController;
+use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\OurTeachersController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -16,21 +19,19 @@ Route::group(
     function () {
         Route::group(['as' => 'user.'], function () {
             Route::middleware(['guest:web'])->group(function () {
-                Route::get('/', function () {
-                    return view('site.index');
-                })->name('home');
 
-                Route::get('/our-teachers', function () {
-                    return view('site.pages.our-teachers');
-                })->name('our_teachers');
+                Route::get('/' , [HomeController::class , 'index'])->name('home');
+
+                Route::get('/our-teachers' , [OurTeachersController::class , 'index'])->name('our_teachers');
+
+                Route::controller(ContactController::class)->prefix('contact')->as('contact.')->group(function(){
+                    Route::get('/' , 'index')->name('show');
+                    Route::post('/' , 'store')->name('store');
+                });
 
                 Route::get('/our-lectures', function () {
                     return view('site.pages.our-lectures');
                 })->name('our_lectures');
-
-                Route::get('/contact', function () {
-                    return view('site.pages.contact');
-                })->name('contact');
 
                 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
                 Route::post('login', [AuthController::class, 'login'])->name('store_login');;

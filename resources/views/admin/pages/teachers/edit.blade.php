@@ -14,6 +14,10 @@
     </div>
 @endsection
 
+@section('css')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+@endsection
+
 @section('content')
 
     <div class="d-flex flex-column flex-column-fluid">
@@ -103,10 +107,10 @@
                                                     <select name="gender" id="gender" class="form-control mb-2" required>
                                                         <option disabled value="">{{trans('actions.choose')}}</option>
                                                         <option value="m" {{ old('gender', $teacher->gender) == 'm' ? 'selected' : '' }}>
-                                                            {{ trans('users.male') }}
+                                                            {{ trans('teachers.male') }}
                                                         </option>
                                                         <option value="f" {{ old('gender', $teacher->gender) == 'f' ? 'selected' : '' }}>
-                                                            {{ trans('users.female') }}
+                                                            {{ trans('teachers.female') }}
                                                         </option>
                                                     </select>
                                                     @error('gender')
@@ -490,40 +494,38 @@
                                         </div>
                                     </div>
 
-                                    {{-- <div class="card card-flush py-4">
-
+                                    <div class="card card-flush py-4">
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h2>Media</h2>
+                                                <h2>3-minute audio recording from the middle of the
+                                                    Quran (Optional)</h2>
                                             </div>
                                         </div>
                                         <div class="card-body pt-0">
-
                                             <div class="fv-row mb-2">
-
-                                                <div class="dropzone" id="kt_ecommerce_add_product_media">
-
-                                                    <div class="dz-message needsclick">
-
-                                                        <i class="ki-duotone ki-file-up text-primary fs-3x">
-                                                            <span class="path1"></span>
-                                                            <span class="path2"></span>
-                                                        </i>
-
-                                                        <div class="ms-4">
-                                                            <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or
-                                                                click to upload.</h3>
-                                                            <span class="fs-7 fw-semibold text-gray-500">Upload up to 10
-                                                                files</span>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-
+                                                <input class="audioFile form-control" name="audio" type="file">
                                             </div>
-
                                         </div>
-                                    </div> --}}
+                                        @error('audio')
+                                            <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="card card-flush py-4">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                <h2>CV Summery*</h2>
+                                            </div>
+                                        </div>
+                                        <div class="card-body pt-0">
+                                            <div class="fv-row mb-2">
+                                                <input class="cvFile form-control" name="cv" type="file">
+                                            </div>
+                                        </div>
+                                        @error('cv')
+                                            <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
                                 </div>
                             </div>
@@ -543,22 +545,6 @@
 
 @section('js')
     <script>
-        var myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {
-            url: "https://keenthemes.com/scripts/void.php",
-            paramName: "file",
-            maxFiles: 10,
-            maxFilesize: 10, // MB
-            addRemoveLinks: true,
-            accept: function(file, done) {
-                if (file.name == "wow.jpg") {
-                    done("Naha, you don't.");
-                } else {
-                    done();
-                }
-            }
-        });
-    </script>
-    <script>
         function toggleOtherLicense(show) {
             document.getElementById("other_license_details").style.display = show ? "block" : "none";
         }
@@ -566,5 +552,26 @@
         function toggleOtherWorkingHours(checkbox) {
             document.getElementById("other_working_hours").style.display = checkbox.checked ? "block" : "none";
         }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    <script>
+        $('.audioFile').dropify({
+            messages: {
+            'default': 'Drop a file here',
+            'replace': 'Drag and drop or click to replace',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong happended.'
+            }
+        });
+    </script>
+    <script>
+        $('.cvFile').dropify({
+            messages: {
+            'default': 'Drop a file here',
+            'replace': 'Drag and drop or click to replace',
+            'remove':  'Remove',
+            'error':   'Ooops, something wrong happended.'
+            }
+        });
     </script>
 @endsection

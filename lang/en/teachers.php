@@ -4,6 +4,8 @@
   'phone' => 'Phone',
   'birthday' => 'Birthday',
   'gender' => 'Gender',
+  'male' => 'Male',
+  'female' => 'Female',
   'country' => 'Country',
   'state' => 'State',
   'password' => 'Password',

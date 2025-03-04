@@ -1,0 +1,18 @@
+<?php return array (
+  'name' => 'Name',
+  'name_en' => 'Name En',
+  'name_ar' => 'Name Ar',
+  'description' => 'Description',
+  'description_en' => 'Description En',
+  'description_ar' => 'Description Ar',
+  'status' => 'Status',
+  'active' => 'Active',
+  'inactive' => 'Inactive',
+  'id' => 'ID',
+  'create' => 'Create New Section',
+  'edit' => 'Edit Section',
+  'store_success' => 'Section Created Successfully',
+  'update_success' => 'Section Updated Successfully',
+  'delete_success' => 'Section Deleted Successfully',
+  'sections' => 'Sections',
+);
