@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Courses\CourseRequest;
 use App\Models\Course;
+use App\Models\CourseMoney;
 use App\Models\Section;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -77,10 +78,11 @@ class CourseController extends Controller
     }
 
 
-    public function store(CourseRequest $request)
+    public function store(Request $request)
     {
+        dd($request->all());
         try {
-            Course::create($request->only(
+            $course = Course::create($request->only(
                 'name',
                 'description',
                 'seo_head_keyword',
@@ -91,6 +93,22 @@ class CourseController extends Controller
                 'unique',
                 'section_id'
             ));
+
+            // if ($request->has('lectures')) {
+            //     foreach ($request->input('lectures') as $lecture) {
+            //         CourseMoney::create([
+            //             'course_id'        => $course->id,
+            //             'num_of_minuts'    => $lecture['num_of_minuts'],
+            //             'lecture_price'    => $lecture['lecture_price'],
+            //             'num_of_lectures'  => $lecture['num_of_lectures'],
+            //             'lectures_in_week' => $lecture['lectures_in_week'],
+            //             'total_price'      => $lecture['total_price'],
+            //             'for_group'        => isset($lecture['for_group']) ? 1 : 0,
+            //             'max_in_group'     => ($lecture['for_group'] ?? 0) == 1 ? ($lecture['max_in_group'] ?? null) : null,
+            //         ]);
+            //     }
+            // }
+
             return redirect()->route('admin.courses.index')->with('success', trans('courses.store_success'));
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
