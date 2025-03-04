@@ -104,4 +104,9 @@
   'all_invoices' => 'كل الفواتير',
   'due_monthly_invoices' => 'الفواتير الشهرية المستحقة',
   'new_paid_invoices' => 'الفواتير المستحدثة',
+    'settings_management' => 'إدارة الإعدادات',
+    'students_management' => 'إدارة الطلاب',
+    'teacher_management' => 'إدارة المعلمين',
+    'sections_and_sections_management' => 'إدارة الأقسام والفصول',
+    'site_management' => 'إدارة الموقع',
 );

@@ -22,4 +22,13 @@
   'courses' => 'الكورسات',
   'seo_head_description_ar' => 'seo_head_description_ar',
   'seo_head_description_en' => 'seo_head_description_en',
+  'num_of_minutes' => 'num_of_minutes',
+  'lecture_price' => 'lecture_price',
+  'num_of_lectures' => 'num_of_lectures',
+  'lectures_in_week' => 'lectures_in_week',
+  'total_price' => 'total_price',
+  'for_group' => 'for_group',
+  'max_in_group' => 'max_in_group',
+  'seo_head_keyword_en' => 'seo_head_keyword_en',
+  'seo_head_keyword_ar' => 'seo_head_keyword_ar',
 );
