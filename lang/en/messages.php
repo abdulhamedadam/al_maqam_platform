@@ -17,4 +17,5 @@
   'Section Updated Successfully' => 'Section Updated Successfully',
   'Course Created Successfully' => 'Course Created Successfully',
   'Course Updated Successfully' => 'Course Updated Successfully',
+  'Course Deleted Successfully' => 'Course Deleted Successfully',
 );

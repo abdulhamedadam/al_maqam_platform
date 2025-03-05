@@ -58,59 +58,100 @@
 
                                             <div id="lecture-container">
                                                 <div class="lecture-row d-flex flex-wrap gap-2">
+
                                                     <div class="fv-row flex-grow-1">
                                                         <label
                                                             class="form-label">{{ trans('courses.num_of_minutes') }}</label>
                                                         <input type="text" name="lectures[0][num_of_minutes]"
                                                             class="form-control mb-2" required />
+                                                        @foreach ($errors->get('lectures.*.num_of_minutes') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow-1">
                                                         <label
                                                             class="form-label">{{ trans('courses.lecture_price') }}</label>
                                                         <input type="text" data-index="0"
                                                             name="lectures[0][lecture_price]"
                                                             class="form-control mb-2 lecture_price" required />
+                                                        @foreach ($errors->get('lectures.*.lecture_price') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow-1">
                                                         <label
                                                             class="form-label">{{ trans('courses.num_of_lectures') }}</label>
                                                         <input type="text" data-index="0"
                                                             name="lectures[0][num_of_lectures]"
                                                             class="form-control mb-2 num_of_lectures" required />
+                                                        @foreach ($errors->get('lectures.*.num_of_lectures') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow-1">
                                                         <label
                                                             class="form-label">{{ trans('courses.lectures_in_week') }}</label>
                                                         <input type="text" name="lectures[0][lectures_in_week]"
                                                             class="form-control mb-2" required />
+                                                        @foreach ($errors->get('lectures.*.lectures_in_week') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow-1">
-                                                        <label class="form-label">{{ trans('courses.total_price') }}</label>
+                                                        <label
+                                                            class="form-label">{{ trans('courses.total_price') }}</label>
                                                         <input type="text" data-index="0" name="lectures[0][total_price]"
                                                             class="form-control mb-2 total_price" required readonly />
+                                                        @foreach ($errors->get('lectures.*.total_price') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow- ms-3">
                                                         <label class="form-label">{{ trans('courses.for_group') }}</label>
-                                                        <div class="form-check form-switch">
+                                                        <div class="form-check form-switch mt-3">
                                                             <input type="hidden" name="lectures[0][for_group]"
                                                                 value="0">
                                                             <input class="form-check-input toggle-switch for-group-toggle"
                                                                 type="checkbox" value="1" name="lectures[0][for_group]"
                                                                 data-index="0">
                                                         </div>
+                                                        @foreach ($errors->get('lectures.*.for_group') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
                                                     </div>
+
                                                     <div class="fv-row flex-grow-1 max-in-group-container" data-index="0"
                                                         style="display: none;">
                                                         <label
                                                             class="form-label">{{ trans('courses.max_in_group') }}</label>
                                                         <input type="text" name="lectures[0][max_in_group]"
                                                             class="form-control mb-2" />
+                                                        @foreach ($errors->get('lectures.*.max_in_group') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+                                                    
+                                                    <div class="fv-row mt-9">
+                                                        <button type="button"
+                                                            class="btn btn-danger remove-lecture-row">{{ trans('courses.remove') }}</button>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <button type="button" id="add-lecture-row"
-                                                class="btn btn-primary mt-3 mb-3">Add Row</button>
+                                                class="btn btn-primary mt-3 mb-3">{{ trans('courses.add_row') }}</button>
 
                                             <div class="d-flex flex-wrap">
                                                 <div class="fv-row w-100 flex-md-root">
@@ -135,7 +176,8 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.name_en') }}</label>
                                                     <input type="text" name="name[en]" id="name_en"
-                                                        class="form-control mb-2" value="{{ old('name.en') }}" required />
+                                                        class="form-control mb-2" value="{{ old('name.en') }}"
+                                                        required />
                                                     @error('name.en')
                                                         <span class="invalid-feedback d-block"
                                                             role="alert">{{ $message }}</span>
@@ -296,113 +338,116 @@
         });
     </script>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let lectureIndex = 1;
 
-            function updateTotalPrice(index) {
-                const numOfLecturesInput = document.querySelector(`input[name="lectures[${index}][num_of_lectures]"]`);
-                const lecturePriceInput = document.querySelector(`input[name="lectures[${index}][lecture_price]"]`);
-                const totalPriceInput = document.querySelector(`input[name="lectures[${index}][total_price]"]`);
+            function updateTotalPrice(row) {
+                const numOfLecturesInput = row.querySelector(`input[name^="lectures["][name$="[num_of_lectures]"]`);
+                const lecturePriceInput = row.querySelector(`input[name^="lectures["][name$="[lecture_price]"]`);
+                const totalPriceInput = row.querySelector(`input[name^="lectures["][name$="[total_price]"]`);
 
                 if (numOfLecturesInput && lecturePriceInput && totalPriceInput) {
                     const numOfLectures = parseFloat(numOfLecturesInput.value) || 0;
                     const lecturePrice = parseFloat(lecturePriceInput.value) || 0;
-                    const total = (numOfLectures * lecturePrice).toFixed(2);
-
-                    totalPriceInput.value = total;
+                    totalPriceInput.value = (numOfLectures * lecturePrice).toFixed(2);
                 }
             }
 
-            function attachEventListeners(index) {
-                const numOfLecturesInput = document.querySelector(`input[name="lectures[${index}][num_of_lectures]"]`);
-                const lecturePriceInput = document.querySelector(`input[name="lectures[${index}][lecture_price]"]`);
-                const totalPriceInput = document.querySelector(`input[name="lectures[${index}][total_price]"]`);
+            function attachEventListeners(row) {
+                const numOfLecturesInput = row.querySelector(`input[name^="lectures["][name$="[num_of_lectures]"]`);
+                const lecturePriceInput = row.querySelector(`input[name^="lectures["][name$="[lecture_price]"]`);
+                const totalPriceInput = row.querySelector(`input[name^="lectures["][name$="[total_price]"]`);
+                const forGroupToggle = row.querySelector(`.for-group-toggle`);
+                const maxInGroupContainer = row.querySelector(`.max-in-group-container`);
 
-                if (totalPriceInput) {
-                    totalPriceInput.setAttribute("readonly", "true");
-                }
+                if (totalPriceInput) totalPriceInput.setAttribute("readonly", "true");
 
                 if (numOfLecturesInput && lecturePriceInput) {
-                    numOfLecturesInput.addEventListener("input", function() {
-                        updateTotalPrice(index);
-                    });
-                    lecturePriceInput.addEventListener("input", function() {
-                        updateTotalPrice(index);
+                    numOfLecturesInput.addEventListener("input", () => updateTotalPrice(row));
+                    lecturePriceInput.addEventListener("input", () => updateTotalPrice(row));
+                }
+
+                if (forGroupToggle && maxInGroupContainer) {
+                    forGroupToggle.addEventListener("change", function() {
+                        maxInGroupContainer.style.display = this.checked ? "block" : "none";
                     });
                 }
+
+                row.querySelector(".remove-lecture-row").addEventListener("click", function() {
+                    if (document.querySelectorAll(".lecture-row").length > 1) {
+                        row.remove();
+                        checkRemoveButtons();
+                    }
+                });
+
+                checkRemoveButtons();
             }
 
-            // Ensure the first row (index 0) has event listeners
-            attachEventListeners(0);
+            function checkRemoveButtons() {
+                const rows = document.querySelectorAll(".lecture-row");
+                document.querySelectorAll(".remove-lecture-row").forEach(button => {
+                    button.style.display = rows.length > 1 ? "inline-block" : "none";
+                });
+            }
 
             document.getElementById("add-lecture-row").addEventListener("click", function() {
                 let container = document.getElementById("lecture-container");
-                let firstRow = container.querySelector(".lecture-row"); // Reference first row
+                let firstRow = container.querySelector(".lecture-row");
 
                 if (!firstRow) {
                     console.error("No existing row found!");
                     return;
                 }
 
-                let newRow = firstRow.cloneNode(true); // Clone the first row
-                newRow.classList.add("mt-2"); // Add margin for spacing
+                let newRow = firstRow.cloneNode(true);
+                newRow.classList.add("mt-2");
 
-                // Update names and indexes
-                newRow.querySelectorAll("input").forEach((input) => {
+                // Reset input values and update name indexes
+                newRow.querySelectorAll("input, select, checkbox").forEach(input => {
                     let name = input.getAttribute("name");
                     if (name) {
-                        input.setAttribute("name", name.replace(/\[\d+\]/, `[${lectureIndex}]`));
+                        let newName = name.replace(/\[\d+\]/, `[${lectureIndex}]`);
+                        input.setAttribute("name", newName);
                     }
-                    input.value = ""; // Clear input values
+
+                    if (input.type === "checkbox") {
+                        input.checked = false;
+                    } else {
+                        input.value = "";
+                    }
                 });
 
-                // Ensure "for_group" input is set correctly (default to 0)
-                let forGroupInput = newRow.querySelector('input[name^="lectures"][name$="[for_group]"]');
-                if (forGroupInput) {
-                    forGroupInput.value = "0"; // Ensure default value
-                    forGroupInput.checked = false; // Reset checkbox if applicable
+                // Ensure the hidden input for 'for_group' also gets updated
+                let hiddenForGroupInput = newRow.querySelector(
+                    `input[type="hidden"][name^="lectures["][name$="[for_group]"]`);
+                if (hiddenForGroupInput) {
+                    hiddenForGroupInput.setAttribute("name", `lectures[${lectureIndex}][for_group]`);
+                    hiddenForGroupInput.value = "0"; // Default value
                 }
 
-                // Disable total_price input in the new row
-                const totalPriceInput = newRow.querySelector(`input[name="lectures[${lectureIndex}][total_price]"]`);
-                if (totalPriceInput) {
-                    totalPriceInput.setAttribute("readonly", "true");
+                // Ensure the checkbox updates hidden input correctly
+                let forGroupCheckbox = newRow.querySelector(".for-group-toggle");
+                if (forGroupCheckbox) {
+                    forGroupCheckbox.setAttribute("name", `lectures[${lectureIndex}][for_group]`);
+                    forGroupCheckbox.addEventListener("change", function() {
+                        hiddenForGroupInput.value = this.checked ? "1" : "0";
+                    });
                 }
-
-                // Update toggles and containers
-                newRow.querySelectorAll(".for-group-toggle").forEach((toggle) => {
-                    toggle.setAttribute("data-index", lectureIndex);
-                    toggle.checked = false; // Reset toggle
-                });
-
-                newRow.querySelectorAll(".max-in-group-container").forEach((container) => {
-                    container.setAttribute("data-index", lectureIndex);
-                    container.style.display = "none"; // Hide by default
-                });
 
                 container.appendChild(newRow);
 
-                attachEventListeners(lectureIndex);
+                attachEventListeners(newRow);
 
                 lectureIndex++;
             });
 
-            document.addEventListener("change", function(event) {
-                if (event.target.classList.contains("for-group-toggle")) {
-                    let index = event.target.getAttribute("data-index");
-                    let maxInGroupContainer = document.querySelector(`.max-in-group-container[data-index="${index}"]`);
 
-                    if (event.target.checked) {
-                        maxInGroupContainer.style.display = "block";
-                    } else {
-                        maxInGroupContainer.style.display = "none";
-                    }
-                }
-            });
+            // Attach event listeners to the first row on load
+            document.querySelectorAll(".lecture-row").forEach(row => attachEventListeners(row));
+
+            checkRemoveButtons();
         });
     </script>
-
 
 @endsection

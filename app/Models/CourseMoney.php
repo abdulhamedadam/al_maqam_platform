@@ -12,7 +12,7 @@ class CourseMoney extends Model
     protected $fillable =
     [
         'course_id',
-        'num_of_minuts',
+        'num_of_minutes',
         'lecture_price',
         'num_of_lectures',
         'lectures_in_week',

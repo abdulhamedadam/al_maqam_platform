@@ -29,4 +29,9 @@ class Course extends Model
     {
         return $this->belongsTo(Section::class);
     }
+
+    public function courseMoneys()
+    {
+        return $this->hasMany(CourseMoney::class);
+    }
 }

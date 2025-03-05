@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('course_money', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Course::class)->constrained()->cascadeOnDelete();
-            $table->unsignedInteger('num_of_minuts');
+            $table->unsignedInteger('num_of_minutes');
             $table->decimal('lecture_price');
             $table->unsignedInteger('num_of_lectures');
             $table->unsignedTinyInteger('lectures_in_week');
