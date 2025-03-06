@@ -57,6 +57,122 @@
                                         </div>
                                         <div class="card-body pt-0">
 
+                                            @foreach ($course->courseMoneys as $index => $lecture)
+                                                <div id="lecture-container">
+                                                    <div class="lecture-row d-flex flex-wrap gap-2">
+                                                        <div class="fv-row flex-grow-1">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.num_of_minutes') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][num_of_minutes]"
+                                                                class="form-control mb-2" required
+                                                                value="{{ old("lectures.$index.num_of_minutes", $lecture->num_of_minutes) }}" />
+                                                            @error("lectures.{$index}.num_of_minutes")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow-1">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.lecture_price') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][lecture_price]"
+                                                                class="form-control mb-2 lecture_price" required
+                                                                value="{{ old("lectures.$index.lecture_price", $lecture->lecture_price) }}" />
+                                                            @error("lectures.{$index}.lecture_price")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow-1">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.num_of_lectures') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][num_of_lectures]"
+                                                                class="form-control mb-2 num_of_lectures" required
+                                                                value="{{ old("lectures.$index.num_of_lectures", $lecture->num_of_lectures) }}" />
+                                                            @error("lectures.{$index}.num_of_lectures")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow-1">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.lectures_in_week') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][lectures_in_week]"
+                                                                class="form-control mb-2" required
+                                                                value="{{ old("lectures.$index.lectures_in_week", $lecture->lectures_in_week) }}" />
+                                                            @error("lectures.{$index}.lectures_in_week")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow-1">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.total_price') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][total_price]"
+                                                                class="form-control mb-2 total_price" required readonly
+                                                                value="{{ old("lectures.$index.total_price", $lecture->total_price) }}" />
+                                                            @error("lectures.{$index}.total_price")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow- ms-3">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.for_group') }}</label>
+                                                            <div class="form-check form-switch mt-3">
+                                                                <input type="hidden"
+                                                                    name="lectures[{{ $index }}][for_group]"
+                                                                    value="0">
+                                                                <input
+                                                                    class="form-check-input toggle-switch for-group-toggle"
+                                                                    type="checkbox" value="1"
+                                                                    name="lectures[{{ $index }}][for_group]"
+                                                                    data-index="{{ $index }}"
+                                                                    {{ old("lectures.$index.for_group", $lecture->for_group) ? 'checked' : '' }}>
+                                                            </div>
+                                                            @error("lectures.{$index}.for_group")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row flex-grow-1 max-in-group-container"
+                                                            data-index="{{ $index }}"
+                                                            style="{{ old("lectures.$index.for_group", $lecture->for_group) ? '' : 'display: none;' }}">
+                                                            <label
+                                                                class="form-label">{{ trans('courses.max_in_group') }}</label>
+                                                            <input type="text"
+                                                                name="lectures[{{ $index }}][max_in_group]"
+                                                                class="form-control mb-2"
+                                                                value="{{ old("lectures.$index.max_in_group", $lecture->max_in_group) }}" />
+                                                            @error("lectures.{$index}.max_in_group")
+                                                                <span class="invalid-feedback d-block"
+                                                                    role="alert">{{ $message }}</span>
+                                                            @enderror
+                                                        </div>
+
+                                                        <div class="fv-row mt-9">
+                                                            <button type="button"
+                                                                class="btn btn-danger remove-lecture-row">{{ trans('courses.remove') }}</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endforeach
+
+
+
+                                            <button type="button" id="add-lecture-row"
+                                                class="btn btn-primary mt-3 mb-3">{{ trans('courses.add_row') }}</button>
+
                                             <div class="d-flex flex-wrap">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.section_name') }}</label>
@@ -105,7 +221,8 @@
 
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
-                                                    <label class="form-label">{{ trans('courses.description_en') }}</label>
+                                                    <label
+                                                        class="form-label">{{ trans('courses.description_en') }}</label>
                                                     <textarea name="description[en]" id="description_en" class="form-control mb-2" rows="4" required>{{ old('description.en', $course->getTranslation('description', 'en')) }}</textarea>
                                                     @error('description.en')
                                                         <span class="invalid-feedback d-block"
@@ -113,7 +230,8 @@
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
-                                                    <label class="form-label">{{ trans('courses.description_ar') }}</label>
+                                                    <label
+                                                        class="form-label">{{ trans('courses.description_ar') }}</label>
                                                     <textarea name="description[ar]" id="description_ar" class="form-control mb-2" rows="4" required>{{ old('description.ar', $course->getTranslation('description', 'ar')) }}</textarea>
                                                     @error('description.ar')
                                                         <span class="invalid-feedback d-block"
@@ -236,3 +354,134 @@
         </div>
     </div>
 @stop
+
+@section('js')
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let lectureIndex = document.querySelectorAll(".lecture-row").length; // Start from the existing count
+
+            function updateTotalPrice(index) {
+                const numOfLecturesInput = document.querySelector(
+                    `input[name="lectures[${index}][num_of_lectures]"]`);
+                const lecturePriceInput = document.querySelector(`input[name="lectures[${index}][lecture_price]"]`);
+                const totalPriceInput = document.querySelector(`input[name="lectures[${index}][total_price]"]`);
+
+                if (numOfLecturesInput && lecturePriceInput && totalPriceInput) {
+                    const numOfLectures = parseFloat(numOfLecturesInput.value) || 0;
+                    const lecturePrice = parseFloat(lecturePriceInput.value) || 0;
+                    totalPriceInput.value = (numOfLectures * lecturePrice).toFixed(2);
+                }
+            }
+
+            function attachEventListeners(index) {
+                const numOfLecturesInput = document.querySelector(
+                    `input[name="lectures[${index}][num_of_lectures]"]`);
+                const lecturePriceInput = document.querySelector(`input[name="lectures[${index}][lecture_price]"]`);
+                const totalPriceInput = document.querySelector(`input[name="lectures[${index}][total_price]"]`);
+
+                if (totalPriceInput) {
+                    totalPriceInput.setAttribute("readonly", "true");
+                }
+
+                if (numOfLecturesInput && lecturePriceInput) {
+                    numOfLecturesInput.addEventListener("input", function() {
+                        updateTotalPrice(index);
+                    });
+                    lecturePriceInput.addEventListener("input", function() {
+                        updateTotalPrice(index);
+                    });
+                }
+
+                document.querySelectorAll(".remove-lecture-row").forEach(button => {
+                    button.addEventListener("click", function() {
+                        if (document.querySelectorAll(".lecture-row").length > 1) {
+                            this.closest(".lecture-row").remove();
+                            checkRemoveButtons();
+                        }
+                    });
+                });
+
+                checkRemoveButtons();
+            }
+
+            function checkRemoveButtons() {
+                const rows = document.querySelectorAll(".lecture-row");
+                document.querySelectorAll(".remove-lecture-row").forEach(button => {
+                    button.style.display = rows.length > 1 ? "inline-block" : "none";
+                });
+            }
+
+            document.getElementById("add-lecture-row").addEventListener("click", function() {
+                let container = document.getElementById("lecture-container");
+                let lastRow = container.querySelector(".lecture-row:last-of-type"); // Get last row
+
+                if (!lastRow) {
+                    console.error("No existing row found!");
+                    return;
+                }
+
+                let newRow = lastRow.cloneNode(true); // Clone the last row
+                newRow.classList.add("mt-2"); // Add margin for spacing
+
+                // Update names and indexes
+                newRow.querySelectorAll("input").forEach((input) => {
+                    let name = input.getAttribute("name");
+                    if (name) {
+                        input.setAttribute("name", name.replace(/\[\d+\]/, `[${lectureIndex}]`));
+                    }
+                    input.value = ""; // Clear input values
+                });
+
+                // Reset and ensure the 'for_group' checkbox is set correctly
+                let forGroupCheckbox = newRow.querySelector(".for-group-toggle");
+                if (forGroupCheckbox) {
+                    forGroupCheckbox.setAttribute("data-index", lectureIndex);
+                    forGroupCheckbox.checked = false;
+                    forGroupCheckbox.value = "0"; // Ensure default value is "0"
+
+                    forGroupCheckbox.addEventListener("change", function() {
+                        this.value = this.checked ? "1" : "0"; // Update value dynamically
+                    });
+                }
+
+                // Update max_in_group visibility and set correct data-index
+                let maxInGroupContainer = newRow.querySelector(".max-in-group-container");
+                if (maxInGroupContainer) {
+                    maxInGroupContainer.style.display = "none";
+                    maxInGroupContainer.setAttribute("data-index", lectureIndex);
+                }
+
+                // Append the new row after the last existing lecture
+                container.appendChild(newRow);
+
+                attachEventListeners(lectureIndex);
+
+                lectureIndex++;
+            });
+
+
+            document.addEventListener("change", function(event) {
+                if (event.target.classList.contains("for-group-toggle")) {
+                    let index = event.target.getAttribute("data-index");
+                    let maxInGroupContainer = document.querySelector(
+                        `.max-in-group-container[data-index="${index}"]`);
+
+                    if (maxInGroupContainer) {
+                        if (event.target.checked) {
+                            maxInGroupContainer.style.display = "block";
+                        } else {
+                            maxInGroupContainer.style.display = "none";
+                        }
+                    }
+                }
+            });
+
+            // Attach event listeners to existing lecture rows
+            document.querySelectorAll(".lecture-row").forEach((row, index) => {
+                attachEventListeners(index);
+            });
+
+            checkRemoveButtons();
+        });
+    </script>
+@endsection

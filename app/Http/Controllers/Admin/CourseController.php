@@ -8,6 +8,7 @@ use App\Models\Course;
 use App\Models\CourseMoney;
 use App\Models\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class CourseController extends Controller
@@ -64,7 +65,7 @@ class CourseController extends Controller
                         </div>
                     ';
                 })
-                ->rawColumns(['status','unique','action'])
+                ->rawColumns(['status', 'unique', 'action'])
                 ->make(true);
         }
         return view($this->base_view . 'index');
@@ -73,44 +74,25 @@ class CourseController extends Controller
 
     public function create()
     {
-        $sections = Section::select('id','name')->get();
-        return view($this->base_view . 'create' , compact('sections'));
+        $sections = Section::select('id', 'name')->get();
+        return view($this->base_view . 'create', compact('sections'));
     }
 
 
-    public function store(Request $request)
+    public function store(CourseRequest $request)
     {
-        dd($request->all());
         try {
-            $course = Course::create($request->only(
-                'name',
-                'description',
-                'seo_head_keyword',
-                'seo_head_description',
-                'min_age',
-                'max_age',
-                'status',
-                'unique',
-                'section_id'
-            ));
-
-            // if ($request->has('lectures')) {
-            //     foreach ($request->input('lectures') as $lecture) {
-            //         CourseMoney::create([
-            //             'course_id'        => $course->id,
-            //             'num_of_minuts'    => $lecture['num_of_minuts'],
-            //             'lecture_price'    => $lecture['lecture_price'],
-            //             'num_of_lectures'  => $lecture['num_of_lectures'],
-            //             'lectures_in_week' => $lecture['lectures_in_week'],
-            //             'total_price'      => $lecture['total_price'],
-            //             'for_group'        => isset($lecture['for_group']) ? 1 : 0,
-            //             'max_in_group'     => ($lecture['for_group'] ?? 0) == 1 ? ($lecture['max_in_group'] ?? null) : null,
-            //         ]);
-            //     }
-            // }
-
+            DB::beginTransaction();
+            $course = Course::create($this->courseAttributes($request));
+            if ($request->has('lectures')) {
+                foreach ($request->input('lectures') as $lecture) {
+                    $course->courseMoneys()->create($this->getLectureData($lecture));
+                }
+            }
+            DB::commit();
             return redirect()->route('admin.courses.index')->with('success', trans('courses.store_success'));
         } catch (\Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -125,28 +107,22 @@ class CourseController extends Controller
     public function edit(string $id)
     {
         $course = Course::findOrFail($id);
-        $sections = Section::select('id','name')->get();
-        return view($this->base_view . 'edit' , compact('course','sections'));
+        $sections = Section::select('id', 'name')->get();
+        return view($this->base_view . 'edit', compact('course', 'sections'));
     }
 
 
-    public function update(CourseRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         try {
+            DB::beginTransaction();
             $course = Course::findOrFail($id);
-            $course->update($request->only(
-                'name',
-                'description',
-                'seo_head_keyword',
-                'seo_head_description',
-                'min_age',
-                'max_age',
-                'status',
-                'unique',
-                'section_id'
-            ));
+            $course->update($this->courseAttributes($request));
+            $this->updateLectures($request, $course);
+            DB::commit();
             return redirect()->route('admin.courses.index')->with('success', trans('courses.update_success'));
         } catch (\Exception $e) {
+            DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
@@ -155,10 +131,68 @@ class CourseController extends Controller
     public function destroy(string $id)
     {
         try {
-            Course::destroy($id);
+            $course = Course::findOrFail($id);
+            $course->courseMoneys()->delete();
+            $course->delete();
             return redirect()->back()->with('success', trans('courses.delete_success'));
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
+    }
+
+
+    private function courseAttributes(Request $request)
+    {
+        return $request->only([
+            'name',
+            'description',
+            'seo_head_keyword',
+            'seo_head_description',
+            'min_age',
+            'max_age',
+            'status',
+            'unique',
+            'section_id'
+        ]);
+    }
+
+
+    private function getLectureData(array $lecture)
+    {
+        return [
+            'num_of_minutes'    => $lecture['num_of_minutes'],
+            'lecture_price'    => $lecture['lecture_price'],
+            'num_of_lectures'  => $lecture['num_of_lectures'],
+            'lectures_in_week' => $lecture['lectures_in_week'],
+            'total_price'      => $lecture['total_price'],
+            'for_group'        => $lecture['for_group'] ?? 0,
+            'max_in_group'     => $lecture['for_group'] == 1 ? $lecture['max_in_group'] : null,
+        ];
+    }
+
+
+    private function updateLectures(Request $request, Course $course)
+    {
+        if ($request->has('lectures')) {
+            $existingLectureIds = $course->courseMoneys()->pluck('id')->toArray();
+            $newLectureIds = [];
+            foreach ($request->input('lectures') as $lecture) {
+                if (!empty($lecture['id'])) {
+                    // Update existing lecture
+                    $courseMoney = CourseMoney::find($lecture['id']);
+                    if ($courseMoney) {
+                        $courseMoney->update($this->getLectureData($lecture));
+                        $newLectureIds[] = $lecture['id'];
+                    }
+                } else {
+                    // Create new lecture
+                    $newCourseMoney = $course->courseMoneys()->create($this->getLectureData($lecture));
+                    $newLectureIds[] = $newCourseMoney->id;
+                }
+            }
+            // Delete removed lectures
+            $lecturesToDelete = array_diff($existingLectureIds, $newLectureIds);
+            CourseMoney::whereIn('id', $lecturesToDelete)->delete();
         }
     }
 }
