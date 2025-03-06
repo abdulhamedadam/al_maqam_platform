@@ -3,7 +3,9 @@
 use App\Http\Controllers\Admin\app_setting\DiscountController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CompanyController;
+
 use App\Http\Controllers\Admin\CourseController;
+
 use App\Http\Controllers\Admin\EmployeesController;
 
 use App\Http\Controllers\Admin\GeneralSettingsController;
@@ -14,6 +16,7 @@ use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\RevenueController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\SectionController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestsController;
@@ -60,77 +63,15 @@ Route::group(
         Route::resource('teachers' , TeacherController::class);
         Route::get('/teachers/{id}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
         Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
-
+        Route::get('/teachers/{id}/details', [TeacherController::class, 'details'])->name('teachers.details');
         Route::resource('sections' , SectionController::class)->except('show');
+
 
         Route::resource('courses' , CourseController::class);
 
-
-        /********************************************************************************************************************************/
-        // Route::get('clients/{id}/companies',[ClientController::class,'companies'])->name('client_companies');
-        // Route::post('clients/{id}/companies/save',[ClientController::class,'store_company'])->name('client_store_company');
-        // Route::get('clients/companies/edit/{id}',[ClientController::class,'edit_company'])->name('client_edit_company');
-        // Route::post('clients/companies/update/{id}',[ClientController::class,'update_company'])->name('client_update_company');
-        // Route::get('clients/companies/delete/{id}',[ClientController::class,'delete_company'])->name('client_delete_company');
-        /********************************************************************************************************************************/
-        // Route::get('clients/{id}/projects',[ClientController::class,'projects'])->name('client_projects');
-        // Route::post('clients/{id}/projects/save',[ClientController::class,'store_project'])->name('client_store_project');
-        // Route::get('clients/projects/edit/{id}',[ClientController::class,'edit_project'])->name('client_edit_project');
-        // Route::post('clients/projects/update/{id}',[ClientController::class,'update_project'])->name('client_update_project');
-        // Route::get('clients/projects/delete/{id}',[ClientController::class,'delete_project'])->name('client_delete_project');
-        // /********************************************************************************************************************************/
-        // Route::resource('company',CompanyController::class);
-        // Route::get('company/delete/{id}',[CompanyController::class,'destroy'])->name('delete_company');
-        // /********************************************************************************************************************************/
-        // Route::get('company/{id}/projects',[CompanyController::class,'projects'])->name('company_projects');
-        // Route::post('company/{id}/projects/save',[CompanyController::class,'store_project'])->name('company_store_project');
-        // Route::get('company/projects/edit/{id}',[CompanyController::class,'edit_project'])->name('company_edit_project');
-        // Route::post('company/projects/update/{id}',[CompanyController::class,'update_project'])->name('company_update_project');
-        // Route::get('company/projects/delete/{id}',[CompanyController::class,'delete_project'])->name('company_delete_project');
-        // /********************************************************************************************************************************/
-        // Route::resource('project',ProjectController::class);
-        // Route::get('project/delete/{id}',[ProjectController::class,'destroy'])->name('delete_project');
-        // Route::get('get_company/{id}',[ProjectController::class,'get_company'])->name('get_company');
-        /********************************************************************************************************************************/
-        /************************** MAINDATA *****************************/
-        // Route::resource('mdata', MaindataController::class);
-        /************************** About *****************************/
-        // Route::resource('about', AboutController::class);
-        // Route::get('about/show_load/{id}', [AboutController::class, 'show_load'])->name('about.load_details');
-
-        /******************************************************************************************************** */
-        // Route::group(['prefix' => 'app_setting', 'as' => 'app_setting.'], function () {
-        // Route::resource('Notification', NotificationController::class);
-        // Route::get('Notification/show_load/{id}', [NotificationController::class, 'show_load'])->name('Notification.load_details');
-        // Route::resource('Discount', DiscountController::class);
-
-        // });
-        //************************************** Complaints ********************************************** */
+        Route::resource('services' , ServiceController::class);
 
 
-
-
-
-        /******************************************abdulhamed zaghloul*********************************************/
-
-        // Route::get('/branches', [GeneralSettingsController::class, 'branches'])->name('branches');
-        // Route::post('/branch/create', [GeneralSettingsController::class, 'add_branch'])->name('add_branch');
-        // Route::get('/branch/edit/{id}', [GeneralSettingsController::class, 'edit_branch'])->name('edit_branch');
-        // Route::get('/branch/delete/{id}', [GeneralSettingsController::class, 'delete_branch'])->name('delete_branch');
-        // Route::get('/get_ajax_branches', [GeneralSettingsController::class, 'get_ajax_branches'])->name('get_ajax_branches');
-
-        // Route::get('/governorates', [GeneralSettingsController::class, 'governorates'])->name('governorates');
-        // Route::post('/governorate/create', [GeneralSettingsController::class, 'add_governorate'])->name('add_governorate');
-        // Route::get('/governorate/edit/{id}', [GeneralSettingsController::class, 'edit_governorate'])->name('edit_governorate');
-        // Route::get('/governorate/delete/{id}', [GeneralSettingsController::class, 'delete_governorate'])->name('delete_governorate');
-        // Route::get('/get_ajax_governorates', [GeneralSettingsController::class, 'get_ajax_governorates'])->name('get_ajax_governorates');
-        // Route::get('/get_ajax_branches', [GeneralSettingsController::class, 'get_ajax_branches'])->name('get_ajax_branches');
-
-        // Route::get('/areas', [GeneralSettingsController::class, 'areas'])->name('areas');
-        // Route::post('/area/create', [GeneralSettingsController::class, 'add_area'])->name('add_area');
-        // Route::get('/area/edit/{id}', [GeneralSettingsController::class, 'edit_area'])->name('edit_area');
-        // Route::get('/area/delete/{id}', [GeneralSettingsController::class, 'delete_area'])->name('delete_area');
-        // Route::get('/get_ajax_areas', [GeneralSettingsController::class, 'get_ajax_areas'])->name('get_ajax_areas');
 
         Route::get('/site_data', [GeneralSettingsController::class, 'siteData'])->name('siteData');
         Route::get('/site_data/edit/{id}', [GeneralSettingsController::class, 'edit_siteData'])->name('edit_siteData');

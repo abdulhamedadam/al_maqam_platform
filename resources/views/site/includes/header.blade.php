@@ -58,7 +58,7 @@
                                     <li><a
                                             href="{{ route('user.our_teachers') }}">{{ trans('header.Our Teachers') }}</a>
                                     </li>
-                                    <li><a href="{{ route('user.contact') }}">{{ trans('header.Contact') }}</a></li>
+                                    <li><a href="{{ route('user.contact.show') }}">{{ trans('header.Contact') }}</a></li>
                                     <li class="sign-in"><a
                                             href="{{ route('user.login') }}">{{ trans('header.Login') }}</a></li>
                                     <li class="sign-up"><a

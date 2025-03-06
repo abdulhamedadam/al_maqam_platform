@@ -75,6 +75,10 @@ class TeacherController extends Controller
                             <a href="' . route('admin.teachers.show', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
                                 <i class="bi bi-eye"></i>
                             </a>
+
+                             <a href="' . route('admin.teachers.details', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
+                                <i class="bi bi-eye"></i>
+                            </a>
                             <a href="' . route('admin.teachers.edit', $row->id) . '" class="btn btn-sm btn-primary" title="' . trans('actions.edit') . '" style="font-size: 16px;">
                                 <i class="bi bi-pencil-square"></i>
                             </a>
@@ -282,5 +286,10 @@ class TeacherController extends Controller
         if (file_exists($fullPath)) {
             unlink($fullPath);
         }
+    }
+    /**********************************************/
+    public function details($id)
+    {
+        return view($this->base_view . 'details');
     }
 }

@@ -56,7 +56,7 @@ class AuthController extends Controller
             $rules['work_shift'] = 'required|array';
             $rules['work_shift.*'] = 'string';
             $rules['fri_sat'] = 'required|string|in:yfri-sat,nfri-sat';
-            $rules['audio'] = 'nullable|file|mimes:mp3,wav|max:10240';
+         //   $rules['audio'] = 'nullable|file|mimes:mp3,wav|max:10240';
             $rules['files'] = 'required|max:10240';
         }
 
