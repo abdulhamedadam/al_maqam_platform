@@ -9,19 +9,9 @@ use Spatie\Translatable\HasTranslations;
 class Course extends Model
 {
     use HasFactory, HasTranslations;
+    protected $guarded=[];
+    protected $table='courses';
 
-    protected $fillable =
-    [
-        'name',
-        'description',
-        'seo_head_keyword',
-        'seo_head_description',
-        'min_age',
-        'max_age',
-        'status',
-        'unique',
-        'section_id'
-    ];
 
     public $translatable = ['name', 'description', 'seo_head_keyword', 'seo_head_description'];
 

@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Courses\CourseRequest;
 use App\Models\Course;
 use App\Models\CourseMoney;
 use App\Models\Section;
+use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
@@ -14,7 +15,7 @@ use Yajra\DataTables\Facades\DataTables;
 class CourseController extends Controller
 {
     protected $base_view = 'admin.pages.courses.';
-
+    use ImageProcessing;
     public function index(Request $request)
     {
         if ($request->ajax()) {
@@ -25,7 +26,7 @@ class CourseController extends Controller
                     return $row->getTranslation('name', app()->getLocale());
                 })
                 ->editColumn('description', function ($row) {
-                    return $row->getTranslation('description', app()->getLocale());
+                    return strip_tags($row->description);
                 })
                 ->editColumn('section', function ($row) {
                     return $row->section->name;
@@ -83,6 +84,8 @@ class CourseController extends Controller
     {
         try {
             DB::beginTransaction();
+         //  dd($request->input('lectures'));
+
             $course = Course::create($this->courseAttributes($request));
             if ($request->has('lectures')) {
                 foreach ($request->input('lectures') as $lecture) {
@@ -92,6 +95,7 @@ class CourseController extends Controller
             DB::commit();
             return redirect()->route('admin.courses.index')->with('success', trans('courses.store_success'));
         } catch (\Exception $e) {
+            dd($e);
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -117,7 +121,14 @@ class CourseController extends Controller
         try {
             DB::beginTransaction();
             $course = Course::findOrFail($id);
-            $course->update($this->courseAttributes($request));
+            $validated_data=$this->courseAttributes($request);
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $dataX = $this->saveImage($file, 'courses');
+                $validated_data['image'] = $dataX;
+            }
+           //dd($request->hasFile('image'));
+            $course->update($validated_data);
             $this->updateLectures($request, $course);
             DB::commit();
             return redirect()->route('admin.courses.index')->with('success', trans('courses.update_success'));
@@ -159,8 +170,9 @@ class CourseController extends Controller
 
     private function getLectureData(array $lecture)
     {
+       // dd($lecture['num_of_minutes']);
         return [
-            'num_of_minutes'    => $lecture['num_of_minutes'],
+            'num_of_minuts'    => $lecture['num_of_minutes'],
             'lecture_price'    => $lecture['lecture_price'],
             'num_of_lectures'  => $lecture['num_of_lectures'],
             'lectures_in_week' => $lecture['lectures_in_week'],

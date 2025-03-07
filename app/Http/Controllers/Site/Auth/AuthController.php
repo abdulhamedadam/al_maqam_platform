@@ -6,6 +6,7 @@ use App\Enums\TeacherStatus;
 use App\Http\Controllers\Controller;
 use App\Models\TeacherDetail;
 use App\Models\User;
+use App\Services\Admin\SectionService;
 use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -17,13 +18,16 @@ class AuthController extends Controller
 {
     use ImageProcessing;
 
-    public function showRegistrationForm()
+    public function showRegistrationForm(SectionService $sectionService)
     {
-        return view('site.pages.join-us');
+        $data['sections']=$sectionService->all_active();
+       // dd($data['sections']);
+        return view('site.pages.join-us',$data);
     }
 
     protected function validator(array $data)
     {
+        //dd(request());
         $rules = [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -56,7 +60,7 @@ class AuthController extends Controller
             $rules['work_shift'] = 'required|array';
             $rules['work_shift.*'] = 'string';
             $rules['fri_sat'] = 'required|string|in:yfri-sat,nfri-sat';
-         //   $rules['audio'] = 'nullable|file|mimes:mp3,wav|max:10240';
+            $rules['audio'] = 'nullable|mimes:mp3,wav|max:10240';
             $rules['files'] = 'required|max:10240';
         }
 

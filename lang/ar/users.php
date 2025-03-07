@@ -53,4 +53,5 @@
   'permissions_updated_successfully' => 'تم تعديل الصلاحيات بنجاح',
   'male' => 'male',
   'female' => 'female',
+  'status_updated' => 'status_updated',
 );

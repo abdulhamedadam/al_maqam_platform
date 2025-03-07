@@ -53,4 +53,10 @@ class SectionService
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
+
+    /**********************************************/
+    public function all_active()
+    {
+        return $this->sectionRepository->all_active();
+    }
 }

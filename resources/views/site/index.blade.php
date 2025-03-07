@@ -7,55 +7,75 @@
 
     <section class="slider-section">
         <div class="main-carousel owl-theme owl-carousel owl-dots-none">
+
+            @if($sliders->count() > 0)
+                @foreach($sliders as $index => $slider)
+                    <div class="slide-item">
+                        <div class="overlay"></div>
+                        <div class="image-layer"
+                             style="background-image: url('{{ $slider->image ? asset('images/' . $slider->image) : asset('front_assets/images/sections/slider/s4.jpg') }}')"></div>
+                        <div class="container">
+                            <div class="content-box {{ $index % 2 == 0 ? '' : 'centerd' }}">
+                                <h5>{{$slider->title}}</h5>
+                                <h1>{!! str_replace(['<p>', '</p>'], ['', '<br>'], $slider->description) !!}</h1>
+
+                                <div class="btn-box">
+                                    <a href="contact.html" class="theme-btn">{{$slider->button_text}}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
             <!-- Slide 01 -->
-            <div class="slide-item">
-                <div class="overlay"></div>
-                <div class="image-layer" style="background-image: url('{{ asset('front_assets/images/sections/slider/s4.jpg') }}')"></div>
-                <div class="container">
-                    <div class="content-box">
-                        <h5>get on the right way</h5>
-                        <h1>Financial Assistance<br>With True Purpose</h1>
-                        <div class="btn-box">
-                            <a href="contact.html" class="theme-btn">How Can We Help</a>
-                            <a href="contact.html" class="user-btn"><i class="far fa-user"></i><span>Find a
-                                    Consultant</span></a>
+                <div class="slide-item">
+                    <div class="overlay"></div>
+                    <div class="image-layer" style="background-image: url(src/images/sections/slider/s4.jpg)"></div>
+                    <div class="container">
+                        <div class="content-box">
+                            <h5>get on the right way</h5>
+                            <h1>Financial Assistance<br>With True Purpose</h1>
+                            <div class="btn-box">
+                                <a href="contact.html" class="theme-btn">How Can We Help</a>
+                                <a href="contact.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Slide 02 -->
-            <div class="slide-item">
-                <div class="overlay"></div>
-                <div class="image-layer" style="background-image: url('{{ asset('front_assets/images/sections/slider/s5.jpg') }}')"></div>
-                <div class="container">
-                    <div class="content-box centerd">
-                        <ul class="list-item">
-                            <li>.&nbsp;<a>Experienced</a>&nbsp;.&nbsp;</li>
-                            <li><a>Specialized</a>&nbsp;.&nbsp;</li>
-                            <li><a>Professional</a>&nbsp;.&nbsp;</li>
-                        </ul>
-                        <h1>International Network To <br>Provide Assistance</h1>
-                        <div class="btn-box">
-                            <a href="contact.html" class="theme-btn m-0">How Can We Help</a>
+                <!-- Slide 02 -->
+                <div class="slide-item">
+                    <div class="overlay"></div>
+                    <div class="image-layer" style="background-image: url(src/images/sections/slider/s5.jpg)"></div>
+                    <div class="container">
+                        <div class="content-box centerd">
+                            <ul class="list-item">
+                                <li>.&nbsp;<a>Experienced</a>&nbsp;.&nbsp;</li>
+                                <li><a>Specialized</a>&nbsp;.&nbsp;</li>
+                                <li><a>Professional</a>&nbsp;.&nbsp;</li>
+                            </ul>
+                            <h1>International Network To <br>Provide Assistance</h1>
+                            <div class="btn-box">
+                                <a href="contact.html" class="theme-btn m-0">How Can We Help</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Slide 03 -->
-            <div class="slide-item">
-                <div class="overlay"></div>
-                <div class="image-layer" style="background-image: url'{{ asset('front_assets/images/sections/slider/s6.jpg') }}')"></div>
-                <div class="container">
-                    <div class="content-box">
-                        <h5>get on the right way</h5>
-                        <h1>Boosting Relations & <br>Loyalty, Anytime</h1>
-                        <div class="btn-box">
-                            <a href="contact.html" class="theme-btn mr-10">How Can We Help</a>
-                            <a href="contact.html" class="slide-item-btn puls">Find a Consultant</a>
+                <!-- Slide 03 -->
+                <div class="slide-item">
+                    <div class="overlay"></div>
+                    <div class="image-layer" style="background-image: url(src/images/sections/slider/s6.jpg)"></div>
+                    <div class="container">
+                        <div class="content-box">
+                            <h5>get on the right way</h5>
+                            <h1>Boosting Relations & <br>Loyalty, Anytime</h1>
+                            <div class="btn-box">
+                                <a href="contact.html" class="theme-btn mr-10">How Can We Help</a>
+                                <a href="contact.html" class="slide-item-btn puls">Find a Consultant</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
@@ -70,7 +90,7 @@
       ">
         <div class="container">
             <div class="sec-title">
-                <h2>Why <span>Almaqam Almahmoud</span></h2>
+                <h2>{{trans('site.why')}} <span>{{trans('site.Almaqam_Almahmoud')}}</span></h2>
             </div>
             <div class="row clearfix">
                 @foreach ($services as $service)
@@ -79,9 +99,9 @@
                             <div class="card why-us-card">
                                 <svg height="46" viewBox="0 0 46 46" width="46" xmlns="http://www.w3.org/2000/svg">
                                     <g data-name="icon accredited teachers" id="icon_accredited_teachers"
-                                        transform="translate(-123 -782)">
+                                       transform="translate(-123 -782)">
                                         <rect data-name="Rectangle 1211" fill="#cf8b40" height="46" id="Rectangle_1211"
-                                            opacity="0.35" rx="8" transform="translate(123 782)" width="46"></rect>
+                                              opacity="0.35" rx="8" transform="translate(123 782)" width="46"></rect>
                                         <g id="teacher-giving-lecture" transform="translate(77.464 790.685)">
                                             <g data-name="Group 4177" id="Group_4177-1" transform="translate(58.011)">
                                                 <g data-name="Group 4176" id="Group_4176">
@@ -106,8 +126,9 @@
                         </div>
                     </div>
                     @if($loop->iteration % 3 === 0)
-                        </div><div class="row clearfix">
-                    @endif
+            </div>
+            <div class="row clearfix">
+                @endif
                 @endforeach
             </div>
         </div>
@@ -124,53 +145,43 @@
                     <div id="content_block">
                         <div class="content-box">
                             <div class="sec-title right">
-                                <h5>About almaqam almahmoud</h5>
-                                <h2>Together, let us live by the Qur’an in word and deed</h2>
+                                <h5>{{trans('site.About_almaqam_almahmoud')}}</h5>
+                                <h2>{{$about_us->title}}</h2>
                             </div>
                             <div class="text">
                                 <p>
-                                    We memorize the Qur’an together, reflect on its verses,
-                                    study its rulings, and recite it as it should be recited
+                                    {{$about_us->description}}
                                 </p>
                             </div>
                             <div class="tabs-box">
                                 <div class="tab-btn-box">
                                     <ul class="tab-btns tab-buttons clearfix">
                                         <li class="tab-btn active-btn" data-tab="#tab-1">
-                                            Our Mission
+                                            {{trans('site.our_mission')}}
                                         </li>
-                                        <li class="tab-btn" data-tab="#tab-2">Our Experience</li>
-                                        <li class="tab-btn" data-tab="#tab-3">Our Vision</li>
+                                        <li class="tab-btn" data-tab="#tab-2">{{trans('site.our_experience')}}</li>
+                                        <li class="tab-btn" data-tab="#tab-3">{{trans('site.our_vision')}}</li>
                                     </ul>
                                 </div>
                                 <div class="tabs-content">
                                     <div class="tab active-tab" id="tab-1">
                                         <div class="content-inner">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Suspendisse ultricies tortor eget justo suscipit
-                                                rutrum. Nulla tincidunt nulla magna, in sagittis nisl
-                                                rutrum nec. Sed semper sed arcu non accumsan.
+                                                {{$about_us->our_mission}}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-2">
                                         <div class="content-inner">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Suspendisse ultricies tortor eget justo suscipit
-                                                rutrum. Nulla tincidunt nulla magna, in sagittis nisl
-                                                rutrum nec. Sed semper sed arcu non accumsan.
+                                                {{$about_us->our_experience}}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-3">
                                         <div class="content-inner">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing
-                                                elit. Suspendisse ultricies tortor eget justo suscipit
-                                                rutrum. Nulla tincidunt nulla magna, in sagittis nisl
-                                                rutrum nec. Sed semper sed arcu non accumsan.
+                                                {{$about_us->our_vision}}
                                             </p>
                                         </div>
                                     </div>
@@ -183,19 +194,19 @@
                     <div id="image_block">
                         <div class="image-box">
                             <div class="pattern-layer"
-                                style="
-                    background-image: url'{{ asset('front_assets/images/pages/about/shape-25.png') }}');
-                  ">
+                                 style="
+                                     background-image: url'{{ $about_us->image ? asset('images/' . $about_us->image) : asset('front_assets/images/sections/about-quran/learn-quran.jpg') }}');
+                                     ">
                             </div>
                             <figure class="image">
-                                <img src="src/images/sections/about-quran/learn-quran.jpg">
+                                <img
+                                    src="{{ $about_us->image ? asset('images/' . $about_us->image) : asset('front_assets/images/sections/about-quran/learn-quran.jpg') }}">
                             </figure>
                             <div class="content-box">
                                 <i class="fas fa-quote-left"></i>
-                                <!-- <h4>Whoever reflects on the Qur’an seeking guidance from it, the path of truth will be shown to him</h4> -->
                                 <h5>
-                                    Whoever reflects on the Qur’an seeking guidance from it, the
-                                    path of truth will be shown to him
+                                    {{$about_us->notes}}
+
                                 </h5>
                             </div>
                         </div>
@@ -208,12 +219,12 @@
     <!-- Start How To Join Section =============-->
 
     <section class="how-to-join centerd"
-        style="
+             style="
         background-image: url(/src/images/sections/how-to-join/parallax2.jpg);
       ">
         <div class="container">
             <div class="sec-title-two light">
-                <h2>How to Join Us</h2>
+                <h2>{{trans('site.how_to_join_us')}}</h2>
                 <span></span>
             </div>
             <div class="join-steps">
@@ -221,32 +232,32 @@
                     <li>
                         <div class="step-bx">
                             <i class="fas fa-hand-pointer"></i>
-                            <h5>Choose a course</h5>
+                            <h5>{{trans('site.choose_a_course')}}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <!-- <i class="fas fa-user-plus"></i> -->
                             <i class="fas fa-right-to-bracket"></i>
-                            <h5 itemprop="headline">Register</h5>
+                            <h5 itemprop="headline">{{trans('site.register')}}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-solid fa-chalkboard-user"></i>
-                            <h5 itemprop="headline">choose teacher</h5>
+                            <h5 itemprop="headline">{{trans('site.choose_teacher')}}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-regular fa-calendar-days"></i>
-                            <h5 itemprop="headline">Scheduling classes</h5>
+                            <h5 itemprop="headline">{{trans('site.scheduling_classes')}}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-solid fa-money-check-dollar"></i>
-                            <h5 itemprop="headline">checkout</h5>
+                            <h5 itemprop="headline">{{trans('site.checkout')}}</h5>
                         </div>
                     </li>
                 </ul>
@@ -261,590 +272,146 @@
     <section class="our-courses sec sec-bg-color">
         <div class="container">
             <div class="sec-title centerd">
-                <h2>Our lecture</h2>
+                <h2>{{trans('site.our_lecture')}}</h2>
             </div>
             <div class="row clearfix">
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="course-block">
-                        <div class="card course-card">
-                            <div class="card-img">
-                                <img src="/src/images/id/logo.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="course-title">
-                                <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
-                            </div>
-                            <div class="card-body">
-                                <bdi class="price">200.00 LE</bdi>
-                                <ul class="card-items">
-                                    <li class="card-item">
-                                        <p class="li-title">4 classes</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-2"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round">
-                                            </g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
+                    @foreach ($courses as $course)
+                        @foreach ($course->courseMoneys as $money)
+
+                        <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                        <div class="course-block">
+                            <div class="card course-card">
+                                <div class="card-img">
+                                    <img src="{{$course->image ? asset('images/' . $course->image) : asset('front_assets/images/id/logo.jpg')}}" class="card-img-top" alt="...">
+
+                                </div>
+                                <div class="course-title">
+                                    <h3 class="title-course"><a href="http://course-detail.html">{{$course->name}}</a></h3>
+                                </div>
+                                <div class="card-body">
+                                    <bdi class="price">{{ $money->total_price }} {{trans('site.LE')}}</bdi>
+                                    <ul class="card-items">
+                                        <li class="card-item">
+                                            <p class="li-title">{{ $money->num_of_lectures }} {{trans('site.classes')}}</p>
+                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-10" data-name="Line Color"
+                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                                                <g id="SVGRepo_bgCarrier-9" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier-9" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
+                                "></polyline>
+                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">30 minutes to lecture</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-3"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-2" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-2" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
+                                "></path>
+                                                </g>
+                                            </svg>
+                                        </li>
+                                        <li class="card-item">
+                                            <p class="li-title">{{ $money->num_of_minuts }} {{trans('site.min_to_lecture')}}</p>
+                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-11" data-name="Line Color"
+                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                                                <g id="SVGRepo_bgCarrier-10" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier-10" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
+                                "></polyline>
+                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">for kids</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-4"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-3" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-3" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
+                                "></path>
+                                                </g>
+                                            </svg>
+                                        </li>
+                                        <li class="card-item">
+                                            <p class="li-title">@if ($course->min_age && $course->max_age)
+                                                    {{trans('site.for_kids')}}   ({{ $course->min_age }} - {{ $course->max_age }} {{trans('site.years')}})
+                                                @else
+                                                     {{trans('site.suitable_for_all_ages')}}
+                                                @endif</p>
+                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-12" data-name="Line Color"
+                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                                                <g id="SVGRepo_bgCarrier-11" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier-11" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
+                                "></polyline>
+                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">one student</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-5"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-4" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-4" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
+                                "></path>
+                                                </g>
+                                            </svg>
+                                        </li>
+                                        <li class="card-item">
+                                            <p class="li-title">
+                                                @if ($money->for_group)
+                                                    {{trans('site.group_class')}}   (Max {{ $money->max_in_group }} {{trans('site.students')}})
+                                                @else
+                                                    {{trans('site.one_student')}}
+                                                @endif</p>
+                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-13" data-name="Line Color"
+                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
+                                                <g id="SVGRepo_bgCarrier-12" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier-12" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
+                                "></polyline>
+                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
                                   fill: none;
                                   stroke: #2cba35;
                                   stroke-linecap: round;
                                   stroke-linejoin: round;
                                   stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-btn">
-                                <a href="/course-details.html" class="card-link">join this lecture</a>
+                                "></path>
+                                                </g>
+                                            </svg>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-btn">
+                                    <a href="{{route('user.get_course_details',[$course->id,$money->id])}}" class="card-link">{{trans('site.join_this_lecture')}}</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="course-block">
-                        <div class="card course-card">
-                            <div class="card-img">
-                                <img src="/src/images/id/logo.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="course-title">
-                                <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
-                            </div>
-                            <div class="card-body">
-                                <bdi class="price">500.00 LE</bdi>
-                                <ul class="card-items">
-                                    <li class="card-item">
-                                        <p class="li-title">6 classes</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-6"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-5" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-5" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">1:30 for a lecture</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-7"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-6" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-6" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">for adults</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-8"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-7" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-7" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">4 students</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-9"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-8" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-8" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-btn">
-                                <a href="/course-details.html" class="card-link">join this lecture</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="course-block">
-                        <div class="card course-card">
-                            <div class="card-img">
-                                <img src="/src/images/id/logo.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="course-title">
-                                <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
-                            </div>
-                            <div class="card-body">
-                                <bdi class="price">200.00 LE</bdi>
-                                <ul class="card-items">
-                                    <li class="card-item">
-                                        <p class="li-title">4 classes</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-10"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-9" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-9" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">Half an hour to lecture</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-11"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-10" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-10" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">for kids</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-12"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-11" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-11" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">one student</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-13"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-12" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-12" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-btn">
-                                <a href="/course-details.html" class="card-link">join this lecture</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                    <div class="course-block">
-                        <div class="card course-card">
-                            <div class="card-img">
-                                <img src="/src/images/id/logo.jpg" class="card-img-top" alt="...">
-                            </div>
-                            <div class="course-title">
-                                <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
-                            </div>
-                            <div class="card-body">
-                                <bdi class="price">200.00 LE</bdi>
-                                <ul class="card-items">
-                                    <li class="card-item">
-                                        <p class="li-title">4 classes</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-14"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-13" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-13" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">Half an hour to lecture</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-15"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-14" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-14" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">for kids</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-16"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-15" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-15" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                    <li class="card-item">
-                                        <p class="li-title">one student</p>
-                                        <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-17"
-                                            data-name="Line Color" xmlns="http://www.w3.org/2000/svg"
-                                            class="icon line-color">
-                                            <g id="SVGRepo_bgCarrier-16" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier-16" stroke-linecap="round"
-                                                stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <polyline id="secondary" points="21 5 12 14 8 10"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </polyline>
-                                                <path id="primary"
-                                                    d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1"
-                                                    style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                ">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-btn">
-                                <a href="/course-details.html" class="card-link">join this lecture</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                        @endforeach
+
+                    @endforeach
             </div>
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-lectures">
-                        <a href="/our-lectures.html" class="button">show all lectures</a>
+                        <a href="/our-lectures.html" class="button">{{trans('site.show_all_lectures')}}</a>
                     </div>
                 </div>
             </div>
@@ -858,12 +425,12 @@
     <!-- Start Our Teacher Section =============-->
 
     <section class="our-teachers"
-        style="
+             style="
           background-image: url(/src/images/sections/why-us-sec/pattern-bg.jpg);
         ">
         <div class="container">
             <div class="sec-title centerd">
-                <h2>Our Teachers</h2>
+                <h2>{{trans('site.our_teachers')}}</h2>
             </div>
             <div class="row clearfix">
                 @foreach ($teachers as $teacher)
@@ -871,7 +438,9 @@
                         <div class="teacher-card">
                             <div class="card card-teacher">
                                 <a href="teacher.html" class="card-header">
-                                    <img src="{{ asset($teacher->gender === 'm' ? 'front_assets/images/sections/teachers/man-avatar.svg' : 'front_assets/images/sections/teachers/woman-avatar.svg') }}" alt=""
+                                    <img
+                                        src="{{ asset($teacher->gender === 'm' ? 'front_assets/images/sections/teachers/man-avatar.svg' : 'front_assets/images/sections/teachers/woman-avatar.svg') }}"
+                                        alt=""
                                         class="card-img">
                                 </a>
                                 <div class="card-body">
@@ -896,7 +465,7 @@
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-teachers">
-                        <a href="{{route('user.our_teachers')}}" class="button">show all teacher</a>
+                        <a href="{{route('user.our_teachers')}}" class="button">{{trans('site.show_all_teacher')}}</a>
                     </div>
                 </div>
             </div>

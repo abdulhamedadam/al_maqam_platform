@@ -17,10 +17,10 @@
         ">
             <div class="container">
                 <div class="content-box clearfix">
-                    <h1>Course Details</h1>
+                    <h1>{{trans('site.CourseDetails')}}</h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="/">Home</a></li>
-                        <li>Course Details</li>
+                        <li><a href="/">{{trans('site.Home')}}</a></li>
+                        <li>{{trans('site.CourseDetails')}}</li>
                     </ul>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="col-xxl-8 col-xl-8">
                         <div class="course-detalis-wrapper mb-30">
                             <div class="course-heading mb-20">
-                                <h2>MySQL Database : Beginner SQL Database Design</h2>
+                                <h2>{{$course->name}}</h2>
                                 <div class="course-star">
                                     <ul>
                                         <li><i class="fas fa-star"></i></li>
@@ -56,11 +56,11 @@
                             <div class="course-detelis-meta">
                                 <div class="course-meta-wrapper border-line-meta">
                                     <div class="course-meta-img">
-                                        <a href="teacher.html"><img src="src/images/sections/teachers/man-avatar.svg"
+                                        <a href="teacher.html"><img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg')}}"
                                                 alt="course-meta" /></a>
                                     </div>
                                     <div class="course-meta-text">
-                                        <span>the instructor</span>
+                                        <span>{{trans('site.the_instructor')}}</span>
                                         <h6>
                                             <a href="teacher.html">Ahmed Mahmoud</a>
                                         </h6>
@@ -75,29 +75,24 @@
                                     <span>01 January 2022 </span>
                                 </div>
                                 <div class="course-category">
-                                    <p>category</p>
-                                    <span><a href="course.html">Quraan Science</a></span>
+                                    <p>{{trans('site.category')}}</p>
+                                    <span><a href="course.html">{{optional($course->section)->name}}</a></span>
                                 </div>
                             </div>
                             <div class="course-description pt-45 pb-30">
                                 <div class="course-Description">
-                                    <h4>Description</h4>
+                                    <h4>{{trans('site.description')}}</h4>
                                 </div>
                                 <p>
-                                    This course has been designed by two professional Data
-                                    Scientists so that we can share our knowledge and help you
-                                    learn complex theory, algorithms, and coding libraries in a
-                                    simple way. We will walk you step-by-step into the World of
-                                    Machine Learning. With every tutorial, you will develop new
-                                    skills and improve your understanding of this challenging
-                                    yet lucrative sub-field of Data Science.
+                                    {{ strip_tags($course->description) }}
+
                                 </p>
                             </div>
                             <div class="course-instructors">
                                 <h3>instructors</h3>
                                 <div class="instructors-heading">
                                     <div class="instructors-img w-img">
-                                        <a href="teacher.html"><img src="src/images/sections/teachers/man-avatar.svg"
+                                        <a href="teacher.html"><img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg')}}"
                                                 alt="image not found" /></a>
                                     </div>
                                     <div class="instructors-body">
@@ -407,57 +402,61 @@
                         <div class="course-video-widget">
                             <div class="course-widget-wrapper mb-30">
                                 <div class="course-video-thumb w-img">
-                                    <img class="course-img" src="{{ asset('front_assets/images/pages/course-detailes/course-img.jpg') }}"
+                                    <img class="course-img" src="{{$course->image ? asset('images/' . $course->image) : asset('front_assets/images/pages/course-detailes/course-img.jpg') }}"
                                         alt="image not found" />
                                 </div>
                                 <div class="course-video-price">
-                                    <span>L£ 300.00</span>
+                                    <span>{{trans('site.LE')}} {{$money->total_price}}</span>
                                 </div>
                                 <div class="course-video-body">
                                     <ul>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-filter"></i>
-                                                <span>Level</span>
+                                                <span>{{trans('site.Level')}} </span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>kids & adults</span>
+                                                <span>>@if ($course->min_age && $course->max_age)
+                                                        {{trans('site.for_kids')}}   ({{ $course->min_age }} - {{ $course->max_age }} {{trans('site.years')}})
+                                                    @else
+                                                        {{trans('site.suitable_for_all_ages')}}
+                                                    @endif</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-computer"></i>
-                                                <span>Lectures</span>
+                                                <span>{{trans('site.Lectures')}}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>8 Lectures</span>
+                                                <span>{{ $money->num_of_lectures }} {{trans('site.classes')}}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-clock"></i>
-                                                <span>Duration</span>
+                                                <span>{{trans('site.Duration')}}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>30m / Lecture</span>
+                                                <span>{{ $money->num_of_minuts }}m / {{trans('site.Lecture')}}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-menu-2"></i>
-                                                <span>Category</span>
+                                                <span>{{trans('site.Category')}}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>Quraan Science</span>
+                                                <span>{{optional($course->section)->name}}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-global"></i>
-                                                <span>Laguage</span>
+                                                <span>{{trans('site.Laguage')}}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>arabic</span>
+                                                <span>{{trans('site.arabic')}}</span>
                                             </div>
                                         </li>
                                         <li>

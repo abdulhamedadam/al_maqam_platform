@@ -168,9 +168,29 @@
                         <span class="svg-icon svg-icon-2" style="margin-left: 5px">
                             <i class="bi bi-tools text-danger fs-5"></i>
                         </span>
-                        <span class="menu-title">{{ trans('services.services') }}</span>
+                        <span class="menu-title">{{ trans('sidebar.services') }}</span>
                     </a>
                 </div>
+
+                    <div class="menu-item">
+                        <a class="menu-link {{ request()->routeIs(['admin.sliders.index']) ? 'active' : '' }}"
+                           href="{{ route('admin.sliders.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                           <i class="bi bi-image text-danger fs-5"></i>
+                        </span>
+                            <span class="menu-title">{{ trans('sidebar.sliders') }}</span>
+                        </a>
+                    </div>
+
+                    <div class="menu-item">
+                        <a class="menu-link {{ request()->routeIs(['admin.about_us.index']) ? 'active' : '' }}"
+                           href="{{ route('admin.about_us.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                           <i class="bi bi-info-circle text-danger fs-5"></i>
+                        </span>
+                            <span class="menu-title">{{ trans('sidebar.about_us') }}</span>
+                        </a>
+                    </div>
 
             </div>
         </div>

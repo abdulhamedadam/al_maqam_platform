@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CourseMoney extends Model
 {
     use HasFactory;
-
-    protected $fillable =
+    protected $guarded=[];
+   /* protected $fillable =
     [
         'course_id',
         'num_of_minutes',
@@ -19,7 +19,7 @@ class CourseMoney extends Model
         'total_price',
         'for_group',
         'max_in_group',
-    ];
+    ];*/
 
     public function course()
     {

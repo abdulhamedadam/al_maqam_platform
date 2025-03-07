@@ -35,13 +35,13 @@ class CourseRequest extends FormRequest
             'status' => ['required', 'boolean'],
             'unique' => ['required', 'boolean'],
             'section_id' => ['required', 'exists:sections,id'],
-            'lectures.*.num_of_minutes' => ['required', 'integer'],
-            'lectures.*.lecture_price' => ['required', 'numeric'],
-            'lectures.*.num_of_lectures' => ['required', 'integer'],
-            'lectures.*.lectures_in_week' => ['required', 'integer', 'min:0', 'max:255'],
-            'lectures.*.total_price' => ['required', 'numeric'],
-            'lectures.*.for_group' => ['nullable'],//because in update page in case 0 it returns null, and in controller i convert null to 0
-            'lectures.*.max_in_group' => ['required_if:for_group,1', 'integer']
+//            'lectures.*.num_of_minutes' => ['required', 'integer'],
+//            'lectures.*.lecture_price' => ['required', 'numeric'],
+//            'lectures.*.num_of_lectures' => ['required', 'integer'],
+//            'lectures.*.lectures_in_week' => ['required', 'integer', 'min:0', 'max:255'],
+//            'lectures.*.total_price' => ['required', 'numeric'],
+//            'lectures.*.for_group' => ['nullable'],//because in update page in case 0 it returns null, and in controller i convert null to 0
+//            'lectures.*.max_in_group' => ['required_if:for_group,1', 'integer']
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Site\Auth\AuthController;
 use App\Http\Controllers\Site\ContactController;
+use App\Http\Controllers\Site\CoursesController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OurTeachersController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,7 @@ Route::group(
 
                 Route::get('/join-us', [AuthController::class, 'showRegistrationForm'])->name('join_us');
                 Route::post('register', [AuthController::class, 'register'])->name('register');;
+                Route::get('/course/course-details/{id}/{money_id}', [CoursesController::class, 'get_course_details'])->name('get_course_details');;
 
 
                 Route::get('/our-courses', function () {

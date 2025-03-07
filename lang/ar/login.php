@@ -1,11 +1,11 @@
-<?php return array(
-    'Login' => 'تسجيل الدخول',
-    'Login to your account' => 'تسجيل الدخول إلى حسابك',
-    'email_address*' => 'البريد الإلكتروني*',
-    'enter_password' => 'كلمة المرور',
-    'forget_password' => 'هل نسيت كلمة المرور؟',
-    'reset_password' => 'إعادة تعيين كلمة المرور',
-    'not_have_an_account' => 'ليس لديك حساب؟',
-    'create_account_now' => 'إنشاء حساب جديد الان',
-    'Quraan' => 'قرآن',
+<?php return array (
+  'Login' => 'Login',
+  'Quraan' => 'Quraan',
+  'Login to your account' => 'Login to your account',
+  'email_address*' => 'email_address*',
+  'enter_password' => 'enter_password',
+  'forget_password' => 'forget_password',
+  'reset_password' => 'reset_password',
+  'not_have_an_account' => 'not_have_an_account',
+  'create_account_now' => 'create_account_now',
 );

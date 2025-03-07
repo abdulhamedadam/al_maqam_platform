@@ -41,12 +41,13 @@
     <div class="d-flex flex-column flex-column-fluid">
         <div id="kt_app_content" class="app-content flex-column-fluid">
             <div id="kt_app_content_container" class="app-container container-xxl">
-                <form action="{{ route('admin.courses.store') }}" method="post" id="store_form"
-                    class="form d-flex flex-column flex-lg-row">
+                <form action="{{ route('admin.courses.store') }}" method="post" id="store_form" enctype="multipart/form-data"
+                      class="form d-flex flex-column flex-lg-row">
                     @csrf
                     <div class="d-flex flex-column flex-row-fluid gap-7 gap-lg-10">
                         <div class="tab-content">
-                            <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general" role="tab-panel">
+                            <div class="tab-pane fade show active" id="kt_ecommerce_add_product_general"
+                                 role="tab-panel">
                                 <div class="d-flex flex-column gap-7 gap-lg-10">
                                     <div class="card card-flush py-4">
                                         <div class="card-header">
@@ -56,108 +57,13 @@
                                         </div>
                                         <div class="card-body pt-0">
 
-                                            <div id="lecture-container">
-                                                <div class="lecture-row d-flex flex-wrap gap-2">
-
-                                                    <div class="fv-row flex-grow-1">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.num_of_minutes') }}</label>
-                                                        <input type="text" name="lectures[0][num_of_minutes]"
-                                                            class="form-control mb-2" required />
-                                                        @foreach ($errors->get('lectures.*.num_of_minutes') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow-1">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.lecture_price') }}</label>
-                                                        <input type="text" data-index="0"
-                                                            name="lectures[0][lecture_price]"
-                                                            class="form-control mb-2 lecture_price" required />
-                                                        @foreach ($errors->get('lectures.*.lecture_price') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow-1">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.num_of_lectures') }}</label>
-                                                        <input type="text" data-index="0"
-                                                            name="lectures[0][num_of_lectures]"
-                                                            class="form-control mb-2 num_of_lectures" required />
-                                                        @foreach ($errors->get('lectures.*.num_of_lectures') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow-1">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.lectures_in_week') }}</label>
-                                                        <input type="text" name="lectures[0][lectures_in_week]"
-                                                            class="form-control mb-2" required />
-                                                        @foreach ($errors->get('lectures.*.lectures_in_week') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow-1">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.total_price') }}</label>
-                                                        <input type="text" data-index="0" name="lectures[0][total_price]"
-                                                            class="form-control mb-2 total_price" required readonly />
-                                                        @foreach ($errors->get('lectures.*.total_price') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow- ms-3">
-                                                        <label class="form-label">{{ trans('courses.for_group') }}</label>
-                                                        <div class="form-check form-switch mt-3">
-                                                            <input type="hidden" name="lectures[0][for_group]"
-                                                                value="0">
-                                                            <input class="form-check-input toggle-switch for-group-toggle"
-                                                                type="checkbox" value="1" name="lectures[0][for_group]"
-                                                                data-index="0">
-                                                        </div>
-                                                        @foreach ($errors->get('lectures.*.for_group') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-
-                                                    <div class="fv-row flex-grow-1 max-in-group-container" data-index="0"
-                                                        style="display: none;">
-                                                        <label
-                                                            class="form-label">{{ trans('courses.max_in_group') }}</label>
-                                                        <input type="text" name="lectures[0][max_in_group]"
-                                                            class="form-control mb-2" />
-                                                        @foreach ($errors->get('lectures.*.max_in_group') as $key => $message)
-                                                            <span class="invalid-feedback d-block"
-                                                                role="alert">{{ $message[0] }}</span>
-                                                        @endforeach
-                                                    </div>
-                                                    
-                                                    <div class="fv-row mt-9">
-                                                        <button type="button"
-                                                            class="btn btn-danger remove-lecture-row">{{ trans('courses.remove') }}</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <button type="button" id="add-lecture-row"
-                                                class="btn btn-primary mt-3 mb-3">{{ trans('courses.add_row') }}</button>
 
                                             <div class="d-flex flex-wrap">
                                                 <div class="fv-row w-100 flex-md-root">
-                                                    <label class="form-label">{{ trans('courses.section_name') }}</label>
+                                                    <label
+                                                        class="form-label">{{ trans('courses.section_name') }}</label>
                                                     <select name="section_id" id="section_id" class="form-control mb-2"
-                                                        required>
+                                                            required>
                                                         <option disabled selected value="">
                                                             {{ trans('actions.choose') }}</option>
                                                         @foreach ($sections as $section)
@@ -166,8 +72,8 @@
                                                         @endforeach
                                                     </select>
                                                     @error('section_id')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -176,21 +82,21 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.name_en') }}</label>
                                                     <input type="text" name="name[en]" id="name_en"
-                                                        class="form-control mb-2" value="{{ old('name.en') }}"
-                                                        required />
+                                                           class="form-control mb-2" value="{{ old('name.en') }}"
+                                                           required/>
                                                     @error('name.en')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.name_ar') }}</label>
                                                     <input type="text" name="name[ar]" id="name_ar"
-                                                        class="form-control mb-2" value="{{ old('name.ar') }}"
-                                                        required />
+                                                           class="form-control mb-2" value="{{ old('name.ar') }}"
+                                                           required/>
                                                     @error('name.ar')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -199,44 +105,171 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.description_en') }}</label>
-                                                    <textarea name="description[en]" id="description_en" class="form-control mb-2" rows="4" required>{{ old('description.en') }}</textarea>
+                                                    <textarea name="description[en]" id="description_en"
+                                                              class="form-control mb-2" rows="4"
+                                                              required>{{ old('description.en') }}</textarea>
                                                     @error('description.en')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.description_ar') }}</label>
-                                                    <textarea name="description[ar]" id="description_ar" class="form-control mb-2" rows="4" required>{{ old('description.ar') }}</textarea>
+                                                    <textarea name="description[ar]" id="description_ar"
+                                                              class="form-control mb-2" rows="4"
+                                                              required>{{ old('description.ar') }}</textarea>
                                                     @error('description.ar')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
+                                           {{--  course money   --}}
+                                            <hr style="margin-top: 30px; width: 100%; border: 2px solid black;">
+                                            <div id="lecture-container">
+                                                <div class="lecture-row d-flex flex-wrap gap-2">
+
+                                                    <div class="fv-row flex-grow-1">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.num_of_minutes') }}</label>
+                                                        <input type="text" name="lectures[0][num_of_minutes]"
+                                                               class="form-control mb-2" required/>
+                                                        @foreach ($errors->get('lectures.*.num_of_minutes') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow-1">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.lecture_price') }}</label>
+                                                        <input type="text" data-index="0"
+                                                               name="lectures[0][lecture_price]"
+                                                               class="form-control mb-2 lecture_price" required/>
+                                                        @foreach ($errors->get('lectures.*.lecture_price') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow-1">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.num_of_lectures') }}</label>
+                                                        <input type="text" data-index="0"
+                                                               name="lectures[0][num_of_lectures]"
+                                                               class="form-control mb-2 num_of_lectures" required/>
+                                                        @foreach ($errors->get('lectures.*.num_of_lectures') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow-1">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.lectures_in_week') }}</label>
+                                                        <input type="text" name="lectures[0][lectures_in_week]"
+                                                               class="form-control mb-2" required/>
+                                                        @foreach ($errors->get('lectures.*.lectures_in_week') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow-1">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.total_price') }}</label>
+                                                        <input type="text" data-index="0"
+                                                               name="lectures[0][total_price]"
+                                                               class="form-control mb-2 total_price" required readonly/>
+                                                        @foreach ($errors->get('lectures.*.total_price') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow- ms-3">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.for_group') }}</label>
+                                                        <div class="form-check form-switch mt-3">
+                                                            <input type="hidden" name="lectures[0][for_group]"
+                                                                   value="0">
+                                                            <input
+                                                                class="form-check-input toggle-switch for-group-toggle"
+                                                                type="checkbox" value="1" name="lectures[0][for_group]"
+                                                                data-index="0">
+                                                        </div>
+                                                        @foreach ($errors->get('lectures.*.for_group') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+                                                    <div class="fv-row flex-grow-1 max-in-group-container"
+                                                         data-index="0"
+                                                         style="display: none;">
+                                                        <label
+                                                            class="form-label">{{ trans('courses.max_in_group') }}</label>
+                                                        <input type="text" name="lectures[0][max_in_group]"
+                                                               class="form-control mb-2"/>
+                                                        @foreach ($errors->get('lectures.*.max_in_group') as $key => $message)
+                                                            <span class="invalid-feedback d-block"
+                                                                  role="alert">{{ $message[0] }}</span>
+                                                        @endforeach
+                                                    </div>
+
+
+                                                    <div class="fv-row mt-9">
+                                                        <a type="button"
+                                                           class="btn btn-icon btn-sm btn-danger remove-lecture-row flex-shrink-0 ms-4"
+                                                           title="Delete">
+
+                                                            <i class="bi bi-trash-fill"></i>
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <a type="button" id="add-lecture-row"
+                                               class="btn btn-icon btn-sm btn-primary flex-shrink-0 ms-4">
+
+                                                <span class="svg-icon svg-icon-2">
+                                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                                         xmlns="http://www.w3.org/2000/svg">
+                                                       <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                                             rx="1"
+                                                             transform="rotate(-90 11.364 20.364)" fill="currentColor"/>
+                                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
+                                                          fill="currentColor"/>
+                                                   </svg>
+                                                </span>
+                                            </a>
+
+                                            <hr style="margin-top: 30px; width: 100%; border: 2px solid black;">
+                                            {{--  course money   --}}
 
                                             <div class="d-flex flex-wrap gap-5">
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.seo_head_keyword_en') }}</label>
                                                     <input type="text" name="seo_head_keyword[en]"
-                                                        id="seo_head_keyword_en" class="form-control mb-2"
-                                                        value="{{ old('seo_head_keyword.en') }}" required />
+                                                           id="seo_head_keyword_en" class="form-control mb-2"
+                                                           value="{{ old('seo_head_keyword.en') }}" required/>
                                                     @error('seo_head_keyword.en')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.seo_head_keyword_ar') }}</label>
                                                     <input type="text" name="seo_head_keyword[ar]"
-                                                        id="seo_head_keyword_ar" class="form-control mb-2"
-                                                        value="{{ old('seo_head_keyword.ar') }}" required />
+                                                           id="seo_head_keyword_ar" class="form-control mb-2"
+                                                           value="{{ old('seo_head_keyword.ar') }}" required/>
                                                     @error('seo_head_keyword.ar')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -245,21 +278,25 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.seo_head_description_en') }}</label>
-                                                    <textarea name="seo_head_description[en]" id="seo_head_description_en" class="form-control mb-2" rows="4"
-                                                        required>{{ old('seo_head_description.en') }}</textarea>
+                                                    <textarea name="seo_head_description[en]"
+                                                              id="seo_head_description_en" class="form-control mb-2"
+                                                              rows="4"
+                                                              required>{{ old('seo_head_description.en') }}</textarea>
                                                     @error('seo_head_description.en')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label
                                                         class="form-label">{{ trans('courses.seo_head_description_ar') }}</label>
-                                                    <textarea name="seo_head_description[ar]" id="seo_head_description_ar" class="form-control mb-2" rows="4"
-                                                        required>{{ old('seo_head_description.ar') }}</textarea>
+                                                    <textarea name="seo_head_description[ar]"
+                                                              id="seo_head_description_ar" class="form-control mb-2"
+                                                              rows="4"
+                                                              required>{{ old('seo_head_description.ar') }}</textarea>
                                                     @error('seo_head_description.ar')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -268,21 +305,21 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.min_age') }}</label>
                                                     <input type="text" name="min_age" id="min_age"
-                                                        class="form-control mb-2" value="{{ old('min_age') }}"
-                                                        required />
+                                                           class="form-control mb-2" value="{{ old('min_age') }}"
+                                                           required/>
                                                     @error('min_age')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('courses.max_age') }}</label>
                                                     <input type="text" name="max_age" id="max_age"
-                                                        class="form-control mb-2" value="{{ old('max_age') }}"
-                                                        required />
+                                                           class="form-control mb-2" value="{{ old('max_age') }}"
+                                                           required/>
                                                     @error('max_age')
-                                                        <span class="invalid-feedback d-block"
-                                                            role="alert">{{ $message }}</span>
+                                                    <span class="invalid-feedback d-block"
+                                                          role="alert">{{ $message }}</span>
                                                     @enderror
                                                 </div>
                                             </div>
@@ -293,7 +330,7 @@
                                                     <div class="form-check form-switch">
                                                         <input type="hidden" name="status" value="0">
                                                         <input class="form-check-input toggle-switch" type="checkbox"
-                                                            id="status" name="status" value="1">
+                                                               id="status" name="status" value="1">
                                                     </div>
                                                 </div>
                                                 <div class="fv-row w-100 flex-md-root">
@@ -301,7 +338,7 @@
                                                     <div class="form-check form-switch">
                                                         <input type="hidden" name="unique" value="0">
                                                         <input class="form-check-input toggle-switch" type="checkbox"
-                                                            id="unique" name="unique" value="1">
+                                                               id="unique" name="unique" value="1">
                                                     </div>
                                                 </div>
                                             </div>
@@ -329,7 +366,7 @@
 
 @section('js')
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const status = "{{ old('status', 0) }}";
             const unique = "{{ old('unique', 0) }}";
 
@@ -339,7 +376,7 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             let lectureIndex = 1;
 
             function updateTotalPrice(row) {
@@ -369,12 +406,12 @@
                 }
 
                 if (forGroupToggle && maxInGroupContainer) {
-                    forGroupToggle.addEventListener("change", function() {
+                    forGroupToggle.addEventListener("change", function () {
                         maxInGroupContainer.style.display = this.checked ? "block" : "none";
                     });
                 }
 
-                row.querySelector(".remove-lecture-row").addEventListener("click", function() {
+                row.querySelector(".remove-lecture-row").addEventListener("click", function () {
                     if (document.querySelectorAll(".lecture-row").length > 1) {
                         row.remove();
                         checkRemoveButtons();
@@ -391,7 +428,7 @@
                 });
             }
 
-            document.getElementById("add-lecture-row").addEventListener("click", function() {
+            document.getElementById("add-lecture-row").addEventListener("click", function () {
                 let container = document.getElementById("lecture-container");
                 let firstRow = container.querySelector(".lecture-row");
 
@@ -423,14 +460,13 @@
                     `input[type="hidden"][name^="lectures["][name$="[for_group]"]`);
                 if (hiddenForGroupInput) {
                     hiddenForGroupInput.setAttribute("name", `lectures[${lectureIndex}][for_group]`);
-                    hiddenForGroupInput.value = "0"; // Default value
+                    hiddenForGroupInput.value = "0";
                 }
 
-                // Ensure the checkbox updates hidden input correctly
                 let forGroupCheckbox = newRow.querySelector(".for-group-toggle");
                 if (forGroupCheckbox) {
                     forGroupCheckbox.setAttribute("name", `lectures[${lectureIndex}][for_group]`);
-                    forGroupCheckbox.addEventListener("change", function() {
+                    forGroupCheckbox.addEventListener("change", function () {
                         hiddenForGroupInput.value = this.checked ? "1" : "0";
                     });
                 }
@@ -442,12 +478,43 @@
                 lectureIndex++;
             });
 
-
-            // Attach event listeners to the first row on load
             document.querySelectorAll(".lecture-row").forEach(row => attachEventListeners(row));
 
             checkRemoveButtons();
         });
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#seo_head_description_ar').summernote({
+                height: 50,
+                minHeight: 100,
+                maxHeight: 650,
+                focus: true
+            });
+
+            $('#seo_head_description_en').summernote({
+                height: 50,
+                minHeight: 100,
+                maxHeight: 650,
+                focus: true
+            });
+            $('#description_ar').summernote({
+                height: 50,
+                minHeight: 100,
+                maxHeight: 650,
+                focus: true
+            });
+
+            $('#description_en').summernote({
+                height: 50,
+                minHeight: 100,
+                maxHeight: 650,
+                focus: true
+            });
+
+
+        });
+    </script>
+
 
 @endsection

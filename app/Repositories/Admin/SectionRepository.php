@@ -67,4 +67,9 @@ class SectionRepository implements SectionInterface
     {
         return Section::destroy($id);
     }
+    /*************************************************/
+    public function all_active()
+    {
+        return Section::where('status','1')->get();
+    }
 }
