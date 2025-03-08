@@ -34,7 +34,12 @@ class SectionController extends Controller
 
     public function store(SectionRequest $request)
     {
-        return $this->sectionService->storeSection($request->only('name','description','status'));
+        try {
+            $this->sectionService->storeSection($request->only('name','description','status'));
+            return redirect()->route('admin.sections.index')->with('success', trans('sections.store_success'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
 
@@ -47,12 +52,22 @@ class SectionController extends Controller
 
     public function update(SectionRequest $request, string $id)
     {
-        return $this->sectionService->updateSection($request->only('name','description','status') , $id);
+        try {
+            $this->sectionService->updateSection($request->only('name','description','status') , $id);
+            return redirect()->route('admin.sections.index')->with('success', trans('sections.update_success'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 
 
     public function destroy(string $id)
     {
-        return $this->sectionService->deleteSection($id);
+        try {
+            $this->sectionService->deleteSection($id);
+            return redirect()->back()->with('success', trans('sections.delete_success'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+        }
     }
 }

@@ -21,12 +21,7 @@ class SectionService
 
     public function storeSection($data)
     {
-        try {
-            $this->sectionRepository->storeSection($data);
-            return redirect()->route('admin.sections.index')->with('success', trans('sections.store_success'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        return $this->sectionRepository->storeSection($data);
     }
 
     public function findSectionById($id)
@@ -36,22 +31,12 @@ class SectionService
 
     public function updateSection($data, $id)
     {
-        try {
-            $this->sectionRepository->updateSection($data , $id);
-            return redirect()->route('admin.sections.index')->with('success', trans('sections.update_success'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        return $this->sectionRepository->updateSection($data , $id);
     }
 
     public function deleteSection($id)
     {
-        try {
-            $this->sectionRepository->deleteSection($id);
-            return redirect()->back()->with('success', trans('sections.delete_success'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-        }
+        return $this->sectionRepository->deleteSection($id);
     }
 
     /**********************************************/
