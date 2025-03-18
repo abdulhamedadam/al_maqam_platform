@@ -4,4 +4,6 @@
   'Wait For Admin Approval' => 'Wait For Admin Approval',
   'تم قبول المعلم بنجاح' => 'تم قبول المعلم بنجاح',
   'Registration successful!' => 'Registration successful!',
+  'Login successful!' => 'Login successful!',
+  'Logout successful!' => 'Logout successful!',
 );

@@ -19,7 +19,8 @@
                     <div class="course-block">
                         <div class="card course-card">
                             <div class="card-img">
-                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                    alt="...">
                             </div>
                             <div class="course-title">
                                 <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
@@ -46,7 +47,8 @@
                                 </ul>
                             </div>
                             <div class="card-btn">
-                                <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                <a href="{{ route('user.course_details') }}" class="card-link">join this
+                                    lecture</a>
                             </div>
                         </div>
                     </div>
@@ -55,7 +57,8 @@
                     <div class="course-block">
                         <div class="card course-card">
                             <div class="card-img">
-                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                    alt="...">
                             </div>
                             <div class="course-title">
                                 <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
@@ -82,7 +85,7 @@
                                 </ul>
                             </div>
                             <div class="card-btn">
-                                <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                <a href="{{ route('user.course_details') }}" class="card-link">join this lecture</a>
                             </div>
                         </div>
                     </div>
@@ -91,7 +94,8 @@
                     <div class="course-block">
                         <div class="card course-card">
                             <div class="card-img">
-                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                    alt="...">
                             </div>
                             <div class="course-title">
                                 <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
@@ -118,7 +122,7 @@
                                 </ul>
                             </div>
                             <div class="card-btn">
-                                <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                <a href="{{ route('user.course_details') }}" class="card-link">join this lecture</a>
                             </div>
                         </div>
                     </div>
@@ -127,7 +131,8 @@
                     <div class="course-block">
                         <div class="card course-card">
                             <div class="card-img">
-                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top" alt="...">
+                                <img src="{{ asset('front_assets/images/id/logo.jpg') }}" class="card-img-top"
+                                    alt="...">
                             </div>
                             <div class="course-title">
                                 <h3 class="title-course"><a href="http://course-detail.html">course title</a></h3>
@@ -154,7 +159,7 @@
                                 </ul>
                             </div>
                             <div class="card-btn">
-                                <a href="{{ route('course_details') }}" class="card-link">join this lecture</a>
+                                <a href="{{ route('user.course_details') }}" class="card-link">join this lecture</a>
                             </div>
                         </div>
                     </div>
@@ -163,7 +168,7 @@
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-lectures">
-                        <a href="{{ route('our_lectures') }}" class="button">show all lectures</a>
+                        <a href="{{ route('user.our_lectures') }}" class="button">show all lectures</a>
                     </div>
                 </div>
             </div>

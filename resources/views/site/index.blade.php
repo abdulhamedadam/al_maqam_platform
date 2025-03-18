@@ -8,26 +8,27 @@
     <section class="slider-section">
         <div class="main-carousel owl-theme owl-carousel owl-dots-none">
 
-            @if($sliders->count() > 0)
-                @foreach($sliders as $index => $slider)
+            @if ($sliders->count() > 0)
+                @foreach ($sliders as $index => $slider)
                     <div class="slide-item">
                         <div class="overlay"></div>
                         <div class="image-layer"
-                             style="background-image: url('{{ $slider->image ? asset('images/' . $slider->image) : asset('front_assets/images/sections/slider/s4.jpg') }}')"></div>
+                            style="background-image: url('{{ $slider->image ? asset('images/' . $slider->image) : asset('front_assets/images/sections/slider/s4.jpg') }}')">
+                        </div>
                         <div class="container">
                             <div class="content-box {{ $index % 2 == 0 ? '' : 'centerd' }}">
-                                <h5>{{$slider->title}}</h5>
+                                <h5>{{ $slider->title }}</h5>
                                 <h1>{!! str_replace(['<p>', '</p>'], ['', '<br>'], $slider->description) !!}</h1>
 
                                 <div class="btn-box">
-                                    <a href="contact.html" class="theme-btn">{{$slider->button_text}}</a>
+                                    <a href="contact.html" class="theme-btn">{{ $slider->button_text }}</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
             @else
-            <!-- Slide 01 -->
+                <!-- Slide 01 -->
                 <div class="slide-item">
                     <div class="overlay"></div>
                     <div class="image-layer" style="background-image: url(src/images/sections/slider/s4.jpg)"></div>
@@ -37,7 +38,8 @@
                             <h1>Financial Assistance<br>With True Purpose</h1>
                             <div class="btn-box">
                                 <a href="contact.html" class="theme-btn">How Can We Help</a>
-                                <a href="contact.html" class="user-btn"><i class="far fa-user"></i><span>Find a Consultant</span></a>
+                                <a href="contact.html" class="user-btn"><i class="far fa-user"></i><span>Find a
+                                        Consultant</span></a>
                             </div>
                         </div>
                     </div>
@@ -90,7 +92,7 @@
       ">
         <div class="container">
             <div class="sec-title">
-                <h2>{{trans('site.why')}} <span>{{trans('site.Almaqam_Almahmoud')}}</span></h2>
+                <h2>{{ trans('site.why') }} <span>{{ trans('site.Almaqam_Almahmoud') }}</span></h2>
             </div>
             <div class="row clearfix">
                 @foreach ($services as $service)
@@ -99,9 +101,10 @@
                             <div class="card why-us-card">
                                 <svg height="46" viewBox="0 0 46 46" width="46" xmlns="http://www.w3.org/2000/svg">
                                     <g data-name="icon accredited teachers" id="icon_accredited_teachers"
-                                       transform="translate(-123 -782)">
+                                        transform="translate(-123 -782)">
                                         <rect data-name="Rectangle 1211" fill="#cf8b40" height="46" id="Rectangle_1211"
-                                              opacity="0.35" rx="8" transform="translate(123 782)" width="46"></rect>
+                                            opacity="0.35" rx="8" transform="translate(123 782)" width="46">
+                                        </rect>
                                         <g id="teacher-giving-lecture" transform="translate(77.464 790.685)">
                                             <g data-name="Group 4177" id="Group_4177-1" transform="translate(58.011)">
                                                 <g data-name="Group 4176" id="Group_4176">
@@ -118,14 +121,14 @@
                                         </g>
                                     </g>
                                 </svg>
-                                <h3 class="card_title">{{$service->name}}</h3>
+                                <h3 class="card_title">{{ $service->name }}</h3>
                                 <p class="card-description">
                                     {!! $service->description !!}
                                 </p>
                             </div>
                         </div>
                     </div>
-                    @if($loop->iteration % 3 === 0)
+                    @if ($loop->iteration % 3 === 0)
             </div>
             <div class="row clearfix">
                 @endif
@@ -145,43 +148,43 @@
                     <div id="content_block">
                         <div class="content-box">
                             <div class="sec-title right">
-                                <h5>{{trans('site.About_almaqam_almahmoud')}}</h5>
-                                <h2>{{$about_us->title}}</h2>
+                                <h5>{{ trans('site.About_almaqam_almahmoud') }}</h5>
+                                <h2>{{ $about_us->title }}</h2>
                             </div>
                             <div class="text">
                                 <p>
-                                    {{$about_us->description}}
+                                    {{ $about_us->description }}
                                 </p>
                             </div>
                             <div class="tabs-box">
                                 <div class="tab-btn-box">
                                     <ul class="tab-btns tab-buttons clearfix">
                                         <li class="tab-btn active-btn" data-tab="#tab-1">
-                                            {{trans('site.our_mission')}}
+                                            {{ trans('site.our_mission') }}
                                         </li>
-                                        <li class="tab-btn" data-tab="#tab-2">{{trans('site.our_experience')}}</li>
-                                        <li class="tab-btn" data-tab="#tab-3">{{trans('site.our_vision')}}</li>
+                                        <li class="tab-btn" data-tab="#tab-2">{{ trans('site.our_experience') }}</li>
+                                        <li class="tab-btn" data-tab="#tab-3">{{ trans('site.our_vision') }}</li>
                                     </ul>
                                 </div>
                                 <div class="tabs-content">
                                     <div class="tab active-tab" id="tab-1">
                                         <div class="content-inner">
                                             <p>
-                                                {{$about_us->our_mission}}
+                                                {{ $about_us->our_mission }}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-2">
                                         <div class="content-inner">
                                             <p>
-                                                {{$about_us->our_experience}}
+                                                {{ $about_us->our_experience }}
                                             </p>
                                         </div>
                                     </div>
                                     <div class="tab" id="tab-3">
                                         <div class="content-inner">
                                             <p>
-                                                {{$about_us->our_vision}}
+                                                {{ $about_us->our_vision }}
                                             </p>
                                         </div>
                                     </div>
@@ -194,7 +197,7 @@
                     <div id="image_block">
                         <div class="image-box">
                             <div class="pattern-layer"
-                                 style="
+                                style="
                                      background-image: url'{{ $about_us->image ? asset('images/' . $about_us->image) : asset('front_assets/images/sections/about-quran/learn-quran.jpg') }}');
                                      ">
                             </div>
@@ -205,7 +208,7 @@
                             <div class="content-box">
                                 <i class="fas fa-quote-left"></i>
                                 <h5>
-                                    {{$about_us->notes}}
+                                    {{ $about_us->notes }}
 
                                 </h5>
                             </div>
@@ -219,12 +222,12 @@
     <!-- Start How To Join Section =============-->
 
     <section class="how-to-join centerd"
-             style="
+        style="
         background-image: url(/src/images/sections/how-to-join/parallax2.jpg);
       ">
         <div class="container">
             <div class="sec-title-two light">
-                <h2>{{trans('site.how_to_join_us')}}</h2>
+                <h2>{{ trans('site.how_to_join_us') }}</h2>
                 <span></span>
             </div>
             <div class="join-steps">
@@ -232,32 +235,32 @@
                     <li>
                         <div class="step-bx">
                             <i class="fas fa-hand-pointer"></i>
-                            <h5>{{trans('site.choose_a_course')}}</h5>
+                            <h5>{{ trans('site.choose_a_course') }}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <!-- <i class="fas fa-user-plus"></i> -->
                             <i class="fas fa-right-to-bracket"></i>
-                            <h5 itemprop="headline">{{trans('site.register')}}</h5>
+                            <h5 itemprop="headline">{{ trans('site.register') }}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-solid fa-chalkboard-user"></i>
-                            <h5 itemprop="headline">{{trans('site.choose_teacher')}}</h5>
+                            <h5 itemprop="headline">{{ trans('site.choose_teacher') }}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-regular fa-calendar-days"></i>
-                            <h5 itemprop="headline">{{trans('site.scheduling_classes')}}</h5>
+                            <h5 itemprop="headline">{{ trans('site.scheduling_classes') }}</h5>
                         </div>
                     </li>
                     <li>
                         <div class="step-bx">
                             <i class="fa-solid fa-money-check-dollar"></i>
-                            <h5 itemprop="headline">{{trans('site.checkout')}}</h5>
+                            <h5 itemprop="headline">{{ trans('site.checkout') }}</h5>
                         </div>
                     </li>
                 </ul>
@@ -272,146 +275,81 @@
     <section class="our-courses sec sec-bg-color">
         <div class="container">
             <div class="sec-title centerd">
-                <h2>{{trans('site.our_lecture')}}</h2>
+                <h2>{{ trans('site.our_lecture') }}</h2>
             </div>
             <div class="row clearfix">
-                    @foreach ($courses as $course)
+                @foreach ($courses as $course)
+                    @if ($course->courseMoneys->isNotEmpty())
                         @foreach ($course->courseMoneys as $money)
-
-                        <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="course-block">
-                            <div class="card course-card">
-                                <div class="card-img">
-                                    <img src="{{$course->image ? asset('images/' . $course->image) : asset('front_assets/images/id/logo.jpg')}}" class="card-img-top" alt="...">
-
-                                </div>
-                                <div class="course-title">
-                                    <h3 class="title-course"><a href="http://course-detail.html">{{$course->name}}</a></h3>
-                                </div>
-                                <div class="card-body">
-                                    <bdi class="price">{{ $money->total_price }} {{trans('site.LE')}}</bdi>
-                                    <ul class="card-items">
-                                        <li class="card-item">
-                                            <p class="li-title">{{ $money->num_of_lectures }} {{trans('site.classes')}}</p>
-                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-10" data-name="Line Color"
-                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
-                                                <g id="SVGRepo_bgCarrier-9" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier-9" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></polyline>
-                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></path>
-                                                </g>
-                                            </svg>
-                                        </li>
-                                        <li class="card-item">
-                                            <p class="li-title">{{ $money->num_of_minuts }} {{trans('site.min_to_lecture')}}</p>
-                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-11" data-name="Line Color"
-                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
-                                                <g id="SVGRepo_bgCarrier-10" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier-10" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></polyline>
-                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></path>
-                                                </g>
-                                            </svg>
-                                        </li>
-                                        <li class="card-item">
-                                            <p class="li-title">@if ($course->min_age && $course->max_age)
-                                                    {{trans('site.for_kids')}}   ({{ $course->min_age }} - {{ $course->max_age }} {{trans('site.years')}})
-                                                @else
-                                                     {{trans('site.suitable_for_all_ages')}}
-                                                @endif</p>
-                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-12" data-name="Line Color"
-                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
-                                                <g id="SVGRepo_bgCarrier-11" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier-11" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></polyline>
-                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></path>
-                                                </g>
-                                            </svg>
-                                        </li>
-                                        <li class="card-item">
-                                            <p class="li-title">
-                                                @if ($money->for_group)
-                                                    {{trans('site.group_class')}}   (Max {{ $money->max_in_group }} {{trans('site.students')}})
-                                                @else
-                                                    {{trans('site.one_student')}}
-                                                @endif</p>
-                                            <svg fill="#000000" viewBox="0 0 24 24" id="check-mark-circle-13" data-name="Line Color"
-                                                 xmlns="http://www.w3.org/2000/svg" class="icon line-color">
-                                                <g id="SVGRepo_bgCarrier-12" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier-12" stroke-linecap="round" stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <polyline id="secondary" points="21 5 12 14 8 10" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></polyline>
-                                                    <path id="primary" d="M20.94,11A8.26,8.26,0,0,1,21,12a9,9,0,1,1-9-9,8.83,8.83,0,0,1,4,1" style="
-                                  fill: none;
-                                  stroke: #2cba35;
-                                  stroke-linecap: round;
-                                  stroke-linejoin: round;
-                                  stroke-width: 2;
-                                "></path>
-                                                </g>
-                                            </svg>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="card-btn">
-                                    <a href="{{route('user.get_course_details',[$course->id,$money->id])}}" class="card-link">{{trans('site.join_this_lecture')}}</a>
+                            <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 mt-4">
+                                <div class="course-block">
+                                    <div class="card course-card">
+                                        <div class="card-img">
+                                            <img src="{{ $course->image ? asset('images/' . $course->image) : asset('front_assets/images/id/logo.jpg') }}"
+                                                class="card-img-top img-fluid" alt="Course Image"
+                                                style="height: 200px; object-fit: cover;">
+                                        </div>
+                                        <div class="course-title">
+                                            <h3 class="title-course">
+                                                <a
+                                                    href="{{ route('user.get_course_details', [$course->id, $money->id]) }}">
+                                                    {{ $course->name }}
+                                                </a>
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <bdi class="price">{{ $money->total_price }} {{ trans('site.LE') }}</bdi>
+                                            <ul class="card-items">
+                                                <li class="card-item">
+                                                    <p class="li-title">{{ $money->num_of_lectures }}
+                                                        {{ trans('site.classes') }}</p>
+                                                </li>
+                                                <li class="card-item">
+                                                    <p class="li-title">{{ $money->num_of_minuts }}
+                                                        {{ trans('site.min_to_lecture') }}</p>
+                                                </li>
+                                                <li class="card-item">
+                                                    <p class="li-title">
+                                                        @if ($course->min_age && $course->max_age)
+                                                            {{ trans('site.for_kids') }} ({{ $course->min_age }} -
+                                                            {{ $course->max_age }} {{ trans('site.years') }})
+                                                        @else
+                                                            {{ trans('site.suitable_for_all_ages') }}
+                                                        @endif
+                                                    </p>
+                                                </li>
+                                                <li class="card-item">
+                                                    <p class="li-title">
+                                                        @if ($money->for_group)
+                                                            {{ trans('site.group_class') }} (Max
+                                                            {{ $money->max_in_group }} {{ trans('site.students') }})
+                                                        @else
+                                                            {{ trans('site.one_student') }}
+                                                        @endif
+                                                    </p>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="card-btn">
+                                            <a href="{{ route('user.get_course_details', [$course->id, $money->id]) }}"
+                                                class="card-link">
+                                                {{ trans('site.join_this_lecture') }}
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
                         @endforeach
-
-                    @endforeach
+                    @endif
+                @endforeach
             </div>
+
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-lectures">
-                        <a href="/our-lectures.html" class="button">{{trans('site.show_all_lectures')}}</a>
+                        <a href="{{ route('user.our_lectures') }}" class="button">
+                            {{ trans('site.show_all_lectures') }}
+                        </a>
                     </div>
                 </div>
             </div>
@@ -424,37 +362,38 @@
 
     <!-- Start Our Teacher Section =============-->
 
-    <section class="our-teachers"
-             style="
-          background-image: url(/src/images/sections/why-us-sec/pattern-bg.jpg);
-        ">
+    <section class="our-teachers py-5" style="background-image: url(/src/images/sections/why-us-sec/pattern-bg.jpg);">
         <div class="container">
-            <div class="sec-title centerd">
-                <h2>{{trans('site.our_teachers')}}</h2>
+            <div class="sec-title text-center mb-4">
+                <h2>{{ trans('site.our_teachers') }}</h2>
             </div>
-            <div class="row clearfix">
+            <div class="row g-3 justify-content-center">
                 @foreach ($teachers as $teacher)
-                    <div class="col-12 col-lg-3 col-md-6 col-sm-6 col-xs-12 h-100">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="teacher-card">
-                            <div class="card card-teacher">
-                                <a href="teacher.html" class="card-header">
-                                    <img
-                                        src="{{ asset($teacher->gender === 'm' ? 'front_assets/images/sections/teachers/man-avatar.svg' : 'front_assets/images/sections/teachers/woman-avatar.svg') }}"
-                                        alt=""
-                                        class="card-img">
+                            <div class="card card-teacher h-150 shadow-sm">
+                                <a href="teacher.html" class="card-header text-center bg-white border-0">
+                                    <img src="{{ asset($teacher->gender === 'm' ? 'front_assets/images/sections/teachers/man-avatar.svg' : 'front_assets/images/sections/teachers/woman-avatar.svg') }}"
+                                        alt="Teacher Avatar" class="card-img-top rounded-circle img-fluid"
+                                        style="width: 100px; height: 100px; object-fit: cover;">
                                 </a>
-                                <div class="card-body">
-                                    <a href="teacher.html" class="teacher-name">{{$teacher->name}}</a>
-                                    <h5 class="country">{{$teacher->country}}</h5>
-                                    <section class="specialty">
-                                        <span class="specialty-title">languages:</span>
-                                        <span class="teacher-specialty tags lang">arabic</span>
+                                <div class="card-body text-center">
+                                    <a href="teacher.html"
+                                        class="teacher-name fw-bold text-dark d-block mb-2">{{ $teacher->name }}</a>
+                                    <h5 class="country text-muted">{{ $teacher->country }}</h5>
+                                    <section class="specialty mt-2">
+                                        <span class="specialty-title fw-semibold text-uppercase">{{ trans('home.languages') }}:</span>
+                                        <span class="teacher-specialty tags lang">{{ trans('home.arabic') }}</span>
                                     </section>
-                                    <section class="specialty">
-                                        <span class="specialty-title">teachs:</span>
-                                        @foreach (json_decode($teacher->teacher->teaching_subjects, true) ?? [] as $subject)
-                                            <a class="teacher-specialty tags">{{ str_replace('_', ' ', $subject) }}</a>
-                                        @endforeach
+                                    <section class="specialty mt-2">
+                                        <span class="specialty-title fw-semibold text-uppercase">{{ trans('home.teaches') }}:</span>
+                                        <div class="d-flex flex-wrap justify-content-center mt-1"
+                                            style="max-height: 80px; overflow-y: auto;">
+                                            @foreach (json_decode($teacher->teacher->teaching_subjects, true) ?? [] as $subject)
+                                                <span
+                                                    class="teacher-specialty tags mx-1">{{ str_replace('_', ' ', $subject) }}</span>
+                                            @endforeach
+                                        </div>
                                     </section>
                                 </div>
                             </div>
@@ -465,12 +404,12 @@
             <div class="row clearfix">
                 <div class="col">
                     <div class="show-all-teachers">
-                        <a href="{{route('user.our_teachers')}}" class="button">{{trans('site.show_all_teacher')}}</a>
+                        <a href="{{ route('user.our_teachers') }}"
+                            class="button">{{ trans('site.show_all_teacher') }}</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- End Our Teacher Section =============-->
 @endsection

@@ -76,7 +76,7 @@ class TeacherController extends Controller
                                 <i class="bi bi-eye"></i>
                             </a>
 
-                             <a href="' . route('admin.teachers.details', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
+                            <a href="' . route('admin.teachers.details', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
                                 <i class="bi bi-eye"></i>
                             </a>
                             <a href="' . route('admin.teachers.edit', $row->id) . '" class="btn btn-sm btn-primary" title="' . trans('actions.edit') . '" style="font-size: 16px;">
@@ -290,6 +290,8 @@ class TeacherController extends Controller
     /**********************************************/
     public function details($id)
     {
-        return view($this->base_view . 'details');
+        $data['all_data'] = User::with('teacher')->findOrFail($id);
+        // dd($data);
+        return view($this->base_view . 'overview.teacher_overview', $data);
     }
 }

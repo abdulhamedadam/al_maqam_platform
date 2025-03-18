@@ -17,10 +17,10 @@
         ">
             <div class="container">
                 <div class="content-box clearfix">
-                    <h1>{{trans('site.CourseDetails')}}</h1>
+                    <h1>{{ trans('site.CourseDetails') }}</h1>
                     <ul class="bread-crumb clearfix">
-                        <li><a href="/">{{trans('site.Home')}}</a></li>
-                        <li>{{trans('site.CourseDetails')}}</li>
+                        <li><a href="/">{{ trans('site.Home') }}</a></li>
+                        <li>{{ trans('site.CourseDetails') }}</li>
                     </ul>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <div class="col-xxl-8 col-xl-8">
                         <div class="course-detalis-wrapper mb-30">
                             <div class="course-heading mb-20">
-                                <h2>{{$course->name}}</h2>
+                                <h2>{{ $course->name }}</h2>
                                 <div class="course-star">
                                     <ul>
                                         <li><i class="fas fa-star"></i></li>
@@ -56,11 +56,12 @@
                             <div class="course-detelis-meta">
                                 <div class="course-meta-wrapper border-line-meta">
                                     <div class="course-meta-img">
-                                        <a href="teacher.html"><img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg')}}"
+                                        <a href="teacher.html"><img
+                                                src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg') }}"
                                                 alt="course-meta" /></a>
                                     </div>
                                     <div class="course-meta-text">
-                                        <span>{{trans('site.the_instructor')}}</span>
+                                        <span>{{ trans('site.the_instructor') }}</span>
                                         <h6>
                                             <a href="teacher.html">Ahmed Mahmoud</a>
                                         </h6>
@@ -75,13 +76,13 @@
                                     <span>01 January 2022 </span>
                                 </div>
                                 <div class="course-category">
-                                    <p>{{trans('site.category')}}</p>
-                                    <span><a href="course.html">{{optional($course->section)->name}}</a></span>
+                                    <p>{{ trans('site.category') }}</p>
+                                    <span><a href="course.html">{{ optional($course->section)->name }}</a></span>
                                 </div>
                             </div>
                             <div class="course-description pt-45 pb-30">
                                 <div class="course-Description">
-                                    <h4>{{trans('site.description')}}</h4>
+                                    <h4>{{ trans('site.description') }}</h4>
                                 </div>
                                 <p>
                                     {{ strip_tags($course->description) }}
@@ -89,33 +90,68 @@
                                 </p>
                             </div>
                             <div class="course-instructors">
-                                <h3>instructors</h3>
-                                <div class="instructors-heading">
-                                    <div class="instructors-img w-img">
-                                        <a href="teacher.html"><img src="{{ asset('front_assets/images/sections/teachers/man-avatar.svg')}}"
-                                                alt="image not found" /></a>
-                                    </div>
-                                    <div class="instructors-body">
-                                        <h5>
-                                            <a href="teacher.html">Ahmed mahmoud</a>
-                                        </h5>
-                                        <span>Quraan Science</span>
-                                        <div class="intructors-review">
-                                            <i class="fas fa-star"></i>
-                                            <span>4.7 (54 reviews)</span>
+                                <form id="scheduleForm" method="POST">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="day"
+                                                    class="form-label fw-bold text-dark">{{ trans('teachers.day') }}</label>
+                                                <select name="day" id="day"
+                                                    class="form-select border-dark fw-bold">
+                                                    <option value="Saturday"
+                                                        {{ old('day') == 'Saturday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.saturday') }}</option>
+                                                    <option value="Sunday" {{ old('day') == 'Sunday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.sunday') }}</option>
+                                                    <option value="Monday" {{ old('day') == 'Monday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.monday') }}</option>
+                                                    <option value="Tuesday"
+                                                        {{ old('day') == 'Tuesday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.tuesday') }}</option>
+                                                    <option value="Wednesday"
+                                                        {{ old('day') == 'Wednesday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.wednesday') }}</option>
+                                                    <option value="Thursday"
+                                                        {{ old('day') == 'Thursday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.thursday') }}</option>
+                                                    <option value="Friday" {{ old('day') == 'Friday' ? 'selected' : '' }}>
+                                                        {{ trans('teachers.friday') }}</option>
+                                                </select>
+                                            </div>
                                         </div>
-                                        <div class="instructors-footer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
-                                                <!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                                <path
-                                                    d="M64 0C28.7 0 0 28.7 0 64V352c0 35.3 28.7 64 64 64H240l-10.7 32H160c-17.7 0-32 14.3-32 32s14.3 32 32 32H416c17.7 0 32-14.3 32-32s-14.3-32-32-32H346.7L336 416H512c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H64zM512 64V288H64V64H512z" />
-                                            </svg>
-                                            <span>3 Coursess</span>
-                                            <i class="fas fa-users"></i>
-                                            <!-- <i class="far fa-user-friends"></i> -->
-                                            <span>100 Students</span>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="start_time"
+                                                    class="form-label fw-bold text-dark">{{ trans('teachers.start_time') }}</label>
+                                                <input name="start_time" id="start_time" type="time"
+                                                    class="form-control border border-dark fw-bold"
+                                                    value="{{ old('start_time') }}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="end_time"
+                                                    class="form-label fw-bold text-dark">{{ trans('teachers.end_time') }}</label>
+                                                <input name="end_time" id="end_time" type="time"
+                                                    class="form-control border border-dark fw-bold"
+                                                    value="{{ old('end_time') }}" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <button type="button" id="searchTeachers"
+                                                class="btn btn-primary">{{ trans('teachers.search') }}</button>
                                         </div>
                                     </div>
+                                </form>
+
+                                <div class="mt-4 mb-4">
+                                    <label for="teacher"
+                                        class="form-label fw-bold text-dark">{{ trans('teachers.select_teacher') }}</label>
+                                    <select id="teacher" name="teacher_id" class="form-select border-dark fw-bold">
+                                        <option value="" disabled selected>{{ trans('teachers.choose_teacher') }}
+                                        </option>
+                                    </select>
                                 </div>
                                 <div class="intructors-content">
                                     <p>
@@ -336,22 +372,22 @@
                                             <span>Overall ratings</span>
 
                                             <!-- <ul>
-                              <li>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                              </li>
-                              <li>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                              </li>
-                              <li>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                              </li>
-                              <li>
-                                <a href="#"><i class="fas fa-star"></i></a>
-                              </li>
-                              <li>
-                                <a href="#"><i class="fal fas fa-star"></i></a>
-                              </li>
-                            </ul> -->
+                                                                      <li>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                      </li>
+                                                                      <li>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                      </li>
+                                                                      <li>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                      </li>
+                                                                      <li>
+                                                                        <a href="#"><i class="fas fa-star"></i></a>
+                                                                      </li>
+                                                                      <li>
+                                                                        <a href="#"><i class="fal fas fa-star"></i></a>
+                                                                      </li>
+                                                                    </ul> -->
 
                                             <div class="rate">
                                                 <input type="radio" id="star5" name="rate" value="5" />
@@ -402,61 +438,65 @@
                         <div class="course-video-widget">
                             <div class="course-widget-wrapper mb-30">
                                 <div class="course-video-thumb w-img">
-                                    <img class="course-img" src="{{$course->image ? asset('images/' . $course->image) : asset('front_assets/images/pages/course-detailes/course-img.jpg') }}"
+                                    <img class="course-img"
+                                        src="{{ $course->image ? asset('images/' . $course->image) : asset('front_assets/images/pages/course-detailes/course-img.jpg') }}"
                                         alt="image not found" />
                                 </div>
                                 <div class="course-video-price">
-                                    <span>{{trans('site.LE')}} {{$money->total_price}}</span>
+                                    <span>{{ trans('site.LE') }} {{ $money->total_price }}</span>
                                 </div>
                                 <div class="course-video-body">
                                     <ul>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-filter"></i>
-                                                <span>{{trans('site.Level')}} </span>
+                                                <span>{{ trans('site.Level') }} </span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>>@if ($course->min_age && $course->max_age)
-                                                        {{trans('site.for_kids')}}   ({{ $course->min_age }} - {{ $course->max_age }} {{trans('site.years')}})
+                                                <span>>
+                                                    @if ($course->min_age && $course->max_age)
+                                                        {{ trans('site.for_kids') }} ({{ $course->min_age }} -
+                                                        {{ $course->max_age }} {{ trans('site.years') }})
                                                     @else
-                                                        {{trans('site.suitable_for_all_ages')}}
-                                                    @endif</span>
+                                                        {{ trans('site.suitable_for_all_ages') }}
+                                                    @endif
+                                                </span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-computer"></i>
-                                                <span>{{trans('site.Lectures')}}</span>
+                                                <span>{{ trans('site.Lectures') }}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>{{ $money->num_of_lectures }} {{trans('site.classes')}}</span>
+                                                <span>{{ $money->num_of_lectures }} {{ trans('site.classes') }}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-clock"></i>
-                                                <span>{{trans('site.Duration')}}</span>
+                                                <span>{{ trans('site.Duration') }}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>{{ $money->num_of_minuts }}m / {{trans('site.Lecture')}}</span>
+                                                <span>{{ $money->num_of_minuts }}m / {{ trans('site.Lecture') }}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-menu-2"></i>
-                                                <span>{{trans('site.Category')}}</span>
+                                                <span>{{ trans('site.Category') }}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>{{optional($course->section)->name}}</span>
+                                                <span>{{ optional($course->section)->name }}</span>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="course-vide-icon">
                                                 <i class="flaticon-global"></i>
-                                                <span>{{trans('site.Laguage')}}</span>
+                                                <span>{{ trans('site.Laguage') }}</span>
                                             </div>
                                             <div class="video-corse-info">
-                                                <span>{{trans('site.arabic')}}</span>
+                                                <span>{{ trans('site.arabic') }}</span>
                                             </div>
                                         </li>
                                         <li>
@@ -593,4 +633,46 @@
             </div>
         </section>
     </main>
+@endsection
+
+@section('js')
+    <script>
+        var translations = {
+            choose_teacher: "{{ trans('teachers.choose_teacher') }}"
+        };
+        $(document).ready(function() {
+            $('#searchTeachers').on('click', function() {
+                var day = $('#day').val();
+                var start_time = $('#start_time').val();
+                var end_time = $('#end_time').val();
+
+                $.ajax({
+                    url: "{{ route('user.available_schedule') }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        day: day,
+                        start_time: start_time,
+                        end_time: end_time
+                    },
+                    success: function(response) {
+                        // console.log(response.schedules);
+                        $('#teacher').empty().append(
+                            '<option value="" disabled selected>Choose teahcer</option>');
+                        $.each(response.schedules, function(key, schedule) {
+                            $('#teacher').append(`
+                                    <option value="${schedule.teacher.id}" class="text-gray-700">
+                                        ${schedule.teacher.name} | 🕒 ${schedule.start_time} - ${schedule.end_time}
+                                    </option>
+                                `);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

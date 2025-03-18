@@ -11,6 +11,9 @@ use App\Traits\ImageProcessing;
 class CoursesService
 {
     use ImageProcessing;
+
+    protected $coursesRepository;
+    
     public function __construct(CoursesRepository $coursesRepository)
     {
         $this->coursesRepository = $coursesRepository;
