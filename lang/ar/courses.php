@@ -34,4 +34,5 @@
   'add_row' => 'إضافة صف',
   'remove' => 'حذف',
   'image' => 'image',
+  'pay_now' => 'pay_now',
 );

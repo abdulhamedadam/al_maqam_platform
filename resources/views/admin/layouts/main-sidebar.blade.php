@@ -88,6 +88,22 @@
                 <div class="menu-item ">
                     <div class="menu-content">
                         <span
+                            class="fw-bold text-uppercase fs-7 text-success">{{ trans('sidebar.calendar') }}</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs(['admin.calendar.index']) ? 'active' : '' }}"
+                        href="{{ route('admin.calendar.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                            <i class="bi bi-calendar text-danger fs-5"></i>
+                        </span>
+                        <span class="menu-title">{{ trans('sidebar.calendar') }}</span>
+                    </a>
+                </div>
+                <hr class="w-100 border border-success">
+                <div class="menu-item ">
+                    <div class="menu-content">
+                        <span
                             class="fw-bold text-uppercase fs-7 text-success">{{ trans('sidebar.students_management') }}</span>
                     </div>
 

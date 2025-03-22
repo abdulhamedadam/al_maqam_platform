@@ -98,7 +98,7 @@
                                                 <label for="day"
                                                     class="form-label fw-bold text-dark">{{ trans('teachers.day') }}</label>
                                                 <select name="day" id="day"
-                                                    class="form-select border-dark fw-bold">
+                                                    class="form-select border-dark fw-bold" required>
                                                     <option value="Saturday"
                                                         {{ old('day') == 'Saturday' ? 'selected' : '' }}>
                                                         {{ trans('teachers.saturday') }}</option>
@@ -126,7 +126,7 @@
                                                     class="form-label fw-bold text-dark">{{ trans('teachers.start_time') }}</label>
                                                 <input name="start_time" id="start_time" type="time"
                                                     class="form-control border border-dark fw-bold"
-                                                    value="{{ old('start_time') }}" />
+                                                    value="{{ old('start_time') }}" required />
                                             </div>
                                         </div>
                                         <div class="col-md-6">
@@ -135,7 +135,7 @@
                                                     class="form-label fw-bold text-dark">{{ trans('teachers.end_time') }}</label>
                                                 <input name="end_time" id="end_time" type="time"
                                                     class="form-control border border-dark fw-bold"
-                                                    value="{{ old('end_time') }}" />
+                                                    value="{{ old('end_time') }}" required />
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -145,15 +145,19 @@
                                     </div>
                                 </form>
 
-                                <div class="mt-4 mb-4">
+                                <div id="teacherSelection" class="mt-4" style="display: none;">
+                                    <h5 class="fw-bold mb-3">{{ trans('teachers.choose_teacher') }}</h5>
+                                    <div id="teachersContainer" class="mt-4"></div>
+                                </div>
+                                {{-- <div class="mt-4 mb-4">
                                     <label for="teacher"
                                         class="form-label fw-bold text-dark">{{ trans('teachers.select_teacher') }}</label>
                                     <select id="teacher" name="teacher_id" class="form-select border-dark fw-bold">
                                         <option value="" disabled selected>{{ trans('teachers.choose_teacher') }}
                                         </option>
                                     </select>
-                                </div>
-                                <div class="intructors-content">
+                                </div> --}}
+                                {{-- <div class="intructors-content">
                                     <p>
                                         Professionally, I come from the Data Science consulting
                                         space with experience in finance, retail, transport and
@@ -161,7 +165,7 @@
                                         mentors at Deloitte Australia and since starting on Udemy
                                         I have passed on my knowledge to spread around the world
                                     </p>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="student-feedback pt-45">
                                 <h3>Student Feedback</h3>
@@ -372,22 +376,22 @@
                                             <span>Overall ratings</span>
 
                                             <!-- <ul>
-                                                                      <li>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                      </li>
-                                                                      <li>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                      </li>
-                                                                      <li>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                      </li>
-                                                                      <li>
-                                                                        <a href="#"><i class="fas fa-star"></i></a>
-                                                                      </li>
-                                                                      <li>
-                                                                        <a href="#"><i class="fal fas fa-star"></i></a>
-                                                                      </li>
-                                                                    </ul> -->
+                                                                                                  <li>
+                                                                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                                                                  </li>
+                                                                                                  <li>
+                                                                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                                                                  </li>
+                                                                                                  <li>
+                                                                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                                                                  </li>
+                                                                                                  <li>
+                                                                                                    <a href="#"><i class="fas fa-star"></i></a>
+                                                                                                  </li>
+                                                                                                  <li>
+                                                                                                    <a href="#"><i class="fal fas fa-star"></i></a>
+                                                                                                  </li>
+                                                                                                </ul> -->
 
                                             <div class="rate">
                                                 <input type="radio" id="star5" name="rate" value="5" />
@@ -578,7 +582,17 @@
                                         <h2 class="payment-title mt-30 mb-30">
                                             choose payment method
                                         </h2>
-                                        <form>
+                                        <form action="{{ route('user.store_pay_course') }}" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="teacher_id" id="payment_teacher_id"
+                                                value="">
+                                            <input type="hidden" name="course_id" id="payment_course_id"
+                                                value="{{ $course->id }}">
+                                            <input type="hidden" name="day" id="payment_day" value="">
+                                            <input type="hidden" name="start_time" id="payment_start_time"
+                                                value="">
+                                            <input type="hidden" name="end_time" id="payment_end_time" value="">
+                                            <input type="hidden" name="money_id" value="{{ $money->id }}">
                                             <div class="row clearfix">
                                                 <div class="col-6">
                                                     <label>
@@ -616,12 +630,13 @@
                                                     </label>
                                                 </div>
                                             </div>
+                                            <div class="order-button-payment mt-30">
+                                                <button type="submit" class="edu-btn"
+                                                    style="text-transform: capitalize;">
+                                                    {{ trans('courses.pay_now') }}
+                                                </button>
+                                            </div>
                                         </form>
-                                        <div class="order-button-payment mt-30">
-                                            <button type="submit" class="edu-btn" style="text-transform: capitalize;">
-                                                Pay now
-                                            </button>
-                                        </div>
                                     </div>
                                 </div>
 
@@ -636,7 +651,7 @@
 @endsection
 
 @section('js')
-    <script>
+    {{-- <script>
         var translations = {
             choose_teacher: "{{ trans('teachers.choose_teacher') }}"
         };
@@ -656,12 +671,14 @@
                         end_time: end_time
                     },
                     success: function(response) {
-                        // console.log(response.schedules);
+                        console.log(response.schedules);
                         $('#teacher').empty().append(
-                            '<option value="" disabled selected>Choose teahcer</option>');
+                            '<option value="" disabled selected>Choose teacher</option>');
                         $.each(response.schedules, function(key, schedule) {
                             $('#teacher').append(`
-                                    <option value="${schedule.teacher.id}" class="text-gray-700">
+                                    <option value="${schedule.teacher.id}" data-day="${schedule.day}"
+                                        data-start_time="${schedule.start_time}" data-end_time="${schedule.end_time}"
+                                        class="text-gray-700">
                                         ${schedule.teacher.name} | 🕒 ${schedule.start_time} - ${schedule.end_time}
                                     </option>
                                 `);
@@ -673,6 +690,108 @@
                 });
             });
         });
-    </script>
 
+        $('#teacher').on('change', function() {
+            var selectedOption = $(this).find(":selected");
+            $('#payment_teacher_id').val(selectedOption.val());
+            $('#payment_day').val(selectedOption.data('day'));
+            $('#payment_start_time').val(selectedOption.data('start_time'));
+            $('#payment_end_time').val(selectedOption.data('end_time'));
+        });
+    </script> --}}
+
+    <script>
+        var translations = {
+            choose_teacher: "{{ trans('teachers.choose_teacher') }}"
+        };
+
+        $(document).ready(function() {
+            $('#searchTeachers').on('click', function() {
+                var day = $('#day').val();
+                var start_time = $('#start_time').val();
+                var end_time = $('#end_time').val();
+                var fallbackImage = "{{ asset('front_assets/images/sections/teachers/man-avatar.svg') }}";
+                $.ajax({
+                    url: "{{ route('user.available_schedule') }}",
+                    method: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        day: day,
+                        start_time: start_time,
+                        end_time: end_time
+                    },
+                    success: function(response) {
+                        // console.log(response.schedules);
+                        $('#teachersContainer').empty();
+
+                        if (response.schedules.length === 0) {
+                            $('#teacherSelection').hide();
+                            alert('No teachers available for the selected schedule.');
+                        }
+
+                        $.each(response.schedules, function(key, schedule) {
+                            let formattedStartTime = formatTime(schedule.start_time);
+                            let formattedEndTime = formatTime(schedule.end_time);
+                            $('#teacherSelection').show();
+                            $('#teachersContainer').append(`
+                                <label class="course-detelis-meta teacher-option">
+                                    <div class="course-meta-wrapper border-line-meta">
+                                        <div class="course-meta-img">
+                                            <a href="teacher.html">
+                                                <img src="${schedule.teacher.image || fallbackImage}" alt="teacher-avatar" />
+                                            </a>
+                                        </div>
+                                        <div class="course-meta-text">
+                                            <span>The Instructor</span>
+                                            <h6>
+                                                <a href="teacher.html">${schedule.teacher.name}</a>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <div class="course-Enroll border-line-meta">
+                                        <p>Total Enrolled</p>
+                                        <span>${schedule.teacher.total_enrolled ?? 0}</span>
+                                    </div>
+                                    <div class="course-update border-line-meta">
+                                        <p>Schedule</p>
+                                        <span>${schedule.day} | 🕒 ${formattedStartTime} - ${formattedEndTime}</span>
+                                    </div>
+                                    <div class="course-update border-line-meta">
+                                        <p>Action</p>
+                                        <input type="radio" name="teacher_id" value="${schedule.teacher.id}"
+                                            data-day="${schedule.day}" data-start_time="${schedule.start_time}"
+                                            data-end_time="${schedule.end_time}" class="teacher-radio" style="width: 15px; height: 15px; transform: scale(1.5);" required />
+                                    </div>
+                                </label>
+                            `);
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        console.log(xhr.responseText);
+                    }
+                });
+            });
+
+            $(document).on('change', '.teacher-radio', function() {
+                var selectedOption = $(this);
+                $('#payment_teacher_id').val(selectedOption.val());
+                $('#payment_day').val(selectedOption.data('day'));
+                $('#payment_start_time').val(selectedOption.data('start_time'));
+                $('#payment_end_time').val(selectedOption.data('end_time'));
+            });
+
+            function formatTime(time) {
+                if (!time) return '';
+                let [hours, minutes] = time.split(':');
+                let date = new Date();
+                date.setHours(hours);
+                date.setMinutes(minutes);
+                return date.toLocaleTimeString('en-US', {
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: true
+                });
+            }
+        });
+    </script>
 @endsection

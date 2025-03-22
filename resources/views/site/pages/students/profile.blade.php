@@ -1,6 +1,6 @@
 @extends('site.layouts.main')
 
-@section('title', 'Teacher Profile | Quraan')
+@section('title', 'Student Profile | Quraan')
 
 @section('header_class', 'student-page')
 
@@ -24,14 +24,14 @@
                 </div>
             </div>
             <div class="row">
-                @include('site.pages.teachers.teacher_sidebar')
+                @include('site.pages.students.student_sidebar')
                 <div class="col-xl-9 col-lg-8">
                     <div class="student-profile-content">
                         <div class="tab-content" id="myTabContent">
                             <!-- My Profile -->
                             <div class="tab-pane fade active show" id="profile" role="tabpanel"
                                 aria-labelledby="profile-tab">
-                                <h4 class="mb-25">My Profile</h4>
+                                <h4 class="mb-25">{{ trans('profile.my_profile') }}</h4>
                                 <ul class="student-profile-info">
                                     <li>
                                         <h5>{{ trans('profile.registration_date') }} :</h5>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\app_setting\DiscountController;
+use App\Http\Controllers\Admin\CalendarController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CompanyController;
 
@@ -66,6 +67,12 @@ Route::group(
         Route::get('/teachers/{id}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
         Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
         Route::get('/teachers/{id}/details', [TeacherController::class, 'details'])->name('teachers.details');
+        Route::get('/teachers/{id}/courses', [TeacherController::class, 'courses'])->name('teachers.courses');
+        Route::get('/teachers/course/{id}/students', [TeacherController::class, 'getStudents'])->name('teachers.view_students');
+        Route::get('/teachers/{id}/studetns', [TeacherController::class, 'students'])->name('teachers.students');
+        Route::get('/teachers/student/{id}/courses', [TeacherController::class, 'getCourses'])->name('teachers.view_courses');
+
+        Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
         Route::resource('sections' , SectionController::class)->except('show');
 
         Route::resource('courses' , CourseController::class);

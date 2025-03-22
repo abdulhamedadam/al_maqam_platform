@@ -37,4 +37,25 @@ class StudentService
     {
         return $this->studentRepository->delete($id);
     }
+
+    /****************************************************/
+    public function getTeacherStudentsDash($teacherId)
+    {
+        try {
+            return $this->studentRepository->getTeacherStudentsDash($teacherId);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+
+    /****************************************************/
+    public function getStudentsCoursesDash($id)
+    {
+        try {
+            return $this->studentRepository->getStudentsCoursesDash($id);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+    /****************************************************/
 }

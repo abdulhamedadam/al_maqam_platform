@@ -58,7 +58,7 @@ class OurTeachersController extends Controller
             $data['day'] = $request->day;
             $data['start_time'] = $request->start_time;
             $data['end_time'] = $request->end_time;
-            $data['note'] = $request->note;
+            // $data['note'] = $request->note;
             // dd($data);
             TeacherSchedule::create($data);
 

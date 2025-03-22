@@ -8,6 +8,8 @@ use App\Http\Requests\Admin\Teachers\SaveRequest;
 use App\Http\Requests\Admin\Teachers\UpdateRequest;
 use App\Models\TeacherDetail;
 use App\Models\User;
+use App\Services\Admin\CoursesService;
+use App\Services\Admin\StudentService;
 use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,6 +19,15 @@ use Yajra\DataTables\Facades\DataTables;
 class TeacherController extends Controller
 {
     use ImageProcessing;
+
+    protected $coursesService;
+    protected $studentService;
+
+    public function __construct(CoursesService $coursesService, StudentService $studentService)
+    {
+        $this->coursesService = $coursesService;
+        $this->studentService = $studentService;
+    }
 
     protected $base_view = 'admin.pages.teachers.';
 
@@ -293,5 +304,30 @@ class TeacherController extends Controller
         $data['all_data'] = User::with('teacher')->findOrFail($id);
         // dd($data);
         return view($this->base_view . 'overview.teacher_overview', $data);
+    }
+    /**********************************************/
+    public function courses($id){
+        $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['courses_data'] = $this->coursesService->getTeacherCoursesDash($id);
+        // dd($data);
+        return view($this->base_view . 'courses.teacher_courses', $data);
+    }
+    /**********************************************/
+    public function getStudents($id){
+        $students = $this->coursesService->getCourseStudentsDash($id);
+        return response()->json($students);
+    }
+    public function students($id){
+        $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['students_data'] = $this->studentService->getTeacherStudentsDash($id);
+        // dd($data);
+        return view($this->base_view . 'students.teacher_students', $data);
+    }
+    /**********************************************/
+    public function getCourses($id){
+        $courses = $this->studentService->getStudentsCoursesDash($id);
+        return response()->json($courses);
     }
 }

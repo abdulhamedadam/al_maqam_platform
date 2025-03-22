@@ -5,6 +5,7 @@ use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\CoursesController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OurTeachersController;
+use App\Http\Controllers\Site\StudentsController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -55,9 +56,9 @@ Route::group(
             // });
 
             Route::middleware(['auth:web', 'role:student'])->group(function () {
-                Route::get('/student-profile', function () {
-                    return view('site.pages.student-profile');
-                })->name('student_profile');
+                Route::get('/student-profile', [StudentsController::class, 'profile'])->name('student_profile');
+                Route::post('/student/store-pay-course', [CoursesController::class, 'store_pay_course'])->name('store_pay_course');
+                Route::get('/student/enrolled-courses', [CoursesController::class, 'enrolledCourses'])->name('enrolled_courses');
             });
 
             Route::middleware(['auth:web', 'role:teacher'])->group(function () {
@@ -65,6 +66,7 @@ Route::group(
                 Route::get('/teacher-schedule', [OurTeachersController::class, 'schedule'])->name('teacher_schedule');
                 Route::post('/teacher/schedule/store', [OurTeachersController::class, 'store_schedule'])->name('store_schedule');
                 Route::delete('/teacher/schedule/{id}', [OurTeachersController::class, 'delete_schedule'])->name('delete_schedule');
+                Route::get('/teacher/courses-assigned', [CoursesController::class, 'assignedCourses'])->name('teacher.assigned_courses');
             });
 
 

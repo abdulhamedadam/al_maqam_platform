@@ -45,4 +45,9 @@
   'select_teacher' => 'Select teacher',
   'choose_teacher' => 'Choose teacher',
   'no_schedules_found' => 'no_schedules_found',
+  'Saturday' => 'Saturday',
+  'the_instructor' => 'the_instructor',
+  'total_enrolled' => 'total_enrolled',
+  'last_update' => 'last_update',
+  'category' => 'category',
 );

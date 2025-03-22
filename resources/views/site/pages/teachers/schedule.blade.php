@@ -1,6 +1,6 @@
 @extends('site.layouts.main')
 
-@section('title', 'Student Profile | Quraan')
+@section('title', 'Teacher Profile | Quraan')
 
 @section('header_class', 'student-page')
 
@@ -55,13 +55,13 @@
                                 <form action="{{ route('user.store_schedule') }}" method="POST">
                                     @csrf
                                     <div class="row">
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="contact-from-input mb-20">
                                                 <label for="teacher_name">{{ trans('teachers.teacher_name') }}</label>
                                                 <input id="teacher_name" type="text"
                                                     value="{{ auth('web')->user()->name }}" readonly />
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-md-6">
                                             <div class="contact-from-input mb-20">
                                                 <label for="day">{{ trans('teachers.day') }}</label>
@@ -110,7 +110,7 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <div class="col-md-12">
+                                        {{-- <div class="col-md-12">
                                             <div class="contact-from-input mb-20">
                                                 <label for="note">{{ trans('teachers.note') }}</label>
                                                 <textarea name="note" id="note" class="form-control" placeholder="{{ trans('teachers.note_placeholder') }}">{{ old('note') }}</textarea>
@@ -118,7 +118,7 @@
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <div class="col-sm-12">
                                             <div class="cont-btn mb-20 mt-10">
                                                 <button type="submit"
@@ -136,7 +136,7 @@
                                             <th>{{ trans('teachers.start_time') }}</th>
                                             <th>{{ trans('teachers.end_time') }}</th>
                                             <th>{{ trans('teachers.status') }}</th>
-                                            <th>{{ trans('teachers.note') }}</th>
+                                            {{-- <th>{{ trans('teachers.note') }}</th> --}}
                                             <th>{{ trans('actions.actions') }}</th>
                                         </tr>
                                     </thead>
@@ -152,7 +152,7 @@
                                                         {{ $schedule->is_booked ? trans('messages.reserved') : trans('messages.available') }}
                                                     </span>
                                                 </td>
-                                                <td>{{ $schedule->note ?? 'N\A' }}</td>
+                                                {{-- <td>{{ $schedule->note ?? 'N\A' }}</td> --}}
                                                 <td>
                                                     <form action="{{ route('user.delete_schedule', $schedule->id) }}"
                                                         method="POST" style="display: inline-block;">

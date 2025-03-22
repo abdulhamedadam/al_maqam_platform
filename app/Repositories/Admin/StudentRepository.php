@@ -3,6 +3,7 @@
 namespace App\Repositories\Admin;
 
 use App\Interfaces\Admin\StudentInterface;
+use App\Models\StudentCourse;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -42,5 +43,22 @@ class StudentRepository implements StudentInterface
     public function delete($id)
     {
         return User::destroy($id);
+    }
+
+    /***********************************************/
+    public function getTeacherStudentsDash($teacherId)
+    {
+        return StudentCourse::where('teacher_id', $teacherId)
+            ->with('student')
+            ->select('student_id')
+            ->groupBy('student_id')
+            ->get();
+    }
+    /***********************************************/
+    public function getStudentsCoursesDash($studentId)
+    {
+        return StudentCourse::where('student_id', $studentId)
+            ->with('course', 'course.section')
+            ->get();
     }
 }

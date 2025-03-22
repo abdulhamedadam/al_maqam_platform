@@ -9,23 +9,15 @@
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link {{ request()->routeIs('user.teacher_profile') ? 'active' : '' }}"
-                    href="{{ route('user.teacher_profile') }}" role="tab">
+                <a class="nav-link {{ request()->routeIs('user.student_profile') ? 'active' : '' }}"
+                    href="{{ route('user.student_profile') }}" role="tab">
                     <i class="fas fa-user"></i> {{ trans('profile.my_profile') }}
                 </a>
             </li>
             <li class="nav-item" role="presentation">
-                <a class="nav-link {{ request()->routeIs('user.teacher_schedule') ? 'active' : '' }}"
-                    href="{{ route('user.teacher_schedule') }}" role="tab" aria-controls="schedule"
-                    aria-selected="false">
-                    <i class="fas fa-clock"></i> {{ trans('profile.teacher_schedules') }}
-                </a>
-            </li>
-            <li class="nav-item" role="presentation">
-                <a class="nav-link {{ request()->routeIs('user.teacher.assigned_courses') ? 'active' : '' }}"
-                    href="{{ route('user.teacher.assigned_courses') }}" role="tab" aria-controls="contact"
-                    aria-selected="false">
-                    <i class="fas fa-graduation-cap"></i> {{ trans('profile.assigned_courses') }}
+                <a class="nav-link {{ request()->routeIs('user.enrolled_courses') ? 'active' : '' }}"
+                    href="{{ route('user.enrolled_courses') }}" role="tab">
+                    <i class="fas fa-graduation-cap"></i> {{ trans('profile.enrolled_courses') }}
                 </a>
             </li>
             <li class="nav-item" role="presentation">

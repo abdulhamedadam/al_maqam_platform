@@ -1,6 +1,6 @@
 @extends('site.layouts.main')
 
-@section('title', 'Teacher Profile | Quraan')
+@section('title', 'Student Profile | Quraan')
 
 @section('header_class', 'student-page')
 
@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="row">
-                @include('site.pages.teachers.teacher_sidebar')
+                @include('site.pages.students.student_sidebar')
                 <div class="col-xl-9 col-lg-8">
                     <div class="student-profile-content">
                         <div class="tab-content" id="myTabContent">
