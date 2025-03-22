@@ -53,16 +53,17 @@
                                 <ul class="navigation">
                                     <li><a href="{{ route('user.home') }}">{{ trans('header.Home') }}</a></li>
                                     <li><a
-                                            href="{{ route('user.our_lectures') }}"></a>{{ trans('header.Our Lectures') }}
+                                            href="{{ route('user.our_lectures') }}">{{ trans('header.Our Lectures') }}</a>
                                     </li>
                                     <li><a
                                             href="{{ route('user.our_teachers') }}">{{ trans('header.Our Teachers') }}</a>
                                     </li>
-                                    <li><a href="{{ route('user.contact.show') }}">{{ trans('header.Contact') }}</a></li>
-                                    <li class="sign-in"><a
+                                    <li><a href="{{ route('user.contact.show') }}">{{ trans('header.Contact') }}</a>
+                                    </li>
+                                    {{-- <li class="sign-in"><a
                                             href="{{ route('user.login') }}">{{ trans('header.Login') }}</a></li>
                                     <li class="sign-up"><a
-                                            href="{{ route('user.join_us') }}">{{ trans('header.Join Us') }}</a></li>
+                                            href="{{ route('user.join_us') }}">{{ trans('header.Join Us') }}</a></li> --}}
                                     {{-- <div class="page_direction">
                                         <div class="demo-rtl direction_switch">
                                             <button class="rtl">
@@ -123,21 +124,21 @@
                                 </button>
                             </div>
                             <div class="btn-box">
-                                @auth
-                                    @if (auth()->user()->role === 'student')
+                                @auth('web')
+                                    @if (auth('web')->user()->role === 'student')
                                         <a href="{{ route('user.student_profile') }}"
-                                            class="theme-btn m-3">{{ auth()->user()->name }}{{ trans('header.s Dashboard') }}</a>
-                                    @elseif(auth()->user()->role === 'teacher')
+                                            class="theme-btn m-3">{{ auth('web')->user()->name }} Dashboard</a>
+                                    @elseif(auth('web')->user()->role === 'teacher')
                                         <a href="{{ route('user.teacher_profile') }}"
-                                            class="theme-btn m-3">{{ auth()->user()->name }}{{ trans('header.s Dashboard') }}</a>
+                                            class="theme-btn m-3">{{ auth('web')->user()->name }} Dashboard</a>
                                     @endif
                                     <form method="POST" action="{{ route('user.logout') }}">
                                         @csrf
-                                        <button type="submit" class="theme-btn">{{ trans('header.Logout') }}</button>
+                                        <button type="submit" class="theme-btn">Logout</button>
                                     </form>
                                 @else
-                                    <a href="{{ route('user.login') }}" class="login theme-btn">{{ trans('header.Login') }}</a>
-                                    <a href="{{ route('user.join_us') }}" class="join theme-btn">{{ trans('header.Join Now') }}</a>
+                                    <a href="{{ route('user.login') }}" class="login theme-btn">Login</a>
+                                    <a href="{{ route('user.join_us') }}" class="join theme-btn">Join Now</a>
                                 @endauth
                             </div>
                         </div>

@@ -23,10 +23,20 @@ class RedirectIfAuthenticated
             if (Auth::guard($guard)->check()) {
                 if ($guard === 'admin') {
                     return redirect(RouteServiceProvider::ADMIN_HOME);
-                } elseif ($guard === 'web') {
+                } else if ($guard === 'web') {
+
+                    $user = Auth::guard('web')->user();
+
+                    if ($user->role === 'student') {
+                        return redirect()->route('user.student_profile');
+                    } elseif ($user->role === 'teacher') {
+                        return redirect()->route('user.teacher_profile');
+                    } else {
+                        return redirect(RouteServiceProvider::HOME);
+                    }
+                } else {
                     return redirect(RouteServiceProvider::HOME);
                 }
-                // return redirect(RouteServiceProvider::ADMIN_HOME);
             }
         }
 

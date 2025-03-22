@@ -21,4 +21,7 @@
   'about_us_list' => 'about_us_list',
   'add_about_us' => 'add_about_us',
   'edit_about_us' => 'edit_about_us',
+  'teachers' => 'المعلمين',
+  'details' => 'التفاصيل',
+  'calendar' => 'التقويم',
 );

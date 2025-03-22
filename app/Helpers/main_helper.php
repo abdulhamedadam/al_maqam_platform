@@ -422,5 +422,12 @@ if (!function_exists('form_icon')) {
     //         ];
     //     }
     // }
+
+    if (!function_exists('format_time_arabic')) {
+        function format_time_arabic($time) {
+            $formattedTime = \Carbon\Carbon::parse($time)->format('h:i A');
+            return str_replace(['AM', 'PM'], ['ص', 'م'], $formattedTime);
+        }
+    }
 }
 

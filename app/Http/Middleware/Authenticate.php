@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
-//    use ApiResponse;
+    //    use ApiResponse;
 
     /**
      * Get the path the user should be redirected to when they are not authenticated.
      */
-   /* protected function redirectTo(Request $request): ?string
+    /* protected function redirectTo(Request $request): ?string
     {
         return $request->expectsJson() ? null : route('login');
     }*/
@@ -23,38 +23,10 @@ class Authenticate extends Middleware
     protected function redirectTo(Request $request)
     {
         if (!$request->expectsJson()) {
-           /* if (Auth::guard('guest')->check()) {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }*/
-
-            // if (Auth::guard('admin')->check()) {
-            //     return route('admin.login'); // Redirect to the login route for web guard
-            // }
-
-           /* if (Auth::guard('api')->check()) {
-                return $this->responseApiError('not login', 405);
-
-            }*/
-            // else{
-            //     return route('user.login'); // Redirect to the login route for web guard
-
-            // }
-            if ($request->is('admin/*')) {
+            if ($request->is('admin/*'))
                 return route('admin.login');
-            } else {
+            else
                 return route('user.login');
-            }
         }
-     /*   if (!$request->expectsJson()) {
-            if ((new \Illuminate\Http\Request)->is(app()->getLocale() . '/admin/dashboard')) {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }
-            elseif((new \Illuminate\Http\Request)->is(app()->getLocale() . '/api')) {
-                return $this->responseApiError('not login', 405);
-            }
-            else {
-                return route('admin.login'); // Redirect to the login route for web guard
-            }
-        }*/
     }
 }

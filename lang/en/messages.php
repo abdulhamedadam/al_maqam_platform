@@ -17,9 +17,17 @@
   'Section Updated Successfully' => 'Section Updated Successfully',
   'Course Created Successfully' => 'Course Created Successfully',
   'Course Updated Successfully' => 'Course Updated Successfully',
-
   'Service Updated Successfully' => 'Service Updated Successfully',
   'Service Deleted Successfully' => 'Service Deleted Successfully',
   'Service Created Successfully' => 'Service Created Successfully',
-
+  'something_went_wrong' => 'something_went_wrong',
+  'messages' => 'messages',
+  'schedule_added_successfully' => 'schedule_added_successfully',
+  'available' => 'available',
+  'The teacher id field is required' => 'The teacher id field is required',
+  'The اليوم field is required' => 'The اليوم field is required',
+  'The start time field must match the format H:i' => 'The start time field must match the format H:i',
+  'Route [student_profile] not defined' => 'Route [student_profile] not defined',
+  'تم التسجيل في الكورس بنجاح!' => 'تم التسجيل في الكورس بنجاح!',
+  'Something went wrong' => 'Something went wrong',
 );
