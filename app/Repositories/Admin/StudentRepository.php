@@ -58,7 +58,7 @@ class StudentRepository implements StudentInterface
     public function getStudentsCoursesDash($studentId)
     {
         return StudentCourse::where('student_id', $studentId)
-            ->with('course', 'course.section')
+            ->with('course', 'course.section', 'money')
             ->get();
     }
 }

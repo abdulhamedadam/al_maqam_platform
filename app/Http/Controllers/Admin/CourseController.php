@@ -121,6 +121,7 @@ class CourseController extends Controller
         try {
             DB::beginTransaction();
             $course = Course::findOrFail($id);
+            // dd($course, $request->all());
             $validated_data=$this->courseAttributes($request);
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
@@ -190,7 +191,6 @@ class CourseController extends Controller
             $newLectureIds = [];
             foreach ($request->input('lectures') as $lecture) {
                 if (!empty($lecture['id'])) {
-                    // Update existing lecture
                     $courseMoney = CourseMoney::find($lecture['id']);
                     if ($courseMoney) {
                         $courseMoney->update($this->getLectureData($lecture));
@@ -203,7 +203,9 @@ class CourseController extends Controller
                 }
             }
             // Delete removed lectures
+            // dd($existingLectureIds, $newLectureIds);
             $lecturesToDelete = array_diff($existingLectureIds, $newLectureIds);
+            // dd($lecturesToDelete);
             CourseMoney::whereIn('id', $lecturesToDelete)->delete();
         }
     }

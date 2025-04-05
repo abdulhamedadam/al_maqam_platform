@@ -6,6 +6,7 @@ use App\Enums\TeacherStatus;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Teachers\SaveRequest;
 use App\Http\Requests\Admin\Teachers\UpdateRequest;
+use App\Models\TeacherAccount;
 use App\Models\TeacherDetail;
 use App\Models\User;
 use App\Services\Admin\CoursesService;
@@ -49,6 +50,9 @@ class TeacherController extends Controller
                 ->editColumn('gender', function ($row) {
                     return $row->gender === 'm' ? 'Male' : ($row->gender === 'f' ? 'Female' : $row->gender);
                 })
+                ->editColumn('total_earnings', function ($row) {
+                    return $row->teacherAccount?->total_earnings ?? 'N\A';
+                })
                 ->addColumn('action', function ($row) {
                     $actions = '';
 
@@ -81,11 +85,11 @@ class TeacherController extends Controller
                         ';
                     }
 
+                    // <a href="' . route('admin.teachers.show', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
+                    //     <i class="bi bi-eye"></i>
+                    // </a>
                     $actions .= '
                         <div class="btn-group btn-group-sm">
-                            <a href="' . route('admin.teachers.show', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
-                                <i class="bi bi-eye"></i>
-                            </a>
 
                             <a href="' . route('admin.teachers.details', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
                                 <i class="bi bi-eye"></i>
@@ -94,7 +98,7 @@ class TeacherController extends Controller
                                 <i class="bi bi-pencil-square"></i>
                             </a>
                             <button onclick="confirmDelete(' . $row->id . ')" class="btn btn-sm btn-danger" title="' . trans('actions.delete') . '" style="font-size: 16px;">
-                                <i class="bi bi-trash3"></i>
+                                <i class="bi bi-trash"></i>
                             </button>
 
                             <form id="delete-form-' . $row->id . '" action="' . route('admin.teachers.destroy', $row->id) . '" method="POST" style="display: none;">
@@ -179,7 +183,7 @@ class TeacherController extends Controller
                 'cv_summary' => $cvPath,
             ]);
             DB::commit();
-            return redirect()->route('admin.teachers.index')->with('success', trans('teachers.store_success'));
+            return redirect()->route('admin.teachers.index', ['status' => 1])->with('success', trans('teachers.store_success'));
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -197,6 +201,7 @@ class TeacherController extends Controller
     public function edit(string $id)
     {
         $teacher = User::findOrFail($id);
+        // dd($teacher);
         return view($this->base_view . 'edit', compact('teacher'));
     }
 
@@ -243,6 +248,19 @@ class TeacherController extends Controller
                 'fri_sat_work' => $request->fri_sat_work,
             ]);
 
+            if ($user->teacherAccount) {
+                $user->teacherAccount->update([
+                    'hourly_rate' => $request->hourly_rate
+                ]);
+            } else {
+                TeacherAccount::create([
+                    'teacher_id' => $user->id,
+                    'hourly_rate' => $request->hourly_rate,
+                    'total_hours' => 0,
+                    'total_earnings' => 0
+                ]);
+            }
+
             if ($request->hasFile('audio')) {
                 if ($teacherDetail->audio_recording) {
                     $this->deleteFile($teacherDetail->audio_recording);
@@ -264,7 +282,7 @@ class TeacherController extends Controller
             }
 
             DB::commit();
-            return redirect()->route('admin.teachers.index')->with('success', trans('teachers.update_success'));
+            return redirect()->route('admin.teachers.index', ['status' => 1])->with('success', trans('teachers.update_success'));
         } catch (\Exception $e) {
             DB::rollback();
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -302,6 +320,10 @@ class TeacherController extends Controller
     public function details($id)
     {
         $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['courses_count'] = $this->coursesService->getTeacherCoursesDash($id)->count();
+        $data['students_count'] = $this->studentService->getTeacherStudentsDash($id)->count();
+
         // dd($data);
         return view($this->base_view . 'overview.teacher_overview', $data);
     }
@@ -309,17 +331,23 @@ class TeacherController extends Controller
     public function courses($id){
         $data['all_data'] = User::with('teacher')->findOrFail($id);
 
+        $data['courses_count'] = $this->coursesService->getTeacherCoursesDash($id)->count();
+        $data['students_count'] = $this->studentService->getTeacherStudentsDash($id)->count();
+
         $data['courses_data'] = $this->coursesService->getTeacherCoursesDash($id);
         // dd($data);
         return view($this->base_view . 'courses.teacher_courses', $data);
     }
     /**********************************************/
-    public function getStudents($id){
-        $students = $this->coursesService->getCourseStudentsDash($id);
+    public function getStudents($courseId, $moneyId){
+        $students = $this->coursesService->getCourseStudentsDash($courseId, $moneyId);
         return response()->json($students);
     }
     public function students($id){
         $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['courses_count'] = $this->coursesService->getTeacherCoursesDash($id)->count();
+        $data['students_count'] = $this->studentService->getTeacherStudentsDash($id)->count();
 
         $data['students_data'] = $this->studentService->getTeacherStudentsDash($id);
         // dd($data);

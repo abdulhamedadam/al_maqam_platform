@@ -53,7 +53,7 @@
                                     <span>(254 reviews)</span>
                                 </div>
                             </div>
-                            <div class="course-detelis-meta">
+                            {{-- <div class="course-detelis-meta">
                                 <div class="course-meta-wrapper border-line-meta">
                                     <div class="course-meta-img">
                                         <a href="teacher.html"><img
@@ -79,7 +79,7 @@
                                     <p>{{ trans('site.category') }}</p>
                                     <span><a href="course.html">{{ optional($course->section)->name }}</a></span>
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="course-description pt-45 pb-30">
                                 <div class="course-Description">
                                     <h4>{{ trans('site.description') }}</h4>
@@ -92,6 +92,9 @@
                             <div class="course-instructors">
                                 <form id="scheduleForm" method="POST">
                                     @csrf
+                                    <input type="hidden" name="course_id" id="course_id"
+                                                value="{{ $course->id }}">
+                                    <input type="hidden" name="money_id" id="money_id" value="{{ $money->id }}">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
@@ -710,6 +713,8 @@
                 var day = $('#day').val();
                 var start_time = $('#start_time').val();
                 var end_time = $('#end_time').val();
+                var course_id = $('#course_id').val();
+                var money_id = $('#money_id').val();
                 var fallbackImage = "{{ asset('front_assets/images/sections/teachers/man-avatar.svg') }}";
                 $.ajax({
                     url: "{{ route('user.available_schedule') }}",
@@ -718,7 +723,9 @@
                         _token: "{{ csrf_token() }}",
                         day: day,
                         start_time: start_time,
-                        end_time: end_time
+                        end_time: end_time,
+                        course_id: course_id,
+                        money_id: money_id
                     },
                     success: function(response) {
                         // console.log(response.schedules);

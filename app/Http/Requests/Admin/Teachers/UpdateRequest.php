@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $this->route('teacher'),
             'phone' => 'required|string|max:20',
-            'birthday' => 'required|date',
+            'birthday' => 'nullable|date',
             'gender' => 'required|string|in:m,f',
             'country' => 'required|string|max:255',
             'state' => 'required|string|max:255',
@@ -56,6 +56,8 @@ class UpdateRequest extends FormRequest
             'fri_sat_work' => 'required|string|in:yfri-sat,nfri-sat',
             'audio' => 'nullable|file|mimes:mp3,wav|max:10240',
             'cv' => 'nullable|max:10240',
+
+            'hourly_rate' => 'required|numeric|min:0',
         ];
     }
 }

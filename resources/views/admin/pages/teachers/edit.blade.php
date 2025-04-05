@@ -94,7 +94,7 @@
                                                 <div class="fv-row w-100 flex-md-root">
                                                     <label class="form-label">{{ trans('teachers.birthday') }}</label>
                                                     <input type="date" name="birthday" id="birthday"
-                                                        class="form-control mb-2" value="{{ old('birthday', $teacher->birthday) }}" required />
+                                                        class="form-control mb-2" value="{{ old('birthday', $teacher->birthday) }}" />
                                                     @error('birthday')
                                                         <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
                                                     @enderror
@@ -128,13 +128,23 @@
                                                 </div>
                                             </div>
 
-                                            <div class="fv-row w-100">
-                                                <label class="form-label">{{ trans('teachers.state') }}</label>
-                                                <input type="text" name="state" id="state"
-                                                    class="form-control mb-2" value="{{ old('state', $teacher->state) }}" required />
-                                                @error('state')
-                                                    <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
-                                                @enderror
+                                            <div class="d-flex flex-wrap gap-5">
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="form-label">{{ trans('teachers.state') }}</label>
+                                                    <input type="text" name="state" id="state"
+                                                        class="form-control mb-2" value="{{ old('state', $teacher->state) }}" required />
+                                                    @error('state')
+                                                        <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="fv-row w-100 flex-md-root">
+                                                    <label class="form-label">{{ trans('teachers.hourly_rate') }}</label>
+                                                    <input type="number" name="hourly_rate" id="hourly_rate"
+                                                        class="form-control mb-2" value="{{ old('hourly_rate', $teacher->teacherAccount?->hourly_rate) }}" required />
+                                                    @error('hourly_rate')
+                                                        <span class="invalid-feedback d-block" role="alert">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
 

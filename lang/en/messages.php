@@ -30,4 +30,11 @@
   'Route [student_profile] not defined' => 'Route [student_profile] not defined',
   'تم التسجيل في الكورس بنجاح!' => 'تم التسجيل في الكورس بنجاح!',
   'Something went wrong' => 'Something went wrong',
+  'You are already enrolled in this course at this time' => 'You are already enrolled in this course at this time',
+  'Lecture has started successfully' => 'Lecture has started successfully',
+  'Failed to end Zoom meeting: HTTP Request returned Status Code 400' => 'Failed to end Zoom meeting: HTTP Request returned Status Code 400',
+  'Failed to end Zoom meeting: Call to undefined method MacsiDigital\\Zoom\\Meeting::end()' => 'Failed to end Zoom meeting: Call to undefined method MacsiDigital\\Zoom\\Meeting::end()',
+  'Lecture has ended successfully' => 'Lecture has ended successfully',
+  'reserved' => 'reserved',
+  'confirm_delete' => 'confirm_delete',
 );

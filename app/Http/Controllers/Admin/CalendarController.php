@@ -12,49 +12,6 @@ class CalendarController extends Controller
 {
     protected $base_view = 'admin.pages.calendar.';
 
-    // public function index(Request $request)
-    // {
-    //     // Get the current week's start and end dates
-    //     $date = $request->input('date') ? Carbon::parse($request->input('date')) : Carbon::now();
-    //     $startOfWeek = $date->copy()->startOfWeek(Carbon::SATURDAY);
-    //     $endOfWeek = $date->copy()->endOfWeek(Carbon::FRIDAY);
-
-    //     $schedules = Schedule::whereBetween('date', [$startOfWeek->format('Y-m-d'), $endOfWeek->format('Y-m-d')])
-    //         ->with('instructor')
-    //         ->get()
-    //         ->groupBy(function ($schedule) {
-    //             return Carbon::parse($schedule->date)->format('Y-m-d');
-    //         });
-
-    //     // Prepare day names in Arabic
-    //     $dayNames = [
-    //         'السبت',
-    //         'الأحد',
-    //         'الإثنين',
-    //         'الثلاثاء',
-    //         'الأربعاء',
-    //         'الخميس',
-    //         'الجمعة',
-    //     ];
-
-    //     $dates = [];
-    //     for ($i = 0; $i < 7; $i++) {
-    //         $currentDate = $startOfWeek->copy()->addDays($i);
-    //         $dates[$currentDate->format('Y-m-d')] = [
-    //             'date' => $currentDate,
-    //             'dayName' => $dayNames[$i],
-    //             'schedules' => $schedules[$currentDate->format('Y-m-d')] ?? collect([])
-    //         ];
-    //     }
-
-    //     return view($this->base_view.'index', [
-    //         'dates' => $dates,
-    //         'currentWeek' => $startOfWeek->format('Y-m-d') . ' to ' . $endOfWeek->format('Y-m-d'),
-    //         'previousWeek' => $startOfWeek->copy()->subWeek()->format('Y-m-d'),
-    //         'nextWeek' => $startOfWeek->copy()->addWeek()->format('Y-m-d'),
-    //     ]);
-    // }
-
     public function index(Request $request)
     {
         $date = $request->input('date') ? Carbon::parse($request->input('date')) : Carbon::now();
@@ -109,5 +66,73 @@ class CalendarController extends Controller
     {
         return $date->format('d') . ' ' . $date->translatedFormat('M');
     }
+
+    public function siteCalendar(Request $request)
+    {
+        $date = $request->input('date') ? Carbon::parse($request->input('date')) : Carbon::now();
+        $startOfWeek = $date->copy()->startOfWeek(Carbon::SATURDAY);
+        $endOfWeek = $date->copy()->endOfWeek(Carbon::FRIDAY);
+
+        $arabicDays = [
+            'Saturday' => 'السبت',
+            'Sunday' => 'الأحد',
+            'Monday' => 'الإثنين',
+            'Tuesday' => 'الثلاثاء',
+            'Wednesday' => 'الأربعاء',
+            'Thursday' => 'الخميس',
+            'Friday' => 'الجمعة',
+        ];
+
+        $user = auth()->user();
+
+        $studentCourses = collect([]);
+        $teacherSchedules = collect([]);
+
+        if ($user->role === 'student') {
+            $studentCourses = StudentCourse::with(['teacher', 'student', 'course'])
+                ->where('student_id', $user->id)
+                ->whereIn('day', array_keys($arabicDays))
+                ->get()
+                ->groupBy('day');
+        } elseif ($user->role === 'teacher') {
+            $teacherCourses = StudentCourse::with(['teacher', 'student', 'course'])
+                ->where('teacher_id', $user->id)
+                ->whereIn('day', array_keys($arabicDays))
+                ->get()
+                ->groupBy('day');
+        }
+
+        $weekDays = [];
+        for ($i = 0; $i < 7; $i++) {
+            $currentDate = $startOfWeek->copy()->addDays($i);
+            $dayName = $currentDate->format('l');
+            $arabicDayName = $arabicDays[$dayName];
+
+            $weekDays[$dayName] = [
+                'date' => $currentDate,
+                'dayName' => $arabicDayName,
+                'arabicDate' => $this->getArabicDate($currentDate),
+                'student_schedules' => $studentCourses[$dayName] ?? collect([]),
+                'teacher_schedules' => $teacherCourses[$dayName] ?? collect([])
+            ];
+        }
+        if ($user->role === 'student') {
+            return view('site.pages.students.calendar', [
+                'weekDays' => $weekDays,
+                'currentWeek' => $startOfWeek->format('Y-m-d') . ' ' . trans('teachers.to') . ' ' . $endOfWeek->format('Y-m-d'),
+                'previousWeek' => $startOfWeek->copy()->subWeek()->format('Y-m-d'),
+                'nextWeek' => $startOfWeek->copy()->addWeek()->format('Y-m-d'),
+            ]);
+        } elseif ($user->role === 'teacher') {
+            return view('site.pages.teachers.calendar', [
+                'weekDays' => $weekDays,
+                'currentWeek' => $startOfWeek->format('Y-m-d') . ' ' . trans('teachers.to') . ' ' . $endOfWeek->format('Y-m-d'),
+                'previousWeek' => $startOfWeek->copy()->subWeek()->format('Y-m-d'),
+                'nextWeek' => $startOfWeek->copy()->addWeek()->format('Y-m-d'),
+            ]);
+
+        }
+    }
+
 
 }

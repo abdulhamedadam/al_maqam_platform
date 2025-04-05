@@ -49,17 +49,26 @@ class CoursesRepository implements CoursesInterface
     public function getTeacherCoursesDash($teacherId)
     {
         return StudentCourse::where('teacher_id', $teacherId)
-        ->with('course')
-        ->select('course_id')
-        ->groupBy('course_id')
+        ->with('course', 'money')
+        ->select('course_id', 'money_id')
+        ->groupBy('course_id', 'money_id')
         ->get();
     }
     /***********************************************/
-    public function getCourseStudentsDash($courseId)
+    public function getCourseStudentsDash($courseId, $moneyId)
     {
         return StudentCourse::where('course_id', $courseId)
-        ->with('student')
+        ->where('money_id', $moneyId)
+        ->with('student', 'teacher')
         ->get();
     }
 
+    public function getStudentsCoursesDash($studentId)
+    {
+        return StudentCourse::where('student_id', $studentId)
+        ->with('course', 'money')
+        ->select('course_id', 'money_id')
+        ->groupBy('course_id', 'money_id')
+        ->get();
+    }
 }
