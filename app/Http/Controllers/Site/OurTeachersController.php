@@ -26,7 +26,20 @@ class OurTeachersController extends Controller
 
     public function schedule()
     {
-        $data['schedules'] = TeacherSchedule::where('teacher_id', auth('web')->id())->get();
+        $schedules = TeacherSchedule::where('teacher_id', auth('web')->id())
+            ->orderBy('day')
+            ->orderBy('start_time')
+            ->get();
+
+        $daysOfWeek = ['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+        $data['weekDays'] = [];
+        foreach ($daysOfWeek as $day) {
+            $data['weekDays'][$day] = [
+                'dayName' => trans("days.$day"),
+                'schedules' => $schedules->where('day', $day)
+            ];
+        }
 
         return view('site.pages.teachers.schedule', $data);
     }

@@ -1,5 +1,5 @@
 <div class="" style="margin-top: 30px">
-    @if(isset($students_data) || !empty($students_data ) || $students_data->isEmpty() )
+    @if(isset($students_data) && $students_data->isNotEmpty() )
         <table id="table" class="example table table-bordered responsive nowrap text-center" cellspacing="0"
             width="70%">
             <thead>
@@ -57,6 +57,8 @@
                             <th>{{ trans('teachers.description') }}</th>
                             <th>{{ trans('teachers.age') }}</th>
                             <th>{{ trans('teachers.section') }}</th>
+                            <th>{{ trans('teachers.num_of_lectures') }}</th>
+                            <th>{{ trans('teachers.total_price') }}</th>
                             <th>{{ trans('teachers.day') }}</th>
                             <th>{{ trans('teachers.start_time') }}</th>
                             <th>{{ trans('teachers.end_time') }}</th>
@@ -89,15 +91,19 @@
                     tableBody.empty();
                     var currentLocale = "{{ app()->getLocale() }}";
                     courses.forEach(function(courseStudent) {
+                        let formattedStartTime = formatTime(courseStudent.start_time);
+                        let formattedEndTime = formatTime(courseStudent.end_time);
                         var row = `
                             <tr>
                                 <td>${courseStudent.course.name[currentLocale]}</td>
                                 <td>${courseStudent.course.seo_head_description[currentLocale]}</td>
                                 <td>${courseStudent.course.min_age + '-' + courseStudent.course.max_age}</td>
                                 <td>${courseStudent.course.section.name[currentLocale]}</td>
+                                <td>${courseStudent.money.num_of_lectures}</td>
+                                <td>${courseStudent.money.total_price}</td>
                                 <td>${courseStudent.day}</td>
-                                <td>${courseStudent.start_time}</td>
-                                <td>${courseStudent.end_time}</td>
+                                <td>${formattedStartTime}</td>
+                                <td>${formattedEndTime}</td>
                                 <td>${courseStudent.payment_method}</td>
                             </tr>
                         `;
@@ -105,6 +111,20 @@
                     });
                 },
             });
+        }
+        function formatTime(time) {
+            if (!time) return '';
+            let [hours, minutes] = time.split(':');
+            let date = new Date();
+            date.setHours(hours);
+            date.setMinutes(minutes);
+            let formattedTime = date.toLocaleTimeString('en-US', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: true
+            });
+
+            return formattedTime.replace('AM', 'ص').replace('PM', 'م');
         }
     </script>
 

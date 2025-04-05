@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Site\AppointmentController;
 use App\Http\Controllers\Site\Auth\AuthController;
 use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\CoursesController;
@@ -59,6 +61,10 @@ Route::group(
                 Route::get('/student-profile', [StudentsController::class, 'profile'])->name('student_profile');
                 Route::post('/student/store-pay-course', [CoursesController::class, 'store_pay_course'])->name('store_pay_course');
                 Route::get('/student/enrolled-courses', [CoursesController::class, 'enrolledCourses'])->name('enrolled_courses');
+                Route::get('/student/student_schedules', [CalendarController::class, 'siteCalendar'])->name('student.calendar');
+
+                Route::get('/student/today-appointments', [AppointmentController::class, 'todaysAppointments'])->name('student.appointments');
+
             });
 
             Route::middleware(['auth:web', 'role:teacher'])->group(function () {
@@ -67,6 +73,11 @@ Route::group(
                 Route::post('/teacher/schedule/store', [OurTeachersController::class, 'store_schedule'])->name('store_schedule');
                 Route::delete('/teacher/schedule/{id}', [OurTeachersController::class, 'delete_schedule'])->name('delete_schedule');
                 Route::get('/teacher/courses-assigned', [CoursesController::class, 'assignedCourses'])->name('teacher.assigned_courses');
+                Route::get('/teacher/teacher_schedules', [CalendarController::class, 'siteCalendar'])->name('teacher.calendar');
+
+                Route::get('/teacher/today-appointments', [AppointmentController::class, 'todaysAppointments'])->name('teacher.appointments');
+                Route::post('/teacher/start-lecture/{id}', [AppointmentController::class, 'startLecture'])->name('teacher.start_lecture');
+                Route::post('/teacher/end-lecture/{id}', [AppointmentController::class, 'endLecture'])->name('teacher.end_lecture');
             });
 
 
@@ -76,6 +87,8 @@ Route::group(
                 })->name('reset_password');
 
                 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
             });
         });
     }

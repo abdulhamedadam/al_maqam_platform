@@ -9,4 +9,10 @@
   'Saturday' => 'السبت',
   'teacher_schedules' => 'teacher_schedules',
   'assigned_courses' => 'assigned_courses',
+  'teacher_calendar' => 'teacher_calendar',
+  'teacher_appointments' => 'teacher_appointments',
+  'registration_date' => 'registration_date',
+  'name' => 'name',
+  'email' => 'email',
+  'phone' => 'phone',
 );

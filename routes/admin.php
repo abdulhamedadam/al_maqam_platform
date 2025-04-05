@@ -62,13 +62,16 @@ Route::group(
         });
 
         Route::resource('students' , StudentController::class)->except('show');
+        Route::get('/students/{id}/details', [StudentController::class, 'courses'])->name('students.details');
+        Route::get('/students/{id}/courses', [StudentController::class, 'courses'])->name('students.courses');
+        Route::get('/students/course/{courseId}/{moneyId}/teachers', [StudentController::class, 'getTeachers'])->name('students.view_teachers');
 
         Route::resource('teachers' , TeacherController::class);
         Route::get('/teachers/{id}/approve', [TeacherController::class, 'approve'])->name('teachers.approve');
         Route::get('/teachers/{id}/refuse', [TeacherController::class, 'refuse'])->name('teachers.refuse');
         Route::get('/teachers/{id}/details', [TeacherController::class, 'details'])->name('teachers.details');
         Route::get('/teachers/{id}/courses', [TeacherController::class, 'courses'])->name('teachers.courses');
-        Route::get('/teachers/course/{id}/students', [TeacherController::class, 'getStudents'])->name('teachers.view_students');
+        Route::get('/teachers/course/{courseId}/{moneyId}/students', [TeacherController::class, 'getStudents'])->name('teachers.view_students');
         Route::get('/teachers/{id}/studetns', [TeacherController::class, 'students'])->name('teachers.students');
         Route::get('/teachers/student/{id}/courses', [TeacherController::class, 'getCourses'])->name('teachers.view_courses');
 

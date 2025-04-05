@@ -6,4 +6,6 @@
   'Registration successful!' => 'Registration successful!',
   'Login successful!' => 'Login successful!',
   'Logout successful!' => 'Logout successful!',
+  'available' => 'available',
+  'تم تعديل المعلم بنجاح' => 'تم تعديل المعلم بنجاح',
 );

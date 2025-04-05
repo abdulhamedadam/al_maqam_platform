@@ -12,6 +12,8 @@ use App\Services\Admin\CoursesService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class CoursesController extends Controller
 {
@@ -36,14 +38,26 @@ class CoursesController extends Controller
         $day = $request->day;
         $startTime = $request->start_time;
         $endTime = $request->end_time;
-        // return response()->json(['schedules' => $request->all()]);
+        $courseId = $request->course_id;
+        $moneyId = $request->money_id;
+
         $schedules = TeacherSchedule::where('day', $day)
             ->where(function ($query) use ($startTime, $endTime) {
                 $query->whereTime('start_time', '<=', $endTime)
-                    ->whereTime('end_time', '>=', $startTime)
-                    ->orWhereTime('end_time', '<', '05:00');
+                    ->whereTime('end_time', '>=', $startTime);
             })
             ->where('is_booked', 0)
+            ->whereDoesntHave('teacher.courses', function ($query) use ($day, $startTime, $endTime, $courseId, $moneyId) {
+                $query->where('day', $day)
+                    ->where(function ($q) use ($startTime, $endTime) {
+                        $q->whereTime('start_time', '<=', $endTime)
+                            ->whereTime('end_time', '>=', $startTime);
+                    })
+                    ->where(function($q) use ($courseId, $moneyId) {
+                        $q->where('course_id', '!=', $courseId)
+                            ->orWhere('money_id', '!=', $moneyId);
+                    });
+            })
             ->with('teacher')
             ->get();
 
@@ -75,6 +89,18 @@ class CoursesController extends Controller
                 'teacher_id' => 'required|exists:users,id',
                 'payment' => 'required|in:fawry,Aman,mastercard-visa,mobile_wallet,bank-transfer',
             ]);
+
+            $existingCourse = StudentCourse::where('student_id', auth()->id())
+                ->where('course_id', $request->course_id)
+                ->where('money_id', $request->money_id)
+                ->where('day', $request->day)
+                ->where('start_time', $request->start_time)
+                ->where('end_time', $request->end_time)
+                ->exists();
+
+            if ($existingCourse) {
+                return redirect()->back()->with('error', 'You are already enrolled in this course at this time.')->withInput();
+            }
 
             $data['student_id'] = auth()->id();
             $data['teacher_id'] = $request->teacher_id;

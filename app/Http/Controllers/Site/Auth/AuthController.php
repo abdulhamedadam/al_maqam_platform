@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site\Auth;
 
 use App\Enums\TeacherStatus;
 use App\Http\Controllers\Controller;
+use App\Models\TeacherAccount;
 use App\Models\TeacherDetail;
 use App\Models\User;
 use App\Services\Admin\SectionService;
@@ -11,6 +12,7 @@ use App\Traits\ImageProcessing;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,9 +22,9 @@ class AuthController extends Controller
 
     public function showRegistrationForm(SectionService $sectionService)
     {
-        $data['sections']=$sectionService->all_active();
-       // dd($data['sections']);
-        return view('site.pages.join-us',$data);
+        $data['sections'] = $sectionService->all_active();
+        // dd($data['sections']);
+        return view('site.pages.join-us', $data);
     }
 
     protected function validator(array $data)
@@ -79,9 +81,9 @@ class AuthController extends Controller
         }
 
         try {
-        //    $request->merge([
-        //        'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
-        //    ]);
+            //    $request->merge([
+            //        'birthday' => Carbon::createFromFormat('d/m/Y', $request->birthday)->format('Y-m-d')
+            //    ]);
             // dd($request->all());
             $user = $this->create($request->all());
 
@@ -115,27 +117,41 @@ class AuthController extends Controller
 
     protected function createTeacherDetails($userId, array $data)
     {
-        $audioPath = isset($data['audio']) && $data['audio'] instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($data['audio'], 'user' . $userId) : null;
-        $cvPath = isset($data['files']) && $data['files'] instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($data['files'], 'user' . $userId) : null;
-        TeacherDetail::create([
-            'user_id' => $userId,
-            'admission_terms' => json_encode($data['admission']),
-            'education' => $data['education'],
-            'azhar' => $data['azhary'],
-            'quran_license' => $data['license'],
-            'other_license' => $data['other_license'],
-            'other_license_details' => $data['other_licenses_details'],
-            'teaching_online' => $data['teaching_online'],
-            'communication_platforms' => json_encode($data['comm_platform']),
-            'teaching_kids' => $data['teaching_kids'],
-            'teaching_subjects' => json_encode($data['teaching']),
-            'working_hours' => json_encode($data['hours_working']),
-            'other_working_hours' => $data['other_working_hours'],
-            'work_shifts' => json_encode($data['work_shift']),
-            'fri_sat_work' => $data['fri_sat'],
-            'audio_recording' => $audioPath,
-            'cv_summary' => $cvPath,
-        ]);
+        DB::beginTransaction();
+        try {
+            $audioPath = isset($data['audio']) && $data['audio'] instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($data['audio'], 'user' . $userId) : null;
+            $cvPath = isset($data['files']) && $data['files'] instanceof \Illuminate\Http\UploadedFile ? $this->saveFile($data['files'], 'user' . $userId) : null;
+            TeacherDetail::create([
+                'user_id' => $userId,
+                'admission_terms' => json_encode($data['admission']),
+                'education' => $data['education'],
+                'azhar' => $data['azhary'],
+                'quran_license' => $data['license'],
+                'other_license' => $data['other_license'],
+                'other_license_details' => $data['other_licenses_details'],
+                'teaching_online' => $data['teaching_online'],
+                'communication_platforms' => json_encode($data['comm_platform']),
+                'teaching_kids' => $data['teaching_kids'],
+                'teaching_subjects' => json_encode($data['teaching']),
+                'working_hours' => json_encode($data['hours_working']),
+                'other_working_hours' => $data['other_working_hours'],
+                'work_shifts' => json_encode($data['work_shift']),
+                'fri_sat_work' => $data['fri_sat'],
+                'audio_recording' => $audioPath,
+                'cv_summary' => $cvPath,
+            ]);
+
+            TeacherAccount::create([
+                'teacher_id' => $userId,
+                'hourly_rate' => 20,
+                'total_hours' => 0,
+                'total_earnings' => 0
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return back()->with('error', 'An error occurred during register. Please try again.');
+        }
     }
 
 

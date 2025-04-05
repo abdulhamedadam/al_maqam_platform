@@ -74,13 +74,22 @@ class CoursesService
     }
 
     /****************************************************/
-    public function getCourseStudentsDash($id)
+    public function getCourseStudentsDash($courseId, $moneyId)
     {
         try {
-            return $this->coursesRepository->getCourseStudentsDash($id);
+            return $this->coursesRepository->getCourseStudentsDash($courseId, $moneyId);
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Something went wrong');
         }
     }
-    
+    /****************************************************/
+    public function getStudentsCoursesDash($teacherId)
+    {
+        try {
+            return $this->coursesRepository->getStudentsCoursesDash($teacherId);
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong');
+        }
+    }
+
 }

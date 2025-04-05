@@ -43,10 +43,10 @@
                     'teachers.name',
                     'teachers.email',
                     'teachers.phone',
-                    'teachers.birthday',
                     'teachers.gender',
                     'teachers.country',
                     'teachers.state',
+                    'teachers.total_earnings',
                     'actions.actions',
                 ];
 
@@ -90,10 +90,6 @@
                         className: 'text-center'
                     },
                     {
-                        data: 'birthday',
-                        className: 'text-center'
-                    },
-                    {
                         data: 'gender',
                         className: 'text-center'
                     },
@@ -103,6 +99,10 @@
                     },
                     {
                         data: 'state',
+                        className: 'text-center'
+                    },
+                    {
+                        data: 'total_earnings',
                         className: 'text-center'
                     },
                     {

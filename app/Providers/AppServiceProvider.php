@@ -2,12 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\StudentCourse;
+use Carbon\Carbon;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -55,5 +58,27 @@ class AppServiceProvider extends ServiceProvider
             return $key;
         });
 
+        if (Schema::hasTable('tbl_student_courses')) {
+            // $this->checkAndUpdateAppointments();
+        }
+    }
+    public function checkAndUpdateAppointments()
+    {
+        $now = now();
+        // $today = Carbon::now()->format('l');
+        $today = 'Saturday';
+
+        $appointments = StudentCourse::where('status', 'scheduled')
+            ->where('day', $today)
+            ->get();
+
+        foreach ($appointments as $appointment) {
+            $startTime = Carbon::parse($appointment->start_time);
+            $endTime = Carbon::parse($appointment->end_time);
+
+            if ($now->greaterThan($endTime) && $now->greaterThan($startTime)) {
+                $appointment->update(['status' => 'missed']);
+            }
+        }
     }
 }

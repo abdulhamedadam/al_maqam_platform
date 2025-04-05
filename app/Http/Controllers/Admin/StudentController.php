@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Students\SaveRequest;
 use App\Http\Requests\Admin\Students\UpdateRequest;
+use App\Models\User;
+use App\Services\Admin\CoursesService;
 use App\Services\Admin\StudentService;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -12,11 +14,13 @@ use Yajra\DataTables\Facades\DataTables;
 class StudentController extends Controller
 {
     protected $studentService;
+    protected $coursesService;
     protected $base_view = 'admin.pages.students.';
 
-    public function __construct(StudentService $studentService)
+    public function __construct(StudentService $studentService, CoursesService $coursesService,)
     {
         $this->studentService = $studentService;
+        $this->coursesService = $coursesService;
     }
 
     public function index(Request $request)
@@ -44,6 +48,9 @@ class StudentController extends Controller
                                 ' . method_field('DELETE') . '
                             </form>
 
+                            <a href="' . route('admin.students.details', $row->id) . '" class="btn btn-sm btn-success" title="' . trans('actions.details') . '" style="font-size: 16px;">
+                                <i class="bi bi-eye"></i>
+                            </a>
                         </div>
                     ';
                 })
@@ -97,5 +104,31 @@ class StudentController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
+    }
+
+    /**********************************************/
+    public function details($id)
+    {
+        $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['courses_count'] = $this->coursesService->getStudentsCoursesDash($id)->count();
+
+        // dd($data);
+        return view($this->base_view . 'details', $data);
+    }
+    /**********************************************/
+    public function courses($id){
+        $data['all_data'] = User::with('teacher')->findOrFail($id);
+
+        $data['courses_count'] = $this->coursesService->getStudentsCoursesDash($id)->count();
+
+        $data['courses_data'] = $this->coursesService->getStudentsCoursesDash($id);
+        // dd($data);
+        return view($this->base_view . 'courses.student_courses', $data);
+    }
+    /**********************************************/
+    public function getTeachers($courseId, $moneyId){
+        $teachers = $this->coursesService->getCourseStudentsDash($courseId, $moneyId);
+        return response()->json($teachers);
     }
 }
