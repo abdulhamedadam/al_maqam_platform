@@ -21,6 +21,20 @@
                 </a>
             </li>
             <li class="nav-item" role="presentation">
+                <a class="nav-link {{ request()->routeIs('user.student.calendar') ? 'active' : '' }}"
+                    href="{{ route('user.student.calendar') }}" role="tab" aria-controls="contact"
+                    aria-selected="false">
+                    <i class="fas fa-calendar-alt"></i> {{ trans('profile.student_calendar') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ request()->routeIs('user.student.appointments') ? 'active' : '' }}"
+                    href="{{ route('user.student.appointments') }}" role="tab" aria-controls="contact"
+                    aria-selected="false">
+                    <i class="fas fa-calendar-check"></i> {{ trans('profile.student_appointments') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
                     role="tab" aria-controls="reviews" aria-selected="false">
                     <i class="fas fa-star"></i> Reviews

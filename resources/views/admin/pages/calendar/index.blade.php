@@ -118,13 +118,7 @@
 <div class="container-fluid">
     <div class="row mb-3">
         <div class="col-md-12 text-center">
-            <h2>جدول المدرسين والدورات</h2>
-            <p>{{ $currentWeek }}</p>
-            {{-- <div class="btn-group">
-                <a href="{{ route('admin.calendar.index', ['date' => $previousWeek]) }}" class="btn btn-outline-primary"><i class="fas fa-chevron-right"></i> الأسبوع السابق</a>
-                <a href="{{ route('admin.calendar.index') }}" class="btn btn-outline-secondary">الأسبوع الحالي</a>
-                <a href="{{ route('admin.calendar.index', ['date' => $nextWeek]) }}" class="btn btn-outline-primary">الأسبوع القادم <i class="fas fa-chevron-left"></i></a>
-            </div> --}}
+            <h2>{{ trans('calender.all_teachers_courses') }}</h2>
         </div>
     </div>
 
@@ -135,7 +129,6 @@
                 <div class="calendar-day">
                     <div class="day-header">
                         <h5>{{ $dayData['dayName'] }}</h5>
-                        {{-- <span>{{ $dayData['arabicDate'] }}</span> --}}
                     </div>
 
                     <div class="day-content">
@@ -146,7 +139,7 @@
                                     <div class="teacher-name">{{ trans('calender.teacher') }}: {{ $course->teacher->name }}</div>
                                     <div class="student-name">{{ trans('calender.student') }}: {{ $course->student->name }}</div>
                                     <div class="course-name">{{ $course->course->name }}</div>
-                                    <div class="schedule-time">{{ $course->start_time }} - {{ $course->end_time }}</div>
+                                    <div class="schedule-time">{{ format_time_arabic($course->start_time) }} - {{ format_time_arabic($course->end_time) }}</div>
                                     <div class="schedule-actions">
                                         <a href="{{ route('user.get_course_details', [$course->course_id, $course->money_id]) }}" class="btn btn-sm btn-info"><i class="bi bi-eye"></i></a>
                                     </div>
@@ -174,17 +167,6 @@
                 </div>
                 @endforeach
             </div>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-md-12 text-center">
-            {{-- <a href="{{ route('admin.teacher-schedules.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> إضافة موعد جديد للمدرس
-            </a>
-            <a href="{{ route('admin.student-courses.create') }}" class="btn btn-success">
-                <i class="fas fa-calendar-plus"></i> حجز دورة جديدة
-            </a> --}}
         </div>
     </div>
 </div>

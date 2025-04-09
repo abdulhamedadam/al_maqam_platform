@@ -78,4 +78,6 @@
   'already_have_account' => 'Already have an account?',
   'login_here' => 'Login here',
   'kids' => 'kids',
+  'group_class' => 'group_class',
+  'students' => 'students',
 );

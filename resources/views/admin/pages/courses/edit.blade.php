@@ -146,7 +146,9 @@
                                             <hr style="margin-top: 30px; width: 100%; border: 2px solid black;">
                                             @foreach ($course->courseMoneys as $index => $lecture)
 
-                                                <div id="lecture-container">
+                                            <input type="hidden" name="lectures[{{ $index }}][id]" value="{{ $lecture->id }}">
+
+                                            <div id="lecture-container">
                                                     <div class="lecture-row d-flex flex-wrap gap-2">
                                                         <div class="fv-row flex-grow-1">
                                                             <label

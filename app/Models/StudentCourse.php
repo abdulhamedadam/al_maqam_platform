@@ -32,4 +32,9 @@ class StudentCourse extends Model
     {
         return $this->belongsTo(User::class, 'teacher_id');
     }
+
+    public function zoom_meeting()
+    {
+        return $this->hasOne(ZoomMeeting::class, 'appointment_id');
+    }
 }

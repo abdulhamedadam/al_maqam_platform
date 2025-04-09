@@ -13,4 +13,8 @@
   'name' => 'name',
   'email' => 'email',
   'phone' => 'phone',
+  'teacher_calendar' => 'Teacher Calendar',
+  'student_calendar' => 'Student Calendar',
+  'teacher_appointments' => 'Teacher Appointments',
+  'student_appointments' => 'student_appointments',
 );

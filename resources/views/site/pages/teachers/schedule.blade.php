@@ -29,6 +29,84 @@
             background-size: 12px;
         }
     </style>
+    <style>
+        .calendar-week {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .calendar-day {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            min-height: 200px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .day-header {
+            background-color: #f5f5f5;
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #e0e0e0;
+            font-weight: 600;
+        }
+
+        .day-content {
+            padding: 12px;
+            min-height: 150px;
+        }
+
+        .schedule-item {
+            border-left: 4px solid #4caf50;
+            padding: 10px;
+            margin-bottom: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+
+        .schedule-item.booked {
+            border-left-color: #f44336;
+        }
+
+        .no-schedules {
+            color: #9e9e9e;
+            text-align: center;
+            padding: 30px 0;
+            font-style: italic;
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .student-info, .schedule-note {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        .schedule-note {
+            color: #555;
+        }
+
+        .schedule-actions {
+            margin-top: 8px;
+            text-align: right;
+        }
+
+        @media (max-width: 768px) {
+            .calendar-week {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-day {
+                min-height: auto;
+            }
+        }
+    </style>
+
 @endsection
 
 @section('content')
@@ -129,14 +207,14 @@
                                 </form>
                                 <hr>
                                 <h4 class="mb-25">{{ trans('profile.teacher_schedules') }}</h4>
-                                <table class="table table-bordered text-center">
+                                {{-- <table class="table table-bordered text-center">
                                     <thead class="thead-dark">
                                         <tr>
                                             <th>{{ trans('teachers.day') }}</th>
                                             <th>{{ trans('teachers.start_time') }}</th>
                                             <th>{{ trans('teachers.end_time') }}</th>
                                             <th>{{ trans('teachers.status') }}</th>
-                                            {{-- <th>{{ trans('teachers.note') }}</th> --}}
+                                            <th>{{ trans('teachers.note') }}</th>
                                             <th>{{ trans('actions.actions') }}</th>
                                         </tr>
                                     </thead>
@@ -152,7 +230,7 @@
                                                         {{ $schedule->is_booked ? trans('messages.reserved') : trans('messages.available') }}
                                                     </span>
                                                 </td>
-                                                {{-- <td>{{ $schedule->note ?? 'N\A' }}</td> --}}
+                                                <td>{{ $schedule->note ?? 'N\A' }}</td>
                                                 <td>
                                                     <form action="{{ route('user.delete_schedule', $schedule->id) }}"
                                                         method="POST" style="display: inline-block;">
@@ -171,7 +249,64 @@
                                             </tr>
                                         @endforelse
                                     </tbody>
-                                </table>
+                                </table> --}}
+                                <div class="calendar-week">
+                                    @foreach($weekDays as $day => $dayData)
+                                        <div class="calendar-day">
+                                            <div class="day-header">
+                                                <h5>{{ $dayData['dayName'] }}</h5>
+                                            </div>
+
+                                            <div class="day-content">
+                                                @if($dayData['schedules']->count() > 0)
+                                                    <div class="section-title">{{ trans('calender.schedules') }}</div>
+
+                                                    @foreach($dayData['schedules'] as $schedule)
+                                                        <div class="schedule-item {{ $schedule->is_booked ? 'booked' : 'available' }}">
+                                                            <div class="schedule-time">
+                                                                {{ date('h:i A', strtotime($schedule->start_time)) }} -
+                                                                {{ date('h:i A', strtotime($schedule->end_time)) }}
+                                                            </div>
+
+                                                            @if($schedule->is_booked)
+                                                                <div class="student-info">
+                                                                    {{ trans('calender.student') }}:
+                                                                    {{ $schedule->student->name ?? trans('messages.reserved') }}
+                                                                </div>
+                                                            @endif
+
+                                                            <div class="schedule-status">
+                                                                <span class="badge {{ $schedule->is_booked ? 'bg-danger' : 'bg-success' }}">
+                                                                    {{ $schedule->is_booked ? trans('messages.reserved') : trans('messages.available') }}
+                                                                </span>
+                                                            </div>
+
+                                                            {{-- @if($schedule->note)
+                                                                <div class="schedule-note">
+                                                                    {{ $schedule->note }}
+                                                                </div>
+                                                            @endif --}}
+
+                                                            <div class="schedule-actions">
+                                                                <form action="{{ route('user.delete_schedule', $schedule->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('{{ trans('messages.confirm_delete') }}')">
+                                                                        <i class="fas fa-trash-alt"></i>
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    @endforeach
+                                                @else
+                                                    <div class="no-schedules">
+                                                        {{ trans('calender.no_schedules') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
                     </div>
