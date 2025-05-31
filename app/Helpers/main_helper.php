@@ -429,5 +429,49 @@ if (!function_exists('form_icon')) {
             return str_replace(['AM', 'PM'], ['ص', 'م'], $formattedTime);
         }
     }
+
+    if (!function_exists('get_notification_icon')) {
+        /**
+         * Get icon class for notification type
+         *
+         * @param string $type
+         * @return string
+         */
+        function get_notification_icon($type)
+        {
+            $icons = [
+                'LectureReminderNotification' => 'fa fa-clock',
+                'LectureStartedNotification' => 'fa fa-play-circle',
+                'MissedLectureNotification' => 'fa fa-exclamation-triangle',
+                'AutoEndedLectureNotification' => 'fa fa-stop-circle',
+                'TomorrowLectureNotification' => 'fa fa-calendar-alt',
+                'AppointmentCancelledNotification' => 'fa fa-times-circle',
+            ];
+
+            return $icons[$type] ?? 'fa fa-bell';
+        }
+    }
+
+    if (!function_exists('get_notification_color')) {
+        /**
+         * Get color class for notification type
+         *
+         * @param string $type
+         * @return string
+         */
+        function get_notification_color($type)
+        {
+            $colors = [
+                'LectureReminderNotification' => 'warning',
+                'LectureStartedNotification' => 'success',
+                'MissedLectureNotification' => 'danger',
+                'AutoEndedLectureNotification' => 'secondary',
+                'TomorrowLectureNotification' => 'info',
+                'AppointmentCancelledNotification' => 'danger',
+            ];
+
+            return $colors[$type] ?? 'primary';
+        }
+    }
 }
 

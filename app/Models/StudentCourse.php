@@ -37,4 +37,9 @@ class StudentCourse extends Model
     {
         return $this->hasOne(ZoomMeeting::class, 'appointment_id');
     }
+
+    public function cancellation()
+    {
+        return $this->hasOne(AppointmentCancellation::class, 'appointment_id');
+    }
 }

@@ -37,4 +37,7 @@
   'Lecture has ended successfully' => 'Lecture has ended successfully',
   'reserved' => 'reserved',
   'confirm_delete' => 'confirm_delete',
+  'Zoom meeting not found in Zoom system' => 'Zoom meeting not found in Zoom system',
+  'Cannot cancel this appointment' => 'Cannot cancel this appointment',
+  'Appointment cancelled successfully' => 'Appointment cancelled successfully',
 );

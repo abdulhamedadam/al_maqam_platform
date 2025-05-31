@@ -173,6 +173,22 @@
                 <div class="menu-item ">
                     <div class="menu-content">
                         <span
+                            class="fw-bold text-uppercase fs-7 text-success">{{ trans('sidebar.evaluation_management') }}</span>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <a class="menu-link {{ request()->routeIs(['admin.evaluation_questions.index']) ? 'active' : '' }}"
+                        href="{{ route('admin.evaluation_questions.index') }}">
+                        <span class="svg-icon svg-icon-2" style="margin-left: 5px">
+                            <i class="bi bi-ui-checks-grid text-danger fs-5"></i>
+                        </span>
+                        <span class="menu-title">{{ trans('sidebar.evaluation_questions') }}</span>
+                    </a>
+                </div>
+                <hr class="w-100 border border-success">
+                <div class="menu-item ">
+                    <div class="menu-content">
+                        <span
                             class="fw-bold text-uppercase fs-7 text-success">{{ trans('sidebar.site_management') }}</span>
                     </div>
 

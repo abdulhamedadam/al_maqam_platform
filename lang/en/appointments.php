@@ -27,4 +27,12 @@
   'not_ended' => 'Not yet ended',
   ' join_meeting' => ' join_meeting',
   'join_meeting' => 'join_meeting',
+  'cancel' => 'Cancel',
+'cancelled' => 'Cancelled',
+'cannot_cancel' => 'Cannot cancel (must be at least 3 hours before)',
+'cancel_appointment' => 'Cancel Appointment',
+'cancellation_warning' => 'Warning: This appointment will be cancelled. Please provide a clear reason for cancellation.',
+'cancellation_reason' => 'Cancellation Reason',
+'cancellation_reason_placeholder' => 'Please provide a clear reason for cancelling this appointment...',
+'confirm_cancel' => 'Confirm Cancellation',
 );

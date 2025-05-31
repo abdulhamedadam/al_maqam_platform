@@ -16,5 +16,13 @@
   'teacher_calendar' => 'Teacher Calendar',
   'student_calendar' => 'Student Calendar',
   'teacher_appointments' => 'Teacher Appointments',
-  'student_appointments' => 'student_appointments',
+  'student_appointments' => 'Student Appointments',
+  'reviews' => 'Reviews',
+  'order_history' => 'Order History',
+  'settings' => 'Settings',
+  'dashboard' => 'Dashboard',
+  'cancellations' => 'Cancellations',
+  'teacher_notifications' => 'Teacher notifications',
+  'student_notifications' => 'Student notifications',
+  'logout' => 'Logout'
 );

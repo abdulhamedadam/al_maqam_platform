@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Interfaces\Admin\EvaluationQuestionInterface;
 use App\Interfaces\Admin\SectionInterface;
 use App\Interfaces\BasicRepositoryInterface;
+use App\Repositories\Admin\EvaluationQuestionRepository;
 use App\Repositories\BasicRepository;
 use App\Interfaces\Admin\StudentInterface;
 use App\Interfaces\Admin\TeacherInterface;
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(StudentInterface::class, StudentRepository::class);
         $this->app->bind(TeacherInterface::class, TeacherRepository::class);
         $this->app->bind(SectionInterface::class, SectionRepository::class);
+        $this->app->bind(EvaluationQuestionInterface::class, EvaluationQuestionRepository::class);
 
     }
 

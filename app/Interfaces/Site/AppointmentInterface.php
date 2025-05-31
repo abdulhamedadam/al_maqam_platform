@@ -16,4 +16,7 @@ interface AppointmentInterface
 
     public function getLatestZoomMeetingByAppointmentId($appointmentId);
 
+    public function cancelAppointment($appointmentId, $userId, $userType, $reason);
+    public function canCancelAppointment($appointmentId, $userId, $userType);
+
 }
