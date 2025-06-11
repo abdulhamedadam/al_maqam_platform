@@ -1,13 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\EvaluationQuestionController;
+use App\Http\Controllers\Site\AppointmentCancellationController;
 use App\Http\Controllers\Site\AppointmentController;
 use App\Http\Controllers\Site\Auth\AuthController;
 use App\Http\Controllers\Site\ContactController;
 use App\Http\Controllers\Site\CoursesController;
 use App\Http\Controllers\Site\HomeController;
 use App\Http\Controllers\Site\OurTeachersController;
+use App\Http\Controllers\Site\StudentNotificationController;
 use App\Http\Controllers\Site\StudentsController;
+use App\Http\Controllers\Site\NotificationController;
+use App\Http\Controllers\Site\TeacherNotificationController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -65,6 +70,20 @@ Route::group(
 
                 Route::get('/student/today-appointments', [AppointmentController::class, 'todaysAppointments'])->name('student.appointments');
 
+                Route::post('/appointments/{id}/cancel', [AppointmentController::class, 'cancelAppointment'])
+                    ->name('student.cancel_appointment');
+
+                // Route::get('student/notifications', [StudentNotificationController::class, 'index'])->name('student.notifications');
+                // Route::get('student/notifications/data', [StudentNotificationController::class, 'getNotifications'])->name('student.notifications.data');
+                // Route::post('student/notifications/{id}/mark-read', [StudentNotificationController::class, 'markAsRead'])->name('student.notifications.mark_read');
+                // Route::post('student/notifications/mark-all-read', [StudentNotificationController::class, 'markAllAsRead'])->name('student.notifications.mark_all_read');
+
+                // Route::get('student/notifications', [NotificationController::class, 'index'])->name('student.notifications');
+                // Route::post('student/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead'])->name('student.notifications.mark_read');
+                // Route::post('student/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('student.notifications.mark_all_read');
+                // Route::get('student/notifications/counts', [NotificationController::class, 'getCounts'])->name('student.notification_counts');
+                // Route::delete('student/notifications/{notification}', [NotificationController::class, 'destroy'])->name('student.delete_notification');
+                // Route::post('student/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('student.clear_all_notifications');
             });
 
             Route::middleware(['auth:web', 'role:teacher'])->group(function () {
@@ -78,6 +97,24 @@ Route::group(
                 Route::get('/teacher/today-appointments', [AppointmentController::class, 'todaysAppointments'])->name('teacher.appointments');
                 Route::post('/teacher/start-lecture/{id}', [AppointmentController::class, 'startLecture'])->name('teacher.start_lecture');
                 Route::post('/teacher/end-lecture/{id}', [AppointmentController::class, 'endLecture'])->name('teacher.end_lecture');
+
+                Route::get('/evaluation-questions', [EvaluationQuestionController::class, 'getEvaluationQuestions'])->name('teacher.evaluation_questions');
+
+                Route::post('/teacher/appointments/{id}/cancel', [AppointmentController::class, 'cancelAppointment'])
+                        ->name('teacher.cancel_appointment');
+
+                // Route::get('teacher/notifications', [NotificationController::class, 'index'])->name('teacher.notifications');
+                // Route::post('teacher/notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead'])->name('teacher.notifications.mark_read');
+                // Route::post('teacher/notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('teacher.notifications.mark_all_read');
+                // Route::get('teacher/notifications/counts', [NotificationController::class, 'getCounts'])->name('teacher.notification_counts');
+                // Route::delete('teacher/notifications/{notification}', [NotificationController::class, 'destroy'])->name('teacher.delete_notification');
+                // Route::post('teacher/notifications/clear-all', [NotificationController::class, 'clearAll'])->name('teacher.clear_all_notifications');
+
+                // Route::get('teacher/notifications', [TeacherNotificationController::class, 'index'])->name('teacher.notifications');
+                // Route::get('teacher/notifications/data', [TeacherNotificationController::class, 'getNotifications'])->name('teacher.notifications.data');
+                // Route::post('teacher/notifications/{id}/mark-read', [TeacherNotificationController::class, 'markAsRead'])->name('teacher.notifications.mark_read');
+                // Route::post('teacher/notifications/mark-all-read', [TeacherNotificationController::class, 'markAllAsRead'])->name('teacher.notifications.mark_all_read');
+
             });
 
 
@@ -88,8 +125,18 @@ Route::group(
 
                 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
+                Route::get('notifications', [NotificationController::class, 'index'])->name('notifications');
+                Route::post('notifications/{notification}/mark-read', [NotificationController::class, 'markAsRead'])->name('notifications.mark_read');
+                Route::post('notifications/mark-all-read', [NotificationController::class, 'markAllAsRead'])->name('notifications.mark_all_read');
+                Route::get('notifications/counts', [NotificationController::class, 'getCounts'])->name('notification_counts');
+                Route::delete('notifications/{notification}', [NotificationController::class, 'destroy'])->name('delete_notification');
+                Route::post('notifications/clear-all', [NotificationController::class, 'clearAll'])->name('clear_all_notifications');
+
+                Route::get('/my-cancellations', [AppointmentCancellationController::class, 'index'])
+                    ->name('cancellations.index');
 
             });
+
         });
     }
 );

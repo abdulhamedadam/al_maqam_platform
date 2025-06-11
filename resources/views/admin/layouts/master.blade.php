@@ -13,7 +13,7 @@
         <head>
             <base href="../../"/>
             {{-- <title>{{(!empty($mainData->name)) ? $mainData->name : 'Rashaketik'}}</title> --}}
-            <title>Tahsel Dish</title>
+            <title>Almaqam</title>
             <meta charset="utf-8"/>
             <meta name="description"
                   content="The most advanced Bootstrap Admin Theme on Bootstrap Market trusted by over 4,000 beginners and professionals. Multi-demo, Dark Mode, RTL support. Grab your copy now and get life-time updates for free."/>

@@ -25,4 +25,7 @@
   'details' => 'التفاصيل',
   'calendar' => 'التقويم',
   'students' => 'الطلاب',
+  'evaluation_questions' => 'اسئلة التقييمات',
+  'create' => 'انشاء',
+  'edit' => 'تعديل',
 );

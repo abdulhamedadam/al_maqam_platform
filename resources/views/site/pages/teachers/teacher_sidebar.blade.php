@@ -5,7 +5,7 @@
                 <button class="nav-link" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button"
                     role="tab" aria-controls="home" aria-selected="true">
                     <i class="fas fa-house"></i>
-                    Dashboard
+                    {{ trans('profile.dashboard') }}
                 </button>
             </li>
             <li class="nav-item" role="presentation">
@@ -43,29 +43,44 @@
                 </a>
             </li>
             <li class="nav-item" role="presentation">
+                <a class="nav-link {{ request()->routeIs('user.notifications') ? 'active' : '' }}"
+                    href="{{ route('user.notifications') }}" role="tab" aria-controls="contact"
+                    aria-selected="false">
+                    <i class="fas fa-calendar-check"></i> {{ trans('profile.teacher_notifications') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link {{ request()->routeIs('user.cancellations.index') ? 'active' : '' }}"
+                    href="{{ route('user.cancellations.index') }}" role="tab" aria-controls="contact"
+                    aria-selected="false">
+                    <i class="fas fa-times-circle"></i> {{ trans('profile.cancellations') }}
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
                 <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
                     role="tab" aria-controls="reviews" aria-selected="false">
-                    <i class="fas fa-star"></i> Reviews
+                    <i class="fas fa-star"></i> {{ trans('profile.reviews') }}
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="history-tab" data-bs-toggle="tab" data-bs-target="#history" type="button"
                     role="tab" aria-controls="history" aria-selected="false">
-                    <i class="fas fa-cart-plus"></i> Order History
+                    <i class="fas fa-cart-plus"></i> {{ trans('profile.order_history') }}
                 </button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="setting-tab" data-bs-toggle="tab" data-bs-target="#setting" type="button"
                     role="tab" aria-controls="setting" aria-selected="false">
-                    <i class="fas fa-cog"></i> Settings
+                    <i class="fas fa-cog"></i> {{ trans('profile.settings') }}
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="logout-tab" data-bs-toggle="tab" data-bs-target="#logout" type="button"
-                    role="tab" aria-controls="logout" aria-selected="false"
-                    onclick="window.location.href='login.html';">
-                    <i class="fas fa-sign-out-alt"></i> Logout
-                </button>
+                <form method="POST" action="{{ route('user.logout') }}" class="d-inline">
+                    @csrf
+                    <button class="nav-link" type="submit" role="button" id="logout-tab">
+                        <i class="fas fa-sign-out-alt"></i> {{ trans('profile.logout') }}
+                    </button>
+                </form>
             </li>
         </ul>
     </div>

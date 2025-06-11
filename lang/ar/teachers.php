@@ -91,4 +91,10 @@
   'status' => 'الحاله',
   'hourly_rate' => 'سعر الساعة',
   'total_earnings' => 'اجمالى الحساب',
+  'teacher_profile' => 'teacher_profile',
+  'not_specified' => 'not_specified',
+  'education_level' => 'education_level',
+  'qualifications' => 'qualifications',
+  'teaching_experience' => 'teaching_experience',
+  'availability' => 'availability',
 );

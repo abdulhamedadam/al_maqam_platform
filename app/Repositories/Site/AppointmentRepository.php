@@ -5,9 +5,11 @@ namespace App\Repositories\Site;
 
 
 use App\Interfaces\Site\AppointmentInterface;
+use App\Models\AppointmentCancellation;
 use App\Models\Course;
 use App\Models\StudentCourse;
 use App\Models\ZoomMeeting;
+use Carbon\Carbon;
 
 class AppointmentRepository implements AppointmentInterface
 {
@@ -64,5 +66,30 @@ class AppointmentRepository implements AppointmentInterface
         return ZoomMeeting::where('appointment_id', $appointmentId)
             ->latest()
             ->first();
+    }
+
+    public function cancelAppointment($appointmentId, $userId, $userType, $reason)
+    {
+        $appointment = $this->findAppointmentById($appointmentId);
+        // dd($appointment);
+        $appointment->status = 'cancelled';
+        $appointment->cancelled_at = now();
+        $appointment->save();
+
+        return AppointmentCancellation::create([
+            'appointment_id' => $appointmentId,
+            'cancelled_by_id' => $userId,
+            'cancelled_by_type' => $userType,
+            'reason' => $reason
+        ]);
+    }
+
+    public function canCancelAppointment($appointmentId, $userId, $userType)
+    {
+        $appointment = $this->findAppointmentById($appointmentId);
+        $startTime = Carbon::parse($appointment->start_time);
+
+        return $startTime->diffInHours(now(), false) <= -3 &&
+            $appointment->status === 'scheduled';
     }
 }

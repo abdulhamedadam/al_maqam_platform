@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AboutUsController;
 use App\Http\Controllers\Admin\app_setting\DiscountController;
 use App\Http\Controllers\Admin\CalendarController;
+use App\Http\Controllers\Admin\CancellationsController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\CompanyController;
 
@@ -10,6 +11,7 @@ use App\Http\Controllers\Admin\CourseController;
 
 use App\Http\Controllers\Admin\EmployeesController;
 
+use App\Http\Controllers\Admin\EvaluationQuestionController;
 use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\InvoiceController;
 use App\Http\Controllers\Admin\MasrofatController;
@@ -24,6 +26,7 @@ use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\TestsController;
 use App\Http\Controllers\Admin\UsersController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -112,6 +115,14 @@ Route::group(
 
 
 
+        // Route::resource('evaluations', EvaluationController::class);
+        // Route::get('evaluations/student/{id}', [EvaluationController::class, 'studentEvaluations'])->name('evaluations.student');
+        // Route::get('evaluations/teacher/{id}', [EvaluationController::class, 'teacherEvaluations'])->name('evaluations.teacher');
+
+        Route::resource('evaluation_questions', EvaluationQuestionController::class);
+        Route::post('evaluation_questions/change_status', [EvaluationQuestionController::class, 'changeStatus'])->name('evaluation_questions.change_status');
+
+        Route::get('/cancellations', [CancellationsController::class, 'index'])->name('cancellations.index');
     });
 
 
@@ -127,4 +138,19 @@ Route::group(
 
 
     require __DIR__ . '/adminauth.php';
+
+    Route::get('/create-storage-link', function() {
+        // Check if the link already exists
+        // if (file_exists(public_path('storage'))) {
+        //     return response()->json(['message' => 'Storage link already exists.'], 400);
+        // }
+
+        // Create the symbolic link
+        try {
+            Artisan::call('app:create-storage-link');
+            return response()->json(['message' => 'Storage link created successfully.']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Failed to create storage link: ' . $e->getMessage()], 500);
+        }
+    })->middleware('auth'); // Add appropriate middleware for security
 });
