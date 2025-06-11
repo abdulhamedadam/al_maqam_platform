@@ -7,6 +7,7 @@
   'minutes_per_lesson' => 'دقيقة لكل درس',
   'view_details' => 'مشاهدة التفاصيل',
   'Saturday' => 'السبت',
+
   'teacher_schedules' => 'جداول المدرسين',
   'assigned_courses' => 'الكورسات المخصصة',
   'teacher_calendar' => 'تقويم المعلم',
@@ -25,4 +26,5 @@
   'dashboard' => 'لوحة التحكم',
   'teacher_notifications' => 'اشعارات المعلم',
   'cancellations' => 'الاعتذارات',
+
 );
